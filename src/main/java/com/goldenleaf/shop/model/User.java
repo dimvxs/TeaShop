@@ -7,13 +7,15 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+import jakarta.persistence.SequenceGenerator;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class User {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "review_seq")
+	@SequenceGenerator(name = "review_seq", sequenceName = "REVIEW_SEQ", allocationSize = 1)
 	private int id;
 	private String login;
 	private String passwordHash;

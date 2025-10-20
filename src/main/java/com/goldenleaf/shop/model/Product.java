@@ -11,13 +11,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.JoinColumn;
 
 @Entity
 public class Product {
 	
 @Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
+@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "review_seq")
+@SequenceGenerator(name = "review_seq", sequenceName = "REVIEW_SEQ", allocationSize = 1)
 private int id;
 private String name;
 private String brand;
