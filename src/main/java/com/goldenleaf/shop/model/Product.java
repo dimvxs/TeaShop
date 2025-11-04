@@ -18,9 +18,8 @@ import jakarta.persistence.JoinColumn;
 public class Product {
 	
 @Id
-@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "review_seq")
-@SequenceGenerator(name = "review_seq", sequenceName = "REVIEW_SEQ", allocationSize = 1)
-private int id;
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+private Long id;
 private String name;
 private String brand;
 private double price;
@@ -70,7 +69,7 @@ public Product(String name, String brand, double price, Set<Category> categories
 }
 
 
-public int getId() {
+public Long getId() {
     return id;
 }
 

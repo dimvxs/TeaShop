@@ -10,13 +10,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "credit_card")
 public class CreditCard {
 @Id
-@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "review_seq")
-@SequenceGenerator(name = "review_seq", sequenceName = "REVIEW_SEQ", allocationSize = 1)
-private int id;
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+private Long id;
 @Column(nullable = false, length = 100)
 private String holderName;
 @Column(nullable = false, length = 16)
@@ -30,7 +31,7 @@ private Customer customer;
 
 
 
-public int getId() {
+public Long getId() {
  return id;
 }
 

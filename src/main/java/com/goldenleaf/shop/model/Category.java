@@ -5,14 +5,15 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "category")
 public class Category {
 
 @Id
-@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "review_seq")
-@SequenceGenerator(name = "review_seq", sequenceName = "REVIEW_SEQ", allocationSize = 1)
-private int id;
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+private Long id;
 @Column(nullable = false, length = 100)
 private String name;
 
@@ -30,7 +31,7 @@ public Category(String name)
 	this.name = name;
 }
 
-public int getId() {
+public Long getId() {
     return id;
 }
 

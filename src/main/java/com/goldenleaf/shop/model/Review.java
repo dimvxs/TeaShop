@@ -15,9 +15,8 @@ import jakarta.validation.constraints.Max;
 public class Review {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "review_seq")
-	@SequenceGenerator(name = "review_seq", sequenceName = "REVIEW_SEQ", allocationSize = 1)
-	private int id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	 @ManyToOne
 	 @JoinColumn(name = "user_id")
 	private Customer author;
@@ -65,7 +64,7 @@ public class Review {
 	
 	
 	
-	 public int getId() {
+	 public Long getId() {
 	        return id;
 	    }
 

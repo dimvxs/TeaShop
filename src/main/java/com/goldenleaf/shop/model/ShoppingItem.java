@@ -11,15 +11,14 @@ import jakarta.persistence.SequenceGenerator;
 @Entity
 public class ShoppingItem {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "review_seq")
-	@SequenceGenerator(name = "review_seq", sequenceName = "REVIEW_SEQ", allocationSize = 1)
-	private int id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	@ManyToOne
 	@JoinColumn(name = "product_id", nullable = false)
 	private Product product;
 	private int quantity;
 	@ManyToOne
-	@JoinColumn(name = "cart_id")
+	@JoinColumn(name = "cart_id", nullable = false)
 	private ShoppingCart cart;
 	
 	
@@ -43,7 +42,7 @@ public class ShoppingItem {
 		
 		}
 	
-    public int getId() {
+    public Long getId() {
         return id;
     }
     

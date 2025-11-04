@@ -4,26 +4,45 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "shopping_cart")
 public class ShoppingCart {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "review_seq")
-	@SequenceGenerator(name = "review_seq", sequenceName = "REVIEW_SEQ", allocationSize = 1)
-	private int id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "cart_id")
+	private Long id;
 
 	@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<ShoppingItem> items = new ArrayList<>();
 	
+
+	@OneToOne(mappedBy = "shoppingCart")
+	private Customer customer;
 	
+	@Column(name = "total_price", nullable = false)
+	private double totalPrice;
 	
-    public int getId() {
+	public ShoppingCart() {}
+	
+	public ShoppingCart( List<ShoppingItem> items, Customer customer, double totalPrice)
+	{
+		this.items = items;
+		this.customer = customer;
+		this.totalPrice = totalPrice;
+	}
+	
+    public Long getId() {
         return id;
     }
     
@@ -82,14 +101,35 @@ public class ShoppingCart {
     	
     }
     
-    public double getTotalPrice()
+    public void setCustomer(Customer customer)
+    {
+    	if(customer != null)
+    	{
+    		this.customer = customer;
+    	}
+    }
+    
+    public double calculateTotalPrice()
     {
     	return  items.stream()
                 .mapToDouble(item -> item.getProduct().getPrice() * item.getQuantity())
-                .sum();
-
-    	
+                .sum();	
     
+    }
+    
+    public double getTotalPrice() {
+    	return totalPrice;
+    }
+    
+    public void setTotalPrice(double totalPrice)
+    {
+    	if(totalPrice < 0)
+    	{
+    		throw new IllegalArgumentException("total price should be more than 0");
+    		
+    	}
+    	
+    	this.totalPrice = totalPrice;
     }
     
 
