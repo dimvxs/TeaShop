@@ -1,6 +1,8 @@
 package com.goldenleaf.shop.model;
 
 import java.time.LocalDate;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorColumn;
