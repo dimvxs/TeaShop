@@ -38,6 +38,9 @@ public abstract class User {
     private String name;
     @Column(nullable = false)
     private LocalDate lastActivity;
+    
+    private static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
 
     public User() {}
 
@@ -67,7 +70,7 @@ public abstract class User {
     }
 
     public void setPassword(String password) {
-        // надо реализовать хэширование
+       this.passwordHash = passwordEncoder.encode(password);
     }
 
     public LocalDate getLastActivity() {
