@@ -1,6 +1,7 @@
 package com.goldenleaf.shop.service;
 import java.util.List;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.goldenleaf.shop.model.User;
@@ -10,10 +11,12 @@ import com.goldenleaf.shop.repository.UserRepository;
 public class UserService {
 	
 private final UserRepository userRepository;
+private final PasswordEncoder passwordEncoder;
 
-public UserService(UserRepository repo)
+public UserService(UserRepository repo, PasswordEncoder encoder)
 {
 	this.userRepository = repo;
+	this.passwordEncoder = encoder;
 }
 
 public List<User> getAllUsers()
@@ -76,6 +79,13 @@ public void editUser(User user)
         throw new RuntimeException("User not found");
     }
     userRepository.save(user); 
+}
+
+
+public void register(User user, String password)
+{
+	user.setPassword(passwordEncoder.encode(password));
+	userRepository.save(user);
 }
 
 }

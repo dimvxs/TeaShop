@@ -2,6 +2,11 @@ package com.goldenleaf.shop.model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+
+import com.goldenleaf.shop.exception.EmptyBrandException;
+import com.goldenleaf.shop.exception.EmptyNameException;
+import com.goldenleaf.shop.exception.IncorrectPriceException;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
@@ -39,23 +44,23 @@ private List<Review> reviews = new ArrayList<>();
 
 public Product() {}
 
-public Product(String name, String brand, double price, Set<Category> categories, List<String> imageUrls, List<Review> reviews)
+public Product(String name, String brand, double price, Set<Category> categories, List<String> imageUrls, List<Review> reviews) throws EmptyBrandException, EmptyNameException, IncorrectPriceException
 
 {
 
 		if(name == null || name.isBlank())
 		{
-			throw new IllegalArgumentException("Name cannot be null or empty");
+			throw new EmptyNameException("Name cannot be null or empty");
 		}
 		
 		if(brand == null || brand.isBlank())
 		{
-			throw new IllegalArgumentException("Brand cannot be null or empty");
+			throw new EmptyBrandException("Brand cannot be null or empty");
 		}
 		  
 		if(price < 0)
 		{
-			throw new IllegalArgumentException("Price cannot be negative");
+			throw new IncorrectPriceException("Price cannot be negative");
 		}
 		
 		this.name = name;
@@ -75,11 +80,11 @@ public Long getId() {
 
 public String getName() { return name; }
 
-public void setName(String name) { 
+public void setName(String name) throws EmptyNameException { 
 	
 	if(name == null || name.isBlank())
 	{
-		throw new IllegalArgumentException("Name cannot be null or empty");
+		throw new EmptyNameException("Name cannot be null or empty");
 	}
 	
 	this.name = name;

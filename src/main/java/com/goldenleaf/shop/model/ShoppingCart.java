@@ -3,6 +3,10 @@ package com.goldenleaf.shop.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.goldenleaf.shop.exception.EmptyProductException;
+import com.goldenleaf.shop.exception.IncorrectPriceException;
+import com.goldenleaf.shop.exception.IncorrectQuantityException;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -52,15 +56,16 @@ public class ShoppingCart {
         return items;
     }
 
-    public void setItems(List<ShoppingItem> items) {
+    public void setItems(List<ShoppingItem> items) throws EmptyProductException{
         this.items = items;
         
         for (ShoppingItem item : items) {
             item.setCart(this);
+          	
         }
     }
     
-	public void addItem(Product product, int quantity) {
+	public void addItem(Product product, int quantity) throws EmptyProductException, IncorrectQuantityException {
 	    ShoppingItem item = new ShoppingItem(product, quantity);
 	    item.setCart(this);        // связываем с этой корзиной
 	    items.add(item);
@@ -121,11 +126,11 @@ public class ShoppingCart {
     	return totalPrice;
     }
     
-    public void setTotalPrice(double totalPrice)
+    public void setTotalPrice(double totalPrice) throws IncorrectPriceException
     {
     	if(totalPrice < 0)
     	{
-    		throw new IllegalArgumentException("total price should be more than 0");
+    		throw new IncorrectPriceException("total price should be more than 0");
     		
     	}
     	

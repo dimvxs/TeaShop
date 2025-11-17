@@ -3,6 +3,18 @@ package com.goldenleaf.shop.model;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.goldenleaf.shop.exception.EmptyAuthorException;
+import com.goldenleaf.shop.exception.EmptyContentException;
+import com.goldenleaf.shop.exception.EmptyProductException;
+import com.goldenleaf.shop.exception.EmptyShoppingCartException;
+import com.goldenleaf.shop.exception.IncorrectBonusPointsValue;
+import com.goldenleaf.shop.exception.IncorrectEmailException;
+import com.goldenleaf.shop.exception.IncorrectMobileException;
+import com.goldenleaf.shop.exception.IncorrectRatingException;
+import com.goldenleaf.shop.exception.NullCustomerException;
+import com.goldenleaf.shop.exception.NullPaymentException;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -44,23 +56,23 @@ public class Customer extends User {
             int bonusPoints,
             ShoppingCart shoppingCart,
             List<CreditCard> payments
-    ) {
+    ) throws IncorrectMobileException, IncorrectBonusPointsValue, IncorrectEmailException, EmptyShoppingCartException, NullPaymentException{
         super(login, passwordHash, name, lastActivity);
 
         if (!checkField(mobile)) {
-            throw new IllegalArgumentException("Incorrect mobile");
+            throw new IncorrectMobileException("Incorrect mobile");
         }
         if (!checkField(email)) {
-            throw new IllegalArgumentException("Incorrect email");
+            throw new IncorrectEmailException("Incorrect email");
         }
         if (bonusPoints < 0) {
-            throw new IllegalArgumentException("Bonus points cannot be less than 0");
+            throw new IncorrectBonusPointsValue("Bonus points cannot be less than 0");
         }
         if (shoppingCart == null) {
-            throw new IllegalArgumentException("Shopping cart cannot be null");
+            throw new EmptyShoppingCartException("Shopping cart cannot be null");
         }
         if (payments == null) {
-            throw new IllegalArgumentException("Payment cannot be null");
+            throw new NullPaymentException("Payment cannot be null");
         }
 
         this.mobile = mobile;
@@ -78,9 +90,9 @@ public class Customer extends User {
         return mobile;
     }
 
-    public void setMobile(String mobile) {
+    public void setMobile(String mobile) throws IncorrectMobileException{
         if (!checkField(mobile)) {
-            throw new IllegalArgumentException("Incorrect mobile");
+            throw new IncorrectMobileException("Incorrect mobile");
         }
         this.mobile = mobile;
     }
@@ -89,9 +101,9 @@ public class Customer extends User {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(String email) throws IncorrectEmailException{
         if (!checkField(email)) {
-            throw new IllegalArgumentException("Incorrect email");
+            throw new IncorrectEmailException("Incorrect email");
         }
         this.email = email;
     }
@@ -119,17 +131,17 @@ public class Customer extends User {
         }
     }
 
-    public void makeReview(Product product, String content, int rating) {
+    public void makeReview(Product product, String content, int rating) throws IncorrectRatingException, EmptyAuthorException, EmptyContentException, EmptyProductException {
         Review review = new Review(this, content, rating, product);
         product.addReview(review);
     }
 
-    public void addPayment(CreditCard card) {
+    public void addPayment(CreditCard card) throws NullCustomerException {
         card.setCustomer(this);
         payments.add(card);
     }
 
-    public void removePayment(CreditCard card) {
+    public void removePayment(CreditCard card) throws NullCustomerException {
         payments.remove(card);
         card.setCustomer(null);
     }

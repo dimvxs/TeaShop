@@ -1,8 +1,9 @@
 package com.goldenleaf.shop.model;
 
 import java.time.LocalDate;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+
+import com.goldenleaf.shop.exception.EmptyLastActivityException;
+import com.goldenleaf.shop.exception.EmptyLoginException;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorColumn;
@@ -39,7 +40,6 @@ public abstract class User {
     @Column(nullable = false)
     private LocalDate lastActivity;
     
-    private static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
 
     public User() {}
@@ -55,34 +55,36 @@ public abstract class User {
         return id;
     }
 
-    public String getLogin() {
+    public String getLogin() throws EmptyLoginException {
         if (login == null || login.isBlank()) {
-            throw new IllegalArgumentException("Login is empty");
+            throw new EmptyLoginException("Login is empty");
         }
         return login;
     }
 
-    public void setLogin(String login) {
+    public void setLogin(String login) throws EmptyLoginException {
         if (login == null || login.isBlank()) {
-            throw new IllegalArgumentException("Login cannot be empty");
+            throw new EmptyLoginException("Login cannot be empty");
         }
         this.login = login;
     }
 
-    public void setPassword(String password) {
-       this.passwordHash = passwordEncoder.encode(password);
+    public void setPassword(String hashedPassword) {
+       this.passwordHash = hashedPassword;
     }
 
     public LocalDate getLastActivity() {
         return lastActivity;
     }
 
-    public void setLastActivity(LocalDate lastActivity) {
+    public void setLastActivity(LocalDate lastActivity) throws EmptyLastActivityException {
         if (lastActivity == null) {
-            throw new IllegalArgumentException("Last activity cannot be null");
+            throw new EmptyLastActivityException("Last activity cannot be null");
         }
         this.lastActivity = lastActivity;
     }
+    
+  
 }
 
 

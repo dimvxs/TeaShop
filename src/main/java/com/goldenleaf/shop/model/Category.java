@@ -1,4 +1,6 @@
 package com.goldenleaf.shop.model;
+import com.goldenleaf.shop.exception.EmptyNameException;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,12 +22,12 @@ private String name;
 public Category() {}
 
 
-public Category(String name)
+public Category(String name) throws EmptyNameException
 
 {
-	if(name == null || name.isBlank())
+	if(name == null || name.isBlank()) 
 	{
-		throw new IllegalArgumentException("Name cannot be null or empty");
+		throw new EmptyNameException("Name cannot be null or empty");
 	}
 	
 	this.name = name;
@@ -35,13 +37,13 @@ public Long getId() {
     return id;
 }
 
-public void setName(String name)
+public void setName(String name) throws EmptyNameException
 
 {
 	if(name == null || name.isBlank())
 		
 	{
-		throw new IllegalArgumentException("Name cannot be null or empty");
+		throw new EmptyNameException("Name cannot be null or empty");
 	}
 	
 	this.name = name;

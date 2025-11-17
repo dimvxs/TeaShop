@@ -1,5 +1,8 @@
 package com.goldenleaf.shop.model;
 
+import com.goldenleaf.shop.exception.EmptyProductException;
+import com.goldenleaf.shop.exception.IncorrectQuantityException;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,16 +27,16 @@ public class ShoppingItem {
 	
 	public ShoppingItem() {}
 	
-	public ShoppingItem(Product product, int quantity)
+	public ShoppingItem(Product product, int quantity) throws EmptyProductException, IncorrectQuantityException
 	{
 		if(product == null)
 		{
-			throw new IllegalArgumentException("Product cannot be null");
+			throw new EmptyProductException("Product cannot be null");
 		}
 	
 		if(quantity < 1)
 		{
-			throw new IllegalArgumentException("Quanity cannot be less than 1");
+			throw new IncorrectQuantityException("Quanity cannot be less than 1");
 				
 		}
 			
@@ -54,17 +57,17 @@ public class ShoppingItem {
 	    return quantity;
 	}
 	
-	public void setProduct(Product product) {
+	public void setProduct(Product product) throws EmptyProductException {
 	    if(product == null) {
-	        throw new IllegalArgumentException("Product cannot be null");
+	        throw new EmptyProductException("Product cannot be null");
 	    }
 	    this.product = product;
 	}
 	
 
-	public void setQuantity(int quantity) {
+	public void setQuantity(int quantity) throws IncorrectQuantityException {
 	    if(quantity < 1) {
-	        throw new IllegalArgumentException("Quantity cannot be less than 1");
+	        throw new IncorrectQuantityException("Quantity cannot be less than 1");
 	    }
 	    this.quantity = quantity;
 	}

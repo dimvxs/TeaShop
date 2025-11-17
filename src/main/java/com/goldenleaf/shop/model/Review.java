@@ -1,4 +1,9 @@
 package com.goldenleaf.shop.model;
+import com.goldenleaf.shop.exception.EmptyAuthorException;
+import com.goldenleaf.shop.exception.EmptyContentException;
+import com.goldenleaf.shop.exception.EmptyProductException;
+import com.goldenleaf.shop.exception.IncorrectRatingException;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -33,26 +38,26 @@ public class Review {
 	
 	public Review() {}
 	
-	public Review(Customer author, String content, int rating, Product product)
+	public Review(Customer author, String content, int rating, Product product) throws IncorrectRatingException, EmptyAuthorException, EmptyContentException, EmptyProductException
 	{
 		if(author == null)
 		{
-			throw new IllegalArgumentException("Author should be specified");
+			throw new EmptyAuthorException("Author should be specified");
 		}
 		
 		if(content == null || content.isBlank())
 		{
-			throw new IllegalArgumentException("Content must be set");
+			throw new EmptyContentException("Content must be set");
 		}
 		
 		if(rating < 1 || rating > 5)
 		{
-			throw new IllegalArgumentException("Rating should be between 1 and 5");
+			throw new IncorrectRatingException("Rating should be between 1 and 5");
 		}
 		
 		if(product == null)
 		{
-			throw new IllegalArgumentException("Product must be set");
+			throw new EmptyProductException("Product must be set");
 		}
 
 		this.author = author;
@@ -81,23 +86,23 @@ public class Review {
 	    }
 
 	   
-	    public void setAuthor(Customer author) {
+	    public void setAuthor(Customer author) throws EmptyAuthorException{
 	        if (author == null) {
-	            throw new IllegalArgumentException("Author should be specified");
+	            throw new EmptyAuthorException("Author should be specified");
 	        }
 	        this.author = author;
 	    }
 
-	    public void setContent(String content) {
+	    public void setContent(String content) throws EmptyContentException {
 	        if (content == null || content.isBlank()) {
-	            throw new IllegalArgumentException("Content must be set");
+	            throw new EmptyContentException("Content must be set");
 	        }
 	        this.content = content;
 	    }
 
-	    public void setRating(int rating) {
+	    public void setRating(int rating) throws IncorrectRatingException {
 	        if (rating < 1 || rating > 5) {
-	            throw new IllegalArgumentException("Rating should be between 1 and 5");
+	            throw new IncorrectRatingException("Rating should be between 1 and 5");
 	        }
 	        this.rating = rating;
 	    }

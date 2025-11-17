@@ -2,6 +2,12 @@ package com.goldenleaf.shop.model;
 
 import java.time.YearMonth;
 
+import com.goldenleaf.shop.exception.EmptyCardNumberException;
+import com.goldenleaf.shop.exception.EmptyCvvException;
+import com.goldenleaf.shop.exception.EmptyExpiryException;
+import com.goldenleaf.shop.exception.EmptyNameException;
+import com.goldenleaf.shop.exception.NullCustomerException;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -52,37 +58,37 @@ public YearMonth getExpiry() {
 }
 
 
-public void setCustomer(Customer customer) {
+public void setCustomer(Customer customer) throws NullCustomerException{
  if (customer == null) {
-     throw new IllegalArgumentException("Customer cannot be null");
+     throw new NullCustomerException("Customer cannot be null");
  }
  this.customer = customer;
 }
 
-public void setHolderName(String holderName) {
+public void setHolderName(String holderName) throws EmptyNameException {
  if (holderName == null || holderName.isBlank()) {
-     throw new IllegalArgumentException("Holder name cannot be empty");
+     throw new EmptyNameException("Holder name cannot be empty");
  }
  this.holderName = holderName;
 }
 
-public void setCardNumber(String cardNumber) {
+public void setCardNumber(String cardNumber) throws EmptyCardNumberException{
  if (cardNumber == null || cardNumber.isBlank()) {
-     throw new IllegalArgumentException("Card number cannot be empty");
+     throw new EmptyCardNumberException("Card number cannot be empty");
  }
  this.cardNumber = cardNumber;
 }
 
-public void setExpiry(YearMonth expiry) {
+public void setExpiry(YearMonth expiry) throws EmptyExpiryException{
  if (expiry == null) {
-     throw new IllegalArgumentException("Expiry cannot be null");
+     throw new EmptyExpiryException("Expiry cannot be null");
  }
  this.expiry = expiry;
 }
 
-public void setCvv(String cvv) {
+public void setCvv(String cvv) throws EmptyCvvException{
  if (cvv == null || cvv.isBlank()) {
-     throw new IllegalArgumentException("CVV cannot be empty");
+     throw new EmptyCvvException("CVV cannot be empty");
  }
  this.cvv = cvv;
 }
