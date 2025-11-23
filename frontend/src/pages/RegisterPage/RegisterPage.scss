@@ -1,0 +1,14 @@
+@import '../../styles/variables';
+
+.register-page-form {
+  .register-switch-text {
+    text-align: center;
+    margin-top: 1rem;
+
+    .register-switch-link {
+      color: $btn-color;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+}
