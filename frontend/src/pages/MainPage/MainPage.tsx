@@ -1,10 +1,10 @@
 import React from 'react';
-import MainPage from './pages/MainPage/MainPage.tsx';
+import Header from './components/Header.tsx';
 
 function App() {
     return (
         <>
-            <MainPage />
+            <Header />
 
         </>
     );
