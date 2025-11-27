@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.goldenleaf.shop"},{"l":"com.goldenleaf.shop.config"},{"l":"com.goldenleaf.shop.dto"},{"l":"com.goldenleaf.shop.exception"},{"l":"com.goldenleaf.shop.model"},{"l":"com.goldenleaf.shop.repository"},{"l":"com.goldenleaf.shop.service"}];updateSearchResults();
