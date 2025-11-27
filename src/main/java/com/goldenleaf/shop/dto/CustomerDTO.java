@@ -1,31 +1,64 @@
 package com.goldenleaf.shop.dto;
 
-
+import jakarta.validation.constraints.*;
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 
+/**
+ * Data Transfer Object for creating, updating or returning customer information.
+ * <p>
+ * Extends {@link UserDTO} to inherit common fields (id, login, name, lastActivity)
+ * and adds customer-specific properties.
+ * </p>
+ * <p>
+ * Used in:
+ * <ul>
+ *   <li>User registration / profile update</li>
+ *   <li>Admin panel – viewing customer details</li>
+ *   <li>API responses after login or profile fetch</li>
+ *   <li>Order processing – retrieving customer context</li>
+ * </ul>
+ * </p>
+ *
+ * @author GoldenLeaf Team
+ * @since 1.0
+ */
 public class CustomerDTO extends UserDTO {
 
+    @Pattern(regexp = "^\\+?[0-9\\s\\-()]{10,20}$", 
+             message = "Invalid mobile phone number format")
+    @Size(max = 20, message = "Mobile number too long")
     private String mobile;
-    private String email;
-    private int bonusPoints;
-    private Long shoppingCartId;
-    private List<Long> paymentIds;
 
+    @Email(message = "Invalid email format")
+    @NotBlank(message = "Email is required")
+    @Size(max = 100, message = "Email too long")
+    private String email;
+
+    @Min(value = 0, message = "Bonus points cannot be negative")
+    private int bonusPoints = 0;
+
+    private Long shoppingCartId;
+
+    // Never return full card details — only IDs!
+    private List<Long> paymentIds = Collections.emptyList();
+
+    /** Default constructor required for JSON deserialization */
     public CustomerDTO() {}
 
+    /**
+     * Full constructor for manual mapping or testing.
+     */
     public CustomerDTO(Long id, String login, String name, LocalDate lastActivity,
                        String mobile, String email, int bonusPoints,
                        Long shoppingCartId, List<Long> paymentIds) {
-        setId(id);
-        setLogin(login);
-        setName(name);
-        setLastActivity(lastActivity);
+        super(id, login, name, lastActivity);
         this.mobile = mobile;
         this.email = email;
         this.bonusPoints = bonusPoints;
         this.shoppingCartId = shoppingCartId;
-        this.paymentIds = paymentIds;
+        this.paymentIds = paymentIds != null ? List.copyOf(paymentIds) : Collections.emptyList();
     }
 
     public String getMobile() {
@@ -33,7 +66,7 @@ public class CustomerDTO extends UserDTO {
     }
 
     public void setMobile(String mobile) {
-        this.mobile = mobile;
+        this.mobile = mobile != null ? mobile.trim() : null;
     }
 
     public String getEmail() {
@@ -60,11 +93,30 @@ public class CustomerDTO extends UserDTO {
         this.shoppingCartId = shoppingCartId;
     }
 
+    /**
+     * Returns an unmodifiable list of payment method IDs.
+     * Prevents external modification and ensures immutability in responses.
+     */
     public List<Long> getPaymentIds() {
-        return paymentIds;
+        return paymentIds != null ? Collections.unmodifiableList(paymentIds) : Collections.emptyList();
     }
 
     public void setPaymentIds(List<Long> paymentIds) {
-        this.paymentIds = paymentIds;
+        this.paymentIds = paymentIds != null ? List.copyOf(paymentIds) : Collections.emptyList();
+    }
+
+    @Override
+    public String toString() {
+        return "CustomerDTO{" +
+                "id=" + getId() +
+                ", login='" + getLogin() + '\'' +
+                ", name='" + getName() + '\'' +
+                ", email='" + email + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", bonusPoints=" + bonusPoints +
+                ", shoppingCartId=" + shoppingCartId +
+                ", paymentIdsCount=" + (paymentIds != null ? paymentIds.size() : 0) +
+                ", lastActivity=" + getLastActivity() +
+                '}';
     }
 }

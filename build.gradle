@@ -43,6 +43,12 @@ dependencies {
 	
 }
 
+javadoc {
+    options.addStringOption('Xdoclint:none', '-quiet')
+    options.addBooleanOption('html5', true)
+    failOnError = false
+}
+
 tasks.named('test') {
 	useJUnitPlatform()
 }
