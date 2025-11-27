@@ -158,7 +158,7 @@ public class ShoppingCart {
         ShoppingItem item = new ShoppingItem(product, quantity);
         item.setCart(this);
         items.add(item);
-    }
+    } 
 
     /**
      * <p>

@@ -119,7 +119,7 @@ public class Customer extends User {
         if (payments == null) {
             throw new NullPaymentException("Payment cannot be null");
         }
-
+        
         this.mobile = mobile;
         this.email = email;
         this.bonusPoints = bonusPoints;
