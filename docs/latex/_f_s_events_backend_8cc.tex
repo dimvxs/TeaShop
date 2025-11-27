@@ -1,0 +1,93 @@
+\doxysection{frontend/node\+\_\+modules/@parcel/watcher/src/macos/\+FSEvents\+Backend.cc File Reference}
+\hypertarget{_f_s_events_backend_8cc}{}\label{_f_s_events_backend_8cc}\index{frontend/node\_modules/"@parcel/watcher/src/macos/FSEventsBackend.cc@{frontend/node\_modules/"@parcel/watcher/src/macos/FSEventsBackend.cc}}
+{\ttfamily \#include $<$Core\+Services/\+Core\+Services.\+h$>$}\newline
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$unordered\+\_\+set$>$}\newline
+{\ttfamily \#include "{}../\+Event.\+hh"{}}\newline
+{\ttfamily \#include "{}../\+Backend.\+hh"{}}\newline
+{\ttfamily \#include "{}./\+FSEvents\+Backend.\+hh"{}}\newline
+{\ttfamily \#include "{}../\+Watcher.\+hh"{}}\newline
+Include dependency graph for FSEvents\+Backend.\+cc\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_f_s_events_backend_8cc__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_state}{State}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_f_s_events_backend_8cc_afaf5541c2981eaa03c51bb45b26f66d8}{CONVERT\+\_\+\+TIME}}(ts)
+\item 
+\#define \mbox{\hyperlink{_f_s_events_backend_8cc_ae5dc54837129b6151f0f9a0680a81e72}{IGNORED\+\_\+\+FLAGS}}~(k\+FSEvent\+Stream\+Event\+Flag\+Item\+Is\+Hardlink \texorpdfstring{$\vert$}{|} k\+FSEvent\+Stream\+Event\+Flag\+Item\+Is\+Last\+Hardlink \texorpdfstring{$\vert$}{|} k\+FSEvent\+Stream\+Event\+Flag\+Item\+Is\+Symlink \texorpdfstring{$\vert$}{|} k\+FSEvent\+Stream\+Event\+Flag\+Item\+Is\+Dir \texorpdfstring{$\vert$}{|} k\+FSEvent\+Stream\+Event\+Flag\+Item\+Is\+File)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_f_s_events_backend_8cc_af25ea9bca7aa29dbad8fd61ee65b8809}{stop\+Stream}} (FSEvent\+Stream\+Ref stream, CFRun\+Loop\+Ref run\+Loop)
+\item 
+bool \mbox{\hyperlink{_f_s_events_backend_8cc_afe44266407d8ce8330ac15fe813e89f8}{path\+Exists}} (char \texorpdfstring{$\ast$}{*}path)
+\item 
+void \mbox{\hyperlink{_f_s_events_backend_8cc_a2936de71c7802a85381bd2c140ed9fc9}{FSEvents\+Callback}} (Const\+FSEvent\+Stream\+Ref stream\+Ref, void \texorpdfstring{$\ast$}{*}client\+Call\+Back\+Info, size\+\_\+t num\+Events, void \texorpdfstring{$\ast$}{*}event\+Paths, const FSEvent\+Stream\+Event\+Flags event\+Flags\mbox{[}$\,$\mbox{]}, const FSEvent\+Stream\+Event\+Id event\+Ids\mbox{[}$\,$\mbox{]})
+\item 
+void \mbox{\hyperlink{_f_s_events_backend_8cc_aa91323a49344b00c619731903e6b5f0b}{check\+Watcher}} (\mbox{\hyperlink{_watcher_8hh_a8a32f1740da49095a86d32383c012cc9}{Watcher\+Ref}} watcher)
+\end{DoxyCompactItemize}
+
+
+\label{doc-define-members}
+\Hypertarget{_f_s_events_backend_8cc_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{_f_s_events_backend_8cc_afaf5541c2981eaa03c51bb45b26f66d8}\index{FSEventsBackend.cc@{FSEventsBackend.cc}!CONVERT\_TIME@{CONVERT\_TIME}}
+\index{CONVERT\_TIME@{CONVERT\_TIME}!FSEventsBackend.cc@{FSEventsBackend.cc}}
+\doxysubsubsection{\texorpdfstring{CONVERT\_TIME}{CONVERT\_TIME}}
+{\footnotesize\ttfamily \label{_f_s_events_backend_8cc_afaf5541c2981eaa03c51bb45b26f66d8} 
+\#define CONVERT\+\_\+\+TIME(\begin{DoxyParamCaption}\item[{}]{ts}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((uint64\_t)ts.tv\_sec\ *\ 1000000000\ +\ ts.tv\_nsec)}
+
+\end{DoxyCode}
+\Hypertarget{_f_s_events_backend_8cc_ae5dc54837129b6151f0f9a0680a81e72}\index{FSEventsBackend.cc@{FSEventsBackend.cc}!IGNORED\_FLAGS@{IGNORED\_FLAGS}}
+\index{IGNORED\_FLAGS@{IGNORED\_FLAGS}!FSEventsBackend.cc@{FSEventsBackend.cc}}
+\doxysubsubsection{\texorpdfstring{IGNORED\_FLAGS}{IGNORED\_FLAGS}}
+{\footnotesize\ttfamily \label{_f_s_events_backend_8cc_ae5dc54837129b6151f0f9a0680a81e72} 
+\#define IGNORED\+\_\+\+FLAGS~(k\+FSEvent\+Stream\+Event\+Flag\+Item\+Is\+Hardlink \texorpdfstring{$\vert$}{|} k\+FSEvent\+Stream\+Event\+Flag\+Item\+Is\+Last\+Hardlink \texorpdfstring{$\vert$}{|} k\+FSEvent\+Stream\+Event\+Flag\+Item\+Is\+Symlink \texorpdfstring{$\vert$}{|} k\+FSEvent\+Stream\+Event\+Flag\+Item\+Is\+Dir \texorpdfstring{$\vert$}{|} k\+FSEvent\+Stream\+Event\+Flag\+Item\+Is\+File)}
+
+
+
+\label{doc-func-members}
+\Hypertarget{_f_s_events_backend_8cc_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_f_s_events_backend_8cc_aa91323a49344b00c619731903e6b5f0b}\index{FSEventsBackend.cc@{FSEventsBackend.cc}!checkWatcher@{checkWatcher}}
+\index{checkWatcher@{checkWatcher}!FSEventsBackend.cc@{FSEventsBackend.cc}}
+\doxysubsubsection{\texorpdfstring{checkWatcher()}{checkWatcher()}}
+{\footnotesize\ttfamily \label{_f_s_events_backend_8cc_aa91323a49344b00c619731903e6b5f0b} 
+void check\+Watcher (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_watcher_8hh_a8a32f1740da49095a86d32383c012cc9}{Watcher\+Ref}}}]{watcher}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_f_s_events_backend_8cc_a2936de71c7802a85381bd2c140ed9fc9}\index{FSEventsBackend.cc@{FSEventsBackend.cc}!FSEventsCallback@{FSEventsCallback}}
+\index{FSEventsCallback@{FSEventsCallback}!FSEventsBackend.cc@{FSEventsBackend.cc}}
+\doxysubsubsection{\texorpdfstring{FSEventsCallback()}{FSEventsCallback()}}
+{\footnotesize\ttfamily \label{_f_s_events_backend_8cc_a2936de71c7802a85381bd2c140ed9fc9} 
+void FSEvents\+Callback (\begin{DoxyParamCaption}\item[{Const\+FSEvent\+Stream\+Ref}]{stream\+Ref}{, }\item[{void \texorpdfstring{$\ast$}{*}}]{client\+Call\+Back\+Info}{, }\item[{size\+\_\+t}]{num\+Events}{, }\item[{void \texorpdfstring{$\ast$}{*}}]{event\+Paths}{, }\item[{const FSEvent\+Stream\+Event\+Flags}]{event\+Flags}{\mbox{[}$\,$\mbox{]}, }\item[{const FSEvent\+Stream\+Event\+Id}]{event\+Ids}{\mbox{[}$\,$\mbox{]}}\end{DoxyParamCaption})}
+
+\Hypertarget{_f_s_events_backend_8cc_afe44266407d8ce8330ac15fe813e89f8}\index{FSEventsBackend.cc@{FSEventsBackend.cc}!pathExists@{pathExists}}
+\index{pathExists@{pathExists}!FSEventsBackend.cc@{FSEventsBackend.cc}}
+\doxysubsubsection{\texorpdfstring{pathExists()}{pathExists()}}
+{\footnotesize\ttfamily \label{_f_s_events_backend_8cc_afe44266407d8ce8330ac15fe813e89f8} 
+bool path\+Exists (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{path}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_f_s_events_backend_8cc_af25ea9bca7aa29dbad8fd61ee65b8809}\index{FSEventsBackend.cc@{FSEventsBackend.cc}!stopStream@{stopStream}}
+\index{stopStream@{stopStream}!FSEventsBackend.cc@{FSEventsBackend.cc}}
+\doxysubsubsection{\texorpdfstring{stopStream()}{stopStream()}}
+{\footnotesize\ttfamily \label{_f_s_events_backend_8cc_af25ea9bca7aa29dbad8fd61ee65b8809} 
+void stop\+Stream (\begin{DoxyParamCaption}\item[{FSEvent\+Stream\+Ref}]{stream}{, }\item[{CFRun\+Loop\+Ref}]{run\+Loop}{}\end{DoxyParamCaption})}
+

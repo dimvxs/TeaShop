@@ -1,0 +1,58 @@
+\doxysection{frontend/node\+\_\+modules/@parcel/watcher/src/windows/\+Windows\+Backend.cc File Reference}
+\hypertarget{_windows_backend_8cc}{}\label{_windows_backend_8cc}\index{frontend/node\_modules/"@parcel/watcher/src/windows/WindowsBackend.cc@{frontend/node\_modules/"@parcel/watcher/src/windows/WindowsBackend.cc}}
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$stack$>$}\newline
+{\ttfamily \#include "{}../\+Dir\+Tree.\+hh"{}}\newline
+{\ttfamily \#include "{}../shared/\+Brute\+Force\+Backend.\+hh"{}}\newline
+{\ttfamily \#include "{}./\+Windows\+Backend.\+hh"{}}\newline
+{\ttfamily \#include "{}./win\+\_\+utils.\+hh"{}}\newline
+Include dependency graph for Windows\+Backend.\+cc\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_windows_backend_8cc__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_subscription}{Subscription}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_windows_backend_8cc_a1fc9bbfb06b0f44506946af9ba39169d}{DEFAULT\+\_\+\+BUF\+\_\+\+SIZE}}~1024 \texorpdfstring{$\ast$}{*} 1024
+\item 
+\#define \mbox{\hyperlink{_windows_backend_8cc_ab8b814ddf4c4498e809a5e937788a94a}{NETWORK\+\_\+\+BUF\+\_\+\+SIZE}}~64 \texorpdfstring{$\ast$}{*} 1024
+\item 
+\#define \mbox{\hyperlink{_windows_backend_8cc_aae40e86afd39e039cd5cc22912460ea3}{CONVERT\+\_\+\+TIME}}(ft)
+\end{DoxyCompactItemize}
+
+
+\label{doc-define-members}
+\Hypertarget{_windows_backend_8cc_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{_windows_backend_8cc_aae40e86afd39e039cd5cc22912460ea3}\index{WindowsBackend.cc@{WindowsBackend.cc}!CONVERT\_TIME@{CONVERT\_TIME}}
+\index{CONVERT\_TIME@{CONVERT\_TIME}!WindowsBackend.cc@{WindowsBackend.cc}}
+\doxysubsubsection{\texorpdfstring{CONVERT\_TIME}{CONVERT\_TIME}}
+{\footnotesize\ttfamily \label{_windows_backend_8cc_aae40e86afd39e039cd5cc22912460ea3} 
+\#define CONVERT\+\_\+\+TIME(\begin{DoxyParamCaption}\item[{}]{ft}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ULARGE\_INTEGER\{ft.dwLowDateTime,\ ft.dwHighDateTime\}.QuadPart}
+
+\end{DoxyCode}
+\Hypertarget{_windows_backend_8cc_a1fc9bbfb06b0f44506946af9ba39169d}\index{WindowsBackend.cc@{WindowsBackend.cc}!DEFAULT\_BUF\_SIZE@{DEFAULT\_BUF\_SIZE}}
+\index{DEFAULT\_BUF\_SIZE@{DEFAULT\_BUF\_SIZE}!WindowsBackend.cc@{WindowsBackend.cc}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_BUF\_SIZE}{DEFAULT\_BUF\_SIZE}}
+{\footnotesize\ttfamily \label{_windows_backend_8cc_a1fc9bbfb06b0f44506946af9ba39169d} 
+\#define DEFAULT\+\_\+\+BUF\+\_\+\+SIZE~1024 \texorpdfstring{$\ast$}{*} 1024}
+
+\Hypertarget{_windows_backend_8cc_ab8b814ddf4c4498e809a5e937788a94a}\index{WindowsBackend.cc@{WindowsBackend.cc}!NETWORK\_BUF\_SIZE@{NETWORK\_BUF\_SIZE}}
+\index{NETWORK\_BUF\_SIZE@{NETWORK\_BUF\_SIZE}!WindowsBackend.cc@{WindowsBackend.cc}}
+\doxysubsubsection{\texorpdfstring{NETWORK\_BUF\_SIZE}{NETWORK\_BUF\_SIZE}}
+{\footnotesize\ttfamily \label{_windows_backend_8cc_ab8b814ddf4c4498e809a5e937788a94a} 
+\#define NETWORK\+\_\+\+BUF\+\_\+\+SIZE~64 \texorpdfstring{$\ast$}{*} 1024}
+

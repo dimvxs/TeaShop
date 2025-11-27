@@ -1,0 +1,15 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$class_napi_1_1_instance_wrap.html" title=" " alt="" coords="10,5,179,31"/>
+<area shape="rect" id="Node000001" href="$class_napi_1_1_object_wrap.html" title=" " alt="" coords="232,5,388,31"/>
+<area shape="poly" id="edge61_Node000000_Node000001" title=" " alt="" coords="194,16,234,17,229,19,195,21"/>
+<area shape="rect" id="Node000002" href="$class_napi_1_1_reference.html" title=" " alt="" coords="5,55,184,80"/>
+<area shape="poly" id="edge66_Node000002_Node000001" title=" " alt="" coords="168,48,253,31,248,32,169,53"/>
+<area shape="rect" id="Node000003" href="$class_napi_1_1_object_reference.html" title=" " alt="" coords="233,55,387,80"/>
+<area shape="poly" id="edge62_Node000002_Node000003" title=" " alt="" coords="199,65,235,67,230,68,199,70"/>
+<area shape="rect" id="Node000004" href="$class_napi_1_1_error.html" title=" " alt="" coords="436,55,520,80"/>
+<area shape="poly" id="edge63_Node000003_Node000004" title=" " alt="" coords="402,65,438,67,433,68,403,70"/>
+<area shape="rect" id="Node000005" href="$class_napi_1_1_range_error.html" title=" " alt="" coords="568,29,691,55"/>
+<area shape="poly" id="edge64_Node000004_Node000005" title=" " alt="" coords="536,55,565,53,571,52,536,61"/>
+<area shape="rect" id="Node000006" href="$class_napi_1_1_type_error.html" title=" " alt="" coords="573,79,686,104"/>
+<area shape="poly" id="edge65_Node000004_Node000006" title=" " alt="" coords="536,74,576,83,570,82,536,79"/>
+</map>

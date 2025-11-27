@@ -1,0 +1,181 @@
+\doxysection{IPC.\+hh}
+\hypertarget{_i_p_c_8hh_source}{}\label{_i_p_c_8hh_source}\index{frontend/node\_modules/"@parcel/watcher/src/watchman/IPC.hh@{frontend/node\_modules/"@parcel/watcher/src/watchman/IPC.hh}}
+\mbox{\hyperlink{_i_p_c_8hh}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ IPC\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ IPC\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#ifdef\ \_WIN32}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <winsock2.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <windows.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <unistd.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <sys/socket.h>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <sys/un.h>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_i_p_c_a7d6943820e272f097a200484ec44a434}{IPC}}\ \{}
+\DoxyCodeLine{00017\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00018\ \ \ \mbox{\hyperlink{class_i_p_c_a7d6943820e272f097a200484ec44a434}{IPC}}(std::string\ path)\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ mStopped\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\ \ \ \ \#ifdef\ \_WIN32}}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\textcolor{keyword}{true})\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ mPipe\ =\ CreateFile(}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ path.data(),\ \textcolor{comment}{//\ pipe\ name}}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ GENERIC\_READ\ |\ GENERIC\_WRITE,\ \textcolor{comment}{//\ read\ and\ write\ access}}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ 0,\ \textcolor{comment}{//\ no\ sharing}}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ NULL,\ \textcolor{comment}{//\ default\ security\ attributes}}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ OPEN\_EXISTING,\ \textcolor{comment}{//\ opens\ existing\ pipe}}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ FILE\_FLAG\_OVERLAPPED,\ \textcolor{comment}{//\ attributes}}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ NULL\ \textcolor{comment}{//\ no\ template\ file}}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mPipe\ !=\ INVALID\_HANDLE\_VALUE)\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (GetLastError()\ !=\ ERROR\_PIPE\_BUSY)\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Could\ not\ open\ pipe"{}});}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Wait\ for\ pipe\ to\ become\ available\ if\ it\ is\ busy}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!WaitNamedPipe(path.data(),\ 30000))\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Error\ waiting\ for\ pipe"{}});}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ mReader\ =\ CreateEvent(NULL,\ \textcolor{keyword}{true},\ \textcolor{keyword}{false},\ NULL);}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ mWriter\ =\ CreateEvent(NULL,\ \textcolor{keyword}{true},\ \textcolor{keyword}{false},\ NULL);}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \textcolor{keyword}{struct\ }sockaddr\_un\ addr;}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ memset(\&addr,\ 0,\ \textcolor{keyword}{sizeof}(addr));}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ addr.sun\_family\ =\ AF\_UNIX;}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ strncpy(addr.sun\_path,\ path.c\_str(),\ \textcolor{keyword}{sizeof}(addr.sun\_path)\ -\/\ 1);}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ mSock\ =\ socket(AF\_UNIX,\ SOCK\_STREAM,\ 0);}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (connect(mSock,\ (\textcolor{keyword}{struct}\ sockaddr\ *)\ \&addr,\ \textcolor{keyword}{sizeof}(\textcolor{keyword}{struct}\ sockaddr\_un)))\ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Error\ connecting\ to\ socket"{}});}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00059\ \ \ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \mbox{\hyperlink{class_i_p_c_a3fb6d83264099113bd5dbe4335815d64}{\string~IPC}}()\ \{}
+\DoxyCodeLine{00062\ \ \ \ \ mStopped\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\ \ \ \ \#ifdef\ \_WIN32}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ CancelIo(mPipe);}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ CloseHandle(mPipe);}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ CloseHandle(mReader);}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ CloseHandle(mWriter);}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ shutdown(mSock,\ SHUT\_RDWR);}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00071\ \ \ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_i_p_c_abac5303332d34346b521d96942c5b4ec}{write}}(std::string\ buf)\ \{}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\ \ \ \ \#ifdef\ \_WIN32}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ OVERLAPPED\ overlapped;}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ overlapped.hEvent\ =\ mWriter;}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ success\ =\ WriteFile(}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ mPipe,\ \textcolor{comment}{//\ pipe\ handle}}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ buf.data(),\ \textcolor{comment}{//\ message}}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ buf.size(),\ \textcolor{comment}{//\ message\ length}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ NULL,\ \textcolor{comment}{//\ bytes\ written}}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \&overlapped\ \textcolor{comment}{//\ overlapped}}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ );}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mStopped)\ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!success)\ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (GetLastError()\ !=\ ERROR\_IO\_PENDING)\ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Write\ error"{}});}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \ \ DWORD\ written;}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ success\ =\ GetOverlappedResult(mPipe,\ \&overlapped,\ \&written,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!success)\ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}GetOverlappedResult\ failed"{}});}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (written\ !=\ buf.size())\ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Wrong\ number\ of\ bytes\ written"{}});}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ r\ =\ 0;}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ !=\ buf.size();\ i\ +=\ r)\ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ r\ =\ \mbox{\hyperlink{class_i_p_c_abac5303332d34346b521d96942c5b4ec}{::write}}(mSock,\ \&buf[i],\ buf.size()\ -\/\ i);}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (r\ ==\ -\/1)\ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (errno\ ==\ EAGAIN)\ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ r\ =\ 0;}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (mStopped)\ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Write\ error"{}});}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00118\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00119\ \ \ \}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_i_p_c_a1e633371376bc12de6acf68a8684cd54}{read}}(\textcolor{keywordtype}{char}\ *buf,\ \textcolor{keywordtype}{size\_t}\ len)\ \{}
+\DoxyCodeLine{00122\ \textcolor{preprocessor}{\ \ \ \ \#ifdef\ \_WIN32}}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ OVERLAPPED\ overlapped;}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ overlapped.hEvent\ =\ mReader;}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ success\ =\ ReadFile(}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ mPipe,\ \textcolor{comment}{//\ pipe\ handle}}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ buf,\ \textcolor{comment}{//\ buffer\ to\ receive\ reply}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ len,\ \textcolor{comment}{//\ size\ of\ buffer}}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ NULL,\ \textcolor{comment}{//\ number\ of\ bytes\ read}}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \&overlapped\ \textcolor{comment}{//\ overlapped}}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ );}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!success\ \&\&\ !mStopped)\ \{}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (GetLastError()\ !=\ ERROR\_IO\_PENDING)\ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Read\ error"{}});}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ \ \ \ \ DWORD\ \mbox{\hyperlink{class_i_p_c_a1e633371376bc12de6acf68a8684cd54}{read}}\ =\ 0;}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ success\ =\ GetOverlappedResult(mPipe,\ \&overlapped,\ \&\mbox{\hyperlink{class_i_p_c_a1e633371376bc12de6acf68a8684cd54}{read}},\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!success\ \&\&\ !mStopped)\ \{}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}GetOverlappedResult\ failed"{}});}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_i_p_c_a1e633371376bc12de6acf68a8684cd54}{read}};}
+\DoxyCodeLine{00146\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ r\ =\ \mbox{\hyperlink{class_i_p_c_a1e633371376bc12de6acf68a8684cd54}{::read}}(mSock,\ buf,\ len);}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (r\ ==\ 0\ \&\&\ !mStopped)\ \{}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Socket\ ended\ unexpectedly"{}});}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (r\ <\ 0)\ \{}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mStopped)\ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(strerror(errno));}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ r;}
+\DoxyCodeLine{00161\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00162\ \ \ \}}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00165\ \ \ \textcolor{keywordtype}{bool}\ mStopped;}
+\DoxyCodeLine{00166\ \textcolor{preprocessor}{\ \ \#ifdef\ \_WIN32}}
+\DoxyCodeLine{00167\ \ \ \ \ HANDLE\ mPipe;}
+\DoxyCodeLine{00168\ \ \ \ \ HANDLE\ mReader;}
+\DoxyCodeLine{00169\ \ \ \ \ HANDLE\ mWriter;}
+\DoxyCodeLine{00170\ \textcolor{preprocessor}{\ \ \#else}}
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keywordtype}{int}\ mSock;}
+\DoxyCodeLine{00172\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00173\ \};}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

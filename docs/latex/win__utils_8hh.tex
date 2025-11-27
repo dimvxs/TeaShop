@@ -1,0 +1,52 @@
+\doxysection{frontend/node\+\_\+modules/@parcel/watcher/src/windows/win\+\_\+utils.hh File Reference}
+\hypertarget{win__utils_8hh}{}\label{win__utils_8hh}\index{frontend/node\_modules/"@parcel/watcher/src/windows/win\_utils.hh@{frontend/node\_modules/"@parcel/watcher/src/windows/win\_utils.hh}}
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$windows.\+h$>$}\newline
+Include dependency graph for win\+\_\+utils.\+hh\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=205pt]{win__utils_8hh__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{win__utils_8hh__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::wstring \mbox{\hyperlink{win__utils_8hh_a197a8f31ca42bcd9514bdc78a27e4c62}{utf8\+To\+Utf16}} (std\+::string input)
+\item 
+std\+::string \mbox{\hyperlink{win__utils_8hh_a143384f87ae581b17086954b22de85d2}{utf16\+To\+Utf8}} (const WCHAR \texorpdfstring{$\ast$}{*}input, size\+\_\+t length)
+\item 
+std\+::string \mbox{\hyperlink{win__utils_8hh_aff924592fa7339a55f3e1f153db1667e}{normalize\+Path}} (std\+::string path)
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{win__utils_8hh_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{win__utils_8hh_aff924592fa7339a55f3e1f153db1667e}\index{win\_utils.hh@{win\_utils.hh}!normalizePath@{normalizePath}}
+\index{normalizePath@{normalizePath}!win\_utils.hh@{win\_utils.hh}}
+\doxysubsubsection{\texorpdfstring{normalizePath()}{normalizePath()}}
+{\footnotesize\ttfamily \label{win__utils_8hh_aff924592fa7339a55f3e1f153db1667e} 
+std\+::string normalize\+Path (\begin{DoxyParamCaption}\item[{std\+::string}]{path}{}\end{DoxyParamCaption})}
+
+\Hypertarget{win__utils_8hh_a143384f87ae581b17086954b22de85d2}\index{win\_utils.hh@{win\_utils.hh}!utf16ToUtf8@{utf16ToUtf8}}
+\index{utf16ToUtf8@{utf16ToUtf8}!win\_utils.hh@{win\_utils.hh}}
+\doxysubsubsection{\texorpdfstring{utf16ToUtf8()}{utf16ToUtf8()}}
+{\footnotesize\ttfamily \label{win__utils_8hh_a143384f87ae581b17086954b22de85d2} 
+std\+::string utf16\+To\+Utf8 (\begin{DoxyParamCaption}\item[{const WCHAR \texorpdfstring{$\ast$}{*}}]{input}{, }\item[{size\+\_\+t}]{length}{}\end{DoxyParamCaption})}
+
+\Hypertarget{win__utils_8hh_a197a8f31ca42bcd9514bdc78a27e4c62}\index{win\_utils.hh@{win\_utils.hh}!utf8ToUtf16@{utf8ToUtf16}}
+\index{utf8ToUtf16@{utf8ToUtf16}!win\_utils.hh@{win\_utils.hh}}
+\doxysubsubsection{\texorpdfstring{utf8ToUtf16()}{utf8ToUtf16()}}
+{\footnotesize\ttfamily \label{win__utils_8hh_a197a8f31ca42bcd9514bdc78a27e4c62} 
+std\+::wstring utf8\+To\+Utf16 (\begin{DoxyParamCaption}\item[{std\+::string}]{input}{}\end{DoxyParamCaption})}
+

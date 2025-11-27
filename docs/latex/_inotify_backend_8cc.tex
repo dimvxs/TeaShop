@@ -1,0 +1,60 @@
+\doxysection{frontend/node\+\_\+modules/@parcel/watcher/src/linux/\+Inotify\+Backend.cc File Reference}
+\hypertarget{_inotify_backend_8cc}{}\label{_inotify_backend_8cc}\index{frontend/node\_modules/"@parcel/watcher/src/linux/InotifyBackend.cc@{frontend/node\_modules/"@parcel/watcher/src/linux/InotifyBackend.cc}}
+{\ttfamily \#include $<$memory$>$}\newline
+{\ttfamily \#include $<$poll.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
+{\ttfamily \#include "{}Inotify\+Backend.\+hh"{}}\newline
+Include dependency graph for Inotify\+Backend.\+cc\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_inotify_backend_8cc__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_inotify_backend_8cc_a8324a5984b9e33b6f6363dd5b419d1df}{INOTIFY\+\_\+\+MASK}}
+\item 
+\#define \mbox{\hyperlink{_inotify_backend_8cc_a6b20d41d6252e9871430c242cb1a56e7}{BUFFER\+\_\+\+SIZE}}~8192
+\item 
+\#define \mbox{\hyperlink{_inotify_backend_8cc_afaf5541c2981eaa03c51bb45b26f66d8}{CONVERT\+\_\+\+TIME}}(ts)
+\end{DoxyCompactItemize}
+
+
+\label{doc-define-members}
+\Hypertarget{_inotify_backend_8cc_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{_inotify_backend_8cc_a6b20d41d6252e9871430c242cb1a56e7}\index{InotifyBackend.cc@{InotifyBackend.cc}!BUFFER\_SIZE@{BUFFER\_SIZE}}
+\index{BUFFER\_SIZE@{BUFFER\_SIZE}!InotifyBackend.cc@{InotifyBackend.cc}}
+\doxysubsubsection{\texorpdfstring{BUFFER\_SIZE}{BUFFER\_SIZE}}
+{\footnotesize\ttfamily \label{_inotify_backend_8cc_a6b20d41d6252e9871430c242cb1a56e7} 
+\#define BUFFER\+\_\+\+SIZE~8192}
+
+\Hypertarget{_inotify_backend_8cc_afaf5541c2981eaa03c51bb45b26f66d8}\index{InotifyBackend.cc@{InotifyBackend.cc}!CONVERT\_TIME@{CONVERT\_TIME}}
+\index{CONVERT\_TIME@{CONVERT\_TIME}!InotifyBackend.cc@{InotifyBackend.cc}}
+\doxysubsubsection{\texorpdfstring{CONVERT\_TIME}{CONVERT\_TIME}}
+{\footnotesize\ttfamily \label{_inotify_backend_8cc_afaf5541c2981eaa03c51bb45b26f66d8} 
+\#define CONVERT\+\_\+\+TIME(\begin{DoxyParamCaption}\item[{}]{ts}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((uint64\_t)ts.tv\_sec\ *\ 1000000000\ +\ ts.tv\_nsec)}
+
+\end{DoxyCode}
+\Hypertarget{_inotify_backend_8cc_a8324a5984b9e33b6f6363dd5b419d1df}\index{InotifyBackend.cc@{InotifyBackend.cc}!INOTIFY\_MASK@{INOTIFY\_MASK}}
+\index{INOTIFY\_MASK@{INOTIFY\_MASK}!InotifyBackend.cc@{InotifyBackend.cc}}
+\doxysubsubsection{\texorpdfstring{INOTIFY\_MASK}{INOTIFY\_MASK}}
+{\footnotesize\ttfamily \label{_inotify_backend_8cc_a8324a5984b9e33b6f6363dd5b419d1df} 
+\#define INOTIFY\+\_\+\+MASK}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ IN\_ATTRIB\ |\ IN\_CREATE\ |\ IN\_DELETE\ |\ \(\backslash\)}
+\DoxyCodeLine{\ \ IN\_DELETE\_SELF\ |\ IN\_MODIFY\ |\ IN\_MOVE\_SELF\ |\ IN\_MOVED\_FROM\ |\ \(\backslash\)}
+\DoxyCodeLine{\ \ IN\_MOVED\_TO\ |\ IN\_DONT\_FOLLOW\ |\ IN\_ONLYDIR\ |\ IN\_EXCL\_UNLINK}
+
+\end{DoxyCode}

@@ -1,0 +1,44 @@
+\doxysection{frontend/node\+\_\+modules/@parcel/watcher/src/unix/fts.cc File Reference}
+\hypertarget{fts_8cc}{}\label{fts_8cc}\index{frontend/node\_modules/"@parcel/watcher/src/unix/fts.cc@{frontend/node\_modules/"@parcel/watcher/src/unix/fts.cc}}
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$fts.\+h$>$}\newline
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
+{\ttfamily \#include "{}../\+Dir\+Tree.\+hh"{}}\newline
+{\ttfamily \#include "{}../shared/\+Brute\+Force\+Backend.\+hh"{}}\newline
+Include dependency graph for fts.\+cc\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{fts_8cc__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{fts_8cc_a826f90ea7631d4e162918be090a3a596}{\+\_\+\+\_\+\+THROW}}
+\item 
+\#define \mbox{\hyperlink{fts_8cc_afaf5541c2981eaa03c51bb45b26f66d8}{CONVERT\+\_\+\+TIME}}(ts)
+\end{DoxyCompactItemize}
+
+
+\label{doc-define-members}
+\Hypertarget{fts_8cc_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{fts_8cc_a826f90ea7631d4e162918be090a3a596}\index{fts.cc@{fts.cc}!\_\_THROW@{\_\_THROW}}
+\index{\_\_THROW@{\_\_THROW}!fts.cc@{fts.cc}}
+\doxysubsubsection{\texorpdfstring{\_\_THROW}{\_\_THROW}}
+{\footnotesize\ttfamily \label{fts_8cc_a826f90ea7631d4e162918be090a3a596} 
+\#define \+\_\+\+\_\+\+THROW}
+
+\Hypertarget{fts_8cc_afaf5541c2981eaa03c51bb45b26f66d8}\index{fts.cc@{fts.cc}!CONVERT\_TIME@{CONVERT\_TIME}}
+\index{CONVERT\_TIME@{CONVERT\_TIME}!fts.cc@{fts.cc}}
+\doxysubsubsection{\texorpdfstring{CONVERT\_TIME}{CONVERT\_TIME}}
+{\footnotesize\ttfamily \label{fts_8cc_afaf5541c2981eaa03c51bb45b26f66d8} 
+\#define CONVERT\+\_\+\+TIME(\begin{DoxyParamCaption}\item[{}]{ts}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((uint64\_t)ts.tv\_sec\ *\ 1000000000\ +\ ts.tv\_nsec)}
+
+\end{DoxyCode}

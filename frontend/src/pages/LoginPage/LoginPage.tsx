@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import AuthCard from '../../components/AuthCard/AuthCard'
 import './LoginPage.scss'
 
 function LoginPage() {
@@ -9,7 +10,6 @@ function LoginPage() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    alert(`Login submitted!\nLogin: ${login}`)
   }
 
   const goToRegister = () => {
@@ -17,50 +17,44 @@ function LoginPage() {
   }
 
   return (
-    <div className="login-page">
-      <div className="card">
-        <h2>Login</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label htmlFor="login" className="form-label">
-              Login
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="login"
-              value={login}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setLogin(e.target.value)}
-              placeholder="Enter login"
-              required
-            />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="password" className="form-label">
-              Password
-            </label>
-            <input
-              type="password"
-              className="form-control"
-              id="password"
-              value={password}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
-              placeholder="Enter password"
-              required
-            />
-          </div>
-          <button type="submit" className="btn btn-primary">
-            Sign In
-          </button>
-        </form>
+    <AuthCard title="Login">
+      <form onSubmit={handleSubmit} className="login-page-form">
+        <div className="mb-4">
+          <label htmlFor="login" className="form-label">
+            Login
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="login"
+            value={login}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setLogin(e.target.value)}
+            placeholder="Enter login"
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label htmlFor="password" className="form-label">
+            Password
+          </label>
+          <input
+            type="password"
+            className="form-control"
+            id="password"
+            value={password}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
+            placeholder="Enter password"
+            required
+          />
+        </div>
+        <button type="submit" className="btn btn-primary">
+          Sign In
+        </button>
 
         <div className="text-center mb-4">Or continue with</div>
         <div className="social-icons">
           {['google', 'github', 'facebook'].map((icon) => (
-            <div
-              key={icon}
-              className="icon-wrapper"
-            >
+            <div key={icon} className="icon-wrapper">
               <i className={`bi bi-${icon}`} />
             </div>
           ))}
@@ -72,8 +66,8 @@ function LoginPage() {
             Register
           </span>
         </p>
-      </div>
-    </div>
+      </form>
+    </AuthCard>
   )
 }
 

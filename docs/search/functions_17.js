@@ -1,0 +1,25 @@
+var searchData=
+[
+  ['_7easynccontext_0',['~AsyncContext',['../class_napi_1_1_async_context.html#ac92984fe19ad55d48a7bee4061c3376f',1,'Napi::AsyncContext']]],
+  ['_7easyncworker_1',['~AsyncWorker',['../class_napi_1_1_async_worker.html#a044e30b193037ccefed62d17bf56ec2b',1,'Napi::AsyncWorker']]],
+  ['_7ebackend_2',['~Backend',['../class_backend.html#ad4a4bc528854a918880d5e6b5de05cc6',1,'Backend']]],
+  ['_7ebservalue_3',['~BSERValue',['../class_b_s_e_r_value.html#a55db6aec8a2f02fc97e9d31b2cd53408',1,'BSERValue']]],
+  ['_7ecallbackinfo_4',['~CallbackInfo',['../class_napi_1_1_callback_info.html#ad26d6efb44577de5ed98657e3bf2179f',1,'Napi::CallbackInfo']]],
+  ['_7edebounce_5',['~Debounce',['../class_debounce.html#acccb5f8bf99a0af161fd49db9dd3b72f',1,'Debounce']]],
+  ['_7eescapablehandlescope_6',['~EscapableHandleScope',['../class_napi_1_1_escapable_handle_scope.html#a8e78b5ec6a136bfaeac8b0a44c9af65a',1,'Napi::EscapableHandleScope']]],
+  ['_7efseventsbackend_7',['~FSEventsBackend',['../class_f_s_events_backend.html#adb584e465d69db0383e922cc85d784b4',1,'FSEventsBackend']]],
+  ['_7egeteventssincerunner_8',['~GetEventsSinceRunner',['../class_get_events_since_runner.html#a82ec222859f1968ea0ae628b7d95b8cc',1,'GetEventsSinceRunner']]],
+  ['_7ehandlescope_9',['~HandleScope',['../class_napi_1_1_handle_scope.html#a7ccafe47ff03ee14513ce6d9f1cc39f3',1,'Napi::HandleScope']]],
+  ['_7einotifybackend_10',['~InotifyBackend',['../class_inotify_backend.html#acf8405fc4fea13aca2a853e7b58e7aaf',1,'InotifyBackend']]],
+  ['_7eipc_11',['~IPC',['../class_i_p_c.html#a3fb6d83264099113bd5dbe4335815d64',1,'IPC']]],
+  ['_7ekqueuebackend_12',['~KqueueBackend',['../class_kqueue_backend.html#a9dd9c4c6ecf4a53d48fd3644a99d9f13',1,'KqueueBackend']]],
+  ['_7eobjectwrap_13',['~ObjectWrap',['../class_napi_1_1_object_wrap.html#a4290c2d4bbdacaff419dc018fe2c7c46',1,'Napi::ObjectWrap']]],
+  ['_7epromiserunner_14',['~PromiseRunner',['../class_promise_runner.html#a5f29dd5dea94b7a3a15b2b2e8648f1aa',1,'PromiseRunner']]],
+  ['_7ereference_15',['~Reference',['../class_napi_1_1_reference.html#abd291db2fe0f9189277f7b269b96d113',1,'Napi::Reference']]],
+  ['_7esubscription_16',['~Subscription',['../class_subscription.html#ae0b85868b373ab2f331dc4f5cb32a7b5',1,'Subscription']]],
+  ['_7ewatcher_17',['~Watcher',['../struct_watcher.html#a84db4a7c7f7c7d3a62104713920678c8',1,'Watcher']]],
+  ['_7ewatcherstate_18',['~WatcherState',['../class_watcher_state.html#a21e2df4b3c29afaafd0be3f6df9bb710',1,'WatcherState']]],
+  ['_7ewatchmanbackend_19',['~WatchmanBackend',['../class_watchman_backend.html#a2ff72452f958739fad175d7ed49e8c1e',1,'WatchmanBackend']]],
+  ['_7ewindowsbackend_20',['~WindowsBackend',['../class_windows_backend.html#a21ac2df2452a92b715a6cb17217e97f0',1,'WindowsBackend']]],
+  ['_7ewritesnapshotrunner_21',['~WriteSnapshotRunner',['../class_write_snapshot_runner.html#a149b56e47d6ff27999d4621c2925d5bd',1,'WriteSnapshotRunner']]]
+];

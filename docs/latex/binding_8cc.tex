@@ -1,0 +1,120 @@
+\doxysection{frontend/node\+\_\+modules/@parcel/watcher/src/binding.cc File Reference}
+\hypertarget{binding_8cc}{}\label{binding_8cc}\index{frontend/node\_modules/"@parcel/watcher/src/binding.cc@{frontend/node\_modules/"@parcel/watcher/src/binding.cc}}
+{\ttfamily \#include $<$unordered\+\_\+set$>$}\newline
+{\ttfamily \#include $<$node\+\_\+api.\+h$>$}\newline
+{\ttfamily \#include "{}wasm/include.\+h"{}}\newline
+{\ttfamily \#include $<$napi.\+h$>$}\newline
+{\ttfamily \#include "{}Glob.\+hh"{}}\newline
+{\ttfamily \#include "{}Event.\+hh"{}}\newline
+{\ttfamily \#include "{}Backend.\+hh"{}}\newline
+{\ttfamily \#include "{}Watcher.\+hh"{}}\newline
+{\ttfamily \#include "{}Promise\+Runner.\+hh"{}}\newline
+Include dependency graph for binding.\+cc\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{binding_8cc__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_write_snapshot_runner}{Write\+Snapshot\+Runner}}
+\item 
+class \mbox{\hyperlink{class_get_events_since_runner}{Get\+Events\+Since\+Runner}}
+\item 
+class \mbox{\hyperlink{class_subscribe_runner}{Subscribe\+Runner}}
+\item 
+class \mbox{\hyperlink{class_unsubscribe_runner}{Unsubscribe\+Runner}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::unordered\+\_\+set$<$ std\+::string $>$ \mbox{\hyperlink{binding_8cc_aeaf436c571c2731c34610eaba5742034}{get\+Ignore\+Paths}} (\mbox{\hyperlink{class_napi_1_1_env}{Env}} env, \mbox{\hyperlink{class_value}{Value}} opts)
+\item 
+std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{struct_glob}{Glob}} $>$ \mbox{\hyperlink{binding_8cc_a539c1af7d6f346b16c8511b8c4a23006}{get\+Ignore\+Globs}} (\mbox{\hyperlink{class_napi_1_1_env}{Env}} env, \mbox{\hyperlink{class_value}{Value}} opts)
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_backend}{Backend}} $>$ \mbox{\hyperlink{binding_8cc_ac3ededf70edd4e7012364e5235053ea5}{get\+Backend}} (\mbox{\hyperlink{class_napi_1_1_env}{Env}} env, \mbox{\hyperlink{class_value}{Value}} opts)
+\item 
+{\footnotesize template$<$class Runner$>$ }\\\mbox{\hyperlink{class_value}{Value}} \mbox{\hyperlink{binding_8cc_af84101288498fb6887efe3d21144203b}{queue\+Snapshot\+Work}} (const \mbox{\hyperlink{class_napi_1_1_callback_info}{Callback\+Info}} \&info)
+\item 
+\mbox{\hyperlink{class_value}{Value}} \mbox{\hyperlink{binding_8cc_a6cc0b70fc62df1a6f8067edcb98ea2e1}{write\+Snapshot}} (const \mbox{\hyperlink{class_napi_1_1_callback_info}{Callback\+Info}} \&info)
+\item 
+\mbox{\hyperlink{class_value}{Value}} \mbox{\hyperlink{binding_8cc_a4c13209c94593195cbc219ac01bd6a71}{get\+Events\+Since}} (const \mbox{\hyperlink{class_napi_1_1_callback_info}{Callback\+Info}} \&info)
+\item 
+{\footnotesize template$<$class Runner$>$ }\\\mbox{\hyperlink{class_value}{Value}} \mbox{\hyperlink{binding_8cc_a615646086399ec064381615a94d20d8b}{queue\+Subscription\+Work}} (const \mbox{\hyperlink{class_napi_1_1_callback_info}{Callback\+Info}} \&info)
+\item 
+\mbox{\hyperlink{class_value}{Value}} \mbox{\hyperlink{binding_8cc_ae4051216d69f763625c311af8ecb1aaf}{subscribe}} (const \mbox{\hyperlink{class_napi_1_1_callback_info}{Callback\+Info}} \&info)
+\item 
+\mbox{\hyperlink{class_value}{Value}} \mbox{\hyperlink{binding_8cc_a9ad8bb9fc246697efe9410ab834fb542}{unsubscribe}} (const \mbox{\hyperlink{class_napi_1_1_callback_info}{Callback\+Info}} \&info)
+\item 
+\mbox{\hyperlink{class_napi_1_1_object}{Object}} \mbox{\hyperlink{binding_8cc_ac845bc72ffc78771538357c3e9535735}{Init}} (\mbox{\hyperlink{class_napi_1_1_env}{Env}} env, \mbox{\hyperlink{class_napi_1_1_object}{Object}} exports)
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{binding_8cc_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{binding_8cc_ac3ededf70edd4e7012364e5235053ea5}\index{binding.cc@{binding.cc}!getBackend@{getBackend}}
+\index{getBackend@{getBackend}!binding.cc@{binding.cc}}
+\doxysubsubsection{\texorpdfstring{getBackend()}{getBackend()}}
+{\footnotesize\ttfamily \label{binding_8cc_ac3ededf70edd4e7012364e5235053ea5} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_backend}{Backend}} $>$ get\+Backend (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_napi_1_1_env}{Env}}}]{env}{, }\item[{\mbox{\hyperlink{class_value}{Value}}}]{opts}{}\end{DoxyParamCaption})}
+
+\Hypertarget{binding_8cc_a4c13209c94593195cbc219ac01bd6a71}\index{binding.cc@{binding.cc}!getEventsSince@{getEventsSince}}
+\index{getEventsSince@{getEventsSince}!binding.cc@{binding.cc}}
+\doxysubsubsection{\texorpdfstring{getEventsSince()}{getEventsSince()}}
+{\footnotesize\ttfamily \label{binding_8cc_a4c13209c94593195cbc219ac01bd6a71} 
+\mbox{\hyperlink{class_value}{Value}} get\+Events\+Since (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_napi_1_1_callback_info}{Callback\+Info}} \&}]{info}{}\end{DoxyParamCaption})}
+
+\Hypertarget{binding_8cc_a539c1af7d6f346b16c8511b8c4a23006}\index{binding.cc@{binding.cc}!getIgnoreGlobs@{getIgnoreGlobs}}
+\index{getIgnoreGlobs@{getIgnoreGlobs}!binding.cc@{binding.cc}}
+\doxysubsubsection{\texorpdfstring{getIgnoreGlobs()}{getIgnoreGlobs()}}
+{\footnotesize\ttfamily \label{binding_8cc_a539c1af7d6f346b16c8511b8c4a23006} 
+std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{struct_glob}{Glob}} $>$ get\+Ignore\+Globs (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_napi_1_1_env}{Env}}}]{env}{, }\item[{\mbox{\hyperlink{class_value}{Value}}}]{opts}{}\end{DoxyParamCaption})}
+
+\Hypertarget{binding_8cc_aeaf436c571c2731c34610eaba5742034}\index{binding.cc@{binding.cc}!getIgnorePaths@{getIgnorePaths}}
+\index{getIgnorePaths@{getIgnorePaths}!binding.cc@{binding.cc}}
+\doxysubsubsection{\texorpdfstring{getIgnorePaths()}{getIgnorePaths()}}
+{\footnotesize\ttfamily \label{binding_8cc_aeaf436c571c2731c34610eaba5742034} 
+std\+::unordered\+\_\+set$<$ std\+::string $>$ get\+Ignore\+Paths (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_napi_1_1_env}{Env}}}]{env}{, }\item[{\mbox{\hyperlink{class_value}{Value}}}]{opts}{}\end{DoxyParamCaption})}
+
+\Hypertarget{binding_8cc_ac845bc72ffc78771538357c3e9535735}\index{binding.cc@{binding.cc}!Init@{Init}}
+\index{Init@{Init}!binding.cc@{binding.cc}}
+\doxysubsubsection{\texorpdfstring{Init()}{Init()}}
+{\footnotesize\ttfamily \label{binding_8cc_ac845bc72ffc78771538357c3e9535735} 
+\mbox{\hyperlink{class_napi_1_1_object}{Object}} Init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_napi_1_1_env}{Env}}}]{env}{, }\item[{\mbox{\hyperlink{class_napi_1_1_object}{Object}}}]{exports}{}\end{DoxyParamCaption})}
+
+\Hypertarget{binding_8cc_af84101288498fb6887efe3d21144203b}\index{binding.cc@{binding.cc}!queueSnapshotWork@{queueSnapshotWork}}
+\index{queueSnapshotWork@{queueSnapshotWork}!binding.cc@{binding.cc}}
+\doxysubsubsection{\texorpdfstring{queueSnapshotWork()}{queueSnapshotWork()}}
+{\footnotesize\ttfamily \label{binding_8cc_af84101288498fb6887efe3d21144203b} 
+template$<$class Runner$>$ \\
+\mbox{\hyperlink{class_value}{Value}} queue\+Snapshot\+Work (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_napi_1_1_callback_info}{Callback\+Info}} \&}]{info}{}\end{DoxyParamCaption})}
+
+\Hypertarget{binding_8cc_a615646086399ec064381615a94d20d8b}\index{binding.cc@{binding.cc}!queueSubscriptionWork@{queueSubscriptionWork}}
+\index{queueSubscriptionWork@{queueSubscriptionWork}!binding.cc@{binding.cc}}
+\doxysubsubsection{\texorpdfstring{queueSubscriptionWork()}{queueSubscriptionWork()}}
+{\footnotesize\ttfamily \label{binding_8cc_a615646086399ec064381615a94d20d8b} 
+template$<$class Runner$>$ \\
+\mbox{\hyperlink{class_value}{Value}} queue\+Subscription\+Work (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_napi_1_1_callback_info}{Callback\+Info}} \&}]{info}{}\end{DoxyParamCaption})}
+
+\Hypertarget{binding_8cc_ae4051216d69f763625c311af8ecb1aaf}\index{binding.cc@{binding.cc}!subscribe@{subscribe}}
+\index{subscribe@{subscribe}!binding.cc@{binding.cc}}
+\doxysubsubsection{\texorpdfstring{subscribe()}{subscribe()}}
+{\footnotesize\ttfamily \label{binding_8cc_ae4051216d69f763625c311af8ecb1aaf} 
+\mbox{\hyperlink{class_value}{Value}} subscribe (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_napi_1_1_callback_info}{Callback\+Info}} \&}]{info}{}\end{DoxyParamCaption})}
+
+\Hypertarget{binding_8cc_a9ad8bb9fc246697efe9410ab834fb542}\index{binding.cc@{binding.cc}!unsubscribe@{unsubscribe}}
+\index{unsubscribe@{unsubscribe}!binding.cc@{binding.cc}}
+\doxysubsubsection{\texorpdfstring{unsubscribe()}{unsubscribe()}}
+{\footnotesize\ttfamily \label{binding_8cc_a9ad8bb9fc246697efe9410ab834fb542} 
+\mbox{\hyperlink{class_value}{Value}} unsubscribe (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_napi_1_1_callback_info}{Callback\+Info}} \&}]{info}{}\end{DoxyParamCaption})}
+
+\Hypertarget{binding_8cc_a6cc0b70fc62df1a6f8067edcb98ea2e1}\index{binding.cc@{binding.cc}!writeSnapshot@{writeSnapshot}}
+\index{writeSnapshot@{writeSnapshot}!binding.cc@{binding.cc}}
+\doxysubsubsection{\texorpdfstring{writeSnapshot()}{writeSnapshot()}}
+{\footnotesize\ttfamily \label{binding_8cc_a6cc0b70fc62df1a6f8067edcb98ea2e1} 
+\mbox{\hyperlink{class_value}{Value}} write\+Snapshot (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_napi_1_1_callback_info}{Callback\+Info}} \&}]{info}{}\end{DoxyParamCaption})}
+

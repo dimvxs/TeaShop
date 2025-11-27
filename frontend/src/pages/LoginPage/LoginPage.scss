@@ -1,52 +1,7 @@
-
-$bg-page: #f0f2f5;
-$bg-card: #e0f7fa;
-$btn-color: #3a174b; 
+@import '../../styles/variables';
 $white: #ffffff;
 
-.login-page {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: $bg-page;
-  background-image: url('/src/assets/img/placeholder-bg.jpg');
-  background-size: cover;
-  background-position: center;
-
-  input.form-control, .btn {
-    padding: 0.65rem 1rem; 
-    font-size: 1rem;
-    border: none;
-    &:focus {
-      outline: none !important;
-      box-shadow: none !important;
-    }
-  }
-
-  .card {
-    max-width: 450px;
-    width: 100%;
-    padding: 2.5rem;
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px); 
-    -webkit-backdrop-filter: blur(10px); 
-    border-radius: 20px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    color: #fff; 
-  }
-
-  h2 {
-    text-align: center;
-    margin-bottom: 1.5rem;
-  }
-
-  .btn-primary {
-    background-color: $btn-color;
-    width: 100%;
-    margin-bottom: 1rem;
-  }
-
+.login-page-form {
   .social-icons {
     display: flex;
     justify-content: space-between;
@@ -75,19 +30,12 @@ $white: #ffffff;
 
   .register-text {
     text-align: center;
+    margin-top: 1rem;
 
     .register-link {
       color: $btn-color;
       text-decoration: underline;
       cursor: pointer;
     }
-  }
-}
-
-@media (max-width: 480px) {
-  .login-page .card {
-    max-width: 100%;
-    width: 100%;
-    border-radius: 0;
   }
 }

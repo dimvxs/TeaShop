@@ -1,0 +1,24 @@
+\doxysection{Windows\+Backend.\+hh}
+\hypertarget{_windows_backend_8hh_source}{}\label{_windows_backend_8hh_source}\index{frontend/node\_modules/"@parcel/watcher/src/windows/WindowsBackend.hh@{frontend/node\_modules/"@parcel/watcher/src/windows/WindowsBackend.hh}}
+\mbox{\hyperlink{_windows_backend_8hh}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ WINDOWS\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ WINDOWS\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <winsock2.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <windows.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_brute_force_backend_8hh}{../shared/BruteForceBackend.hh}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_windows_backend}{WindowsBackend}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_brute_force_backend}{BruteForceBackend}}\ \{}
+\DoxyCodeLine{00009\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00010\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_windows_backend_a63a1a1b2205b35e06c45a62c3e5972b0}{start}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00011\ \ \ \mbox{\hyperlink{class_windows_backend_a21ac2df2452a92b715a6cb17217e97f0}{\string~WindowsBackend}}();}
+\DoxyCodeLine{00012\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_windows_backend_ae4515d390d2b6f2de41331d89ab4e201}{subscribe}}(\mbox{\hyperlink{_watcher_8hh_a8a32f1740da49095a86d32383c012cc9}{WatcherRef}}\ watcher)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00013\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_windows_backend_a5a0ffb91071dfbfe0f620b2b0f96d1be}{unsubscribe}}(\mbox{\hyperlink{_watcher_8hh_a8a32f1740da49095a86d32383c012cc9}{WatcherRef}}\ watcher)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00014\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00015\ \ \ \textcolor{keywordtype}{bool}\ mRunning;}
+\DoxyCodeLine{00016\ \};}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

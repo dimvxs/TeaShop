@@ -1,0 +1,107 @@
+\doxysection{Promise\+Runner.\+hh}
+\hypertarget{_promise_runner_8hh_source}{}\label{_promise_runner_8hh_source}\index{frontend/node\_modules/"@parcel/watcher/src/PromiseRunner.hh@{frontend/node\_modules/"@parcel/watcher/src/PromiseRunner.hh}}
+\mbox{\hyperlink{_promise_runner_8hh}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ PROMISE\_RUNNER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ PROMISE\_RUNNER\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <node\_api.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{include_8h}{wasm/include.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{napi_8h}{napi.h}}>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{using\ namespace\ }\mbox{\hyperlink{namespace_napi}{Napi}};}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_promise_runner_a32f74b081e642248f7a1496cd5567e78}{PromiseRunner}}\ \{}
+\DoxyCodeLine{00011\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00012\ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_napi_1_1_env}{Env}}\ \mbox{\hyperlink{class_promise_runner_ab220a8170edb2f80d0b7608da38b9ebf}{env}};}
+\DoxyCodeLine{00013\ \ \ \mbox{\hyperlink{class_napi_1_1_promise_1_1_deferred}{Promise::Deferred}}\ \mbox{\hyperlink{class_promise_runner_aeeda76daaf9aa9287f2596e98fe25a94}{deferred}};}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \ \ \mbox{\hyperlink{class_promise_runner_a32f74b081e642248f7a1496cd5567e78}{PromiseRunner}}(\mbox{\hyperlink{class_napi_1_1_env}{Env}}\ \mbox{\hyperlink{class_promise_runner_ab220a8170edb2f80d0b7608da38b9ebf}{env}})\ :\ \mbox{\hyperlink{class_promise_runner_ab220a8170edb2f80d0b7608da38b9ebf}{env}}(\mbox{\hyperlink{class_promise_runner_ab220a8170edb2f80d0b7608da38b9ebf}{env}}),\ \mbox{\hyperlink{class_promise_runner_aeeda76daaf9aa9287f2596e98fe25a94}{deferred}}(\mbox{\hyperlink{class_napi_1_1_promise}{Promise}}::Deferred::New(\mbox{\hyperlink{class_promise_runner_ab220a8170edb2f80d0b7608da38b9ebf}{env}}))\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ napi\_status\ status\ =\ napi\_create\_async\_work(\mbox{\hyperlink{class_promise_runner_ab220a8170edb2f80d0b7608da38b9ebf}{env}},\ \textcolor{keyword}{nullptr},\ \mbox{\hyperlink{class_promise_runner_ab220a8170edb2f80d0b7608da38b9ebf}{env}}.Undefined(),}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ onExecute,\ onWorkComplete,\ \textcolor{keyword}{this},\ \&work);}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordflow}{if}\ (status\ !=\ napi\_ok)\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ work\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \textcolor{keyword}{const}\ napi\_extended\_error\_info\ *error\_info\ =\ 0;}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ napi\_get\_last\_error\_info(\mbox{\hyperlink{class_promise_runner_ab220a8170edb2f80d0b7608da38b9ebf}{env}},\ \&error\_info);}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (error\_info-\/>error\_message)\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_napi_1_1_error_a6a0571d56b4fcedf862b934a507a58ed}{Error::New}}(\mbox{\hyperlink{class_promise_runner_ab220a8170edb2f80d0b7608da38b9ebf}{env}},\ error\_info-\/>error\_message).\mbox{\hyperlink{class_napi_1_1_error_af657bb938d951eccca6cf9e4983601d9}{ThrowAsJavaScriptException}}();}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_napi_1_1_error_a6a0571d56b4fcedf862b934a507a58ed}{Error::New}}(\mbox{\hyperlink{class_promise_runner_ab220a8170edb2f80d0b7608da38b9ebf}{env}}).\mbox{\hyperlink{class_napi_1_1_error_af657bb938d951eccca6cf9e4983601d9}{ThrowAsJavaScriptException}}();}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00027\ \ \ \ \ \}}
+\DoxyCodeLine{00028\ \ \ \}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_promise_runner_a5f29dd5dea94b7a3a15b2b2e8648f1aa}{\string~PromiseRunner}}()\ \{\}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \mbox{\hyperlink{class_napi_1_1_value}{Value}}\ \mbox{\hyperlink{class_promise_runner_a9e6ffa686a6078193625fb259581b2f8}{queue}}()\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordflow}{if}\ (work)\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ napi\_status\ status\ =\ napi\_queue\_async\_work(\mbox{\hyperlink{class_promise_runner_ab220a8170edb2f80d0b7608da38b9ebf}{env}},\ work);}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (status\ !=\ napi\_ok)\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ onError(\mbox{\hyperlink{class_napi_1_1_error_a6a0571d56b4fcedf862b934a507a58ed}{Error::New}}(\mbox{\hyperlink{class_promise_runner_ab220a8170edb2f80d0b7608da38b9ebf}{env}}));}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00038\ \ \ \ \ \}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_promise_runner_aeeda76daaf9aa9287f2596e98fe25a94}{deferred}}.Promise();}
+\DoxyCodeLine{00041\ \ \ \}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00044\ \ \ napi\_async\_work\ work;}
+\DoxyCodeLine{00045\ \ \ std::string\ error;}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ onExecute(napi\_env\ \mbox{\hyperlink{class_promise_runner_ab220a8170edb2f80d0b7608da38b9ebf}{env}},\ \textcolor{keywordtype}{void}\ *this\_pointer)\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{class_promise_runner}{PromiseRunner}}*\ self\ =\ (\mbox{\hyperlink{class_promise_runner}{PromiseRunner}}*)\ this\_pointer;}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ self-\/>execute();}
+\DoxyCodeLine{00051\ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (std::exception\ \&err)\ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ self-\/>error\ =\ err.what();}
+\DoxyCodeLine{00053\ \ \ \ \ \}}
+\DoxyCodeLine{00054\ \ \ \}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ onWorkComplete(napi\_env\ \mbox{\hyperlink{class_promise_runner_ab220a8170edb2f80d0b7608da38b9ebf}{env}},\ napi\_status\ status,\ \textcolor{keywordtype}{void}\ *this\_pointer)\ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \mbox{\hyperlink{class_promise_runner_a32f74b081e642248f7a1496cd5567e78}{PromiseRunner}}*\ self\ =\ (\mbox{\hyperlink{class_promise_runner_a32f74b081e642248f7a1496cd5567e78}{PromiseRunner}}*)\ this\_pointer;}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordflow}{if}\ (status\ !=\ napi\_cancelled)\ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ HandleScope\ scope(self-\/>\mbox{\hyperlink{class_promise_runner_ab220a8170edb2f80d0b7608da38b9ebf}{env}});}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (status\ ==\ napi\_ok)\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ status\ =\ napi\_delete\_async\_work(self-\/>\mbox{\hyperlink{class_promise_runner_ab220a8170edb2f80d0b7608da38b9ebf}{env}},\ self-\/>work);}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (status\ ==\ napi\_ok)\ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (self-\/>error.size()\ ==\ 0)\ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ self-\/>onOK();}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ self-\/>onError(\mbox{\hyperlink{class_napi_1_1_error_a6a0571d56b4fcedf862b934a507a58ed}{Error::New}}(self-\/>\mbox{\hyperlink{class_promise_runner_ab220a8170edb2f80d0b7608da38b9ebf}{env}},\ self-\/>error));}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ self;}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00072\ \ \ \ \ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{comment}{//\ fallthrough\ for\ error\ handling}}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{const}\ napi\_extended\_error\_info\ *error\_info\ =\ 0;}
+\DoxyCodeLine{00076\ \ \ \ \ napi\_get\_last\_error\_info(\mbox{\hyperlink{class_promise_runner_ab220a8170edb2f80d0b7608da38b9ebf}{env}},\ \&error\_info);}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordflow}{if}\ (error\_info-\/>error\_message)\{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ self-\/>onError(\mbox{\hyperlink{class_napi_1_1_error_a6a0571d56b4fcedf862b934a507a58ed}{Error::New}}(\mbox{\hyperlink{class_promise_runner_ab220a8170edb2f80d0b7608da38b9ebf}{env}},\ error\_info-\/>error\_message));}
+\DoxyCodeLine{00079\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ self-\/>onError(\mbox{\hyperlink{class_napi_1_1_error_a6a0571d56b4fcedf862b934a507a58ed}{Error::New}}(\mbox{\hyperlink{class_promise_runner_ab220a8170edb2f80d0b7608da38b9ebf}{env}}));}
+\DoxyCodeLine{00081\ \ \ \ \ \}}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keyword}{delete}\ self;}
+\DoxyCodeLine{00083\ \ \ \}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ execute()\ \{\}}
+\DoxyCodeLine{00086\ \ \ \textcolor{keyword}{virtual}\ Value\ getResult()\ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_promise_runner_ab220a8170edb2f80d0b7608da38b9ebf}{env}}.Null();}
+\DoxyCodeLine{00088\ \ \ \}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \textcolor{keywordtype}{void}\ onOK()\ \{}
+\DoxyCodeLine{00091\ \ \ \ \ HandleScope\ scope(\mbox{\hyperlink{class_promise_runner_ab220a8170edb2f80d0b7608da38b9ebf}{env}});}
+\DoxyCodeLine{00092\ \ \ \ \ Value\ result\ =\ getResult();}
+\DoxyCodeLine{00093\ \ \ \ \ \mbox{\hyperlink{class_promise_runner_aeeda76daaf9aa9287f2596e98fe25a94}{deferred}}.Resolve(result);}
+\DoxyCodeLine{00094\ \ \ \}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \textcolor{keywordtype}{void}\ onError(\textcolor{keyword}{const}\ Error\ \&e)\ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \mbox{\hyperlink{class_promise_runner_aeeda76daaf9aa9287f2596e98fe25a94}{deferred}}.Reject(e.\mbox{\hyperlink{class_napi_1_1_error_a6c7dc04ee866899cca8bfe9bbc76bbe3}{Value}}());}
+\DoxyCodeLine{00098\ \ \ \}}
+\DoxyCodeLine{00099\ \};}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,98 @@
+\doxysection{frontend/node\+\_\+modules/bootstrap-\/icons Directory Reference}
+\hypertarget{dir_49d20383ab012aad7dda79758a817132}{}\label{dir_49d20383ab012aad7dda79758a817132}\index{frontend/node\_modules/bootstrap-\/icons Directory Reference@{frontend/node\_modules/bootstrap-\/icons Directory Reference}}
+Directory dependency graph for bootstrap-\/icons\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=194pt]{dir_49d20383ab012aad7dda79758a817132_dep}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Detailed Description}
+
+
+\href{https://getbootstrap.com/}{\texttt{ }} 
+
+\doxysubsubsubsection*{Bootstrap Icons}
+
+
+
+Official open source SVG icon library for Bootstrap with over 2,000 icons. ~\newline
+ \href{https://icons.getbootstrap.com/}{\texttt{{\bfseries{Explore Bootstrap Icons »}}}} ~\newline
+ ~\newline
+ \href{https://getbootstrap.com/}{\texttt{Bootstrap}} · \href{https://themes.getbootstrap.com/}{\texttt{Themes}} · \href{https://blog.getbootstrap.com/}{\texttt{Blog}} ~\newline
+ 
+
+\href{https://icons.getbootstrap.com/}{\texttt{}}\hypertarget{dir_49d20383ab012aad7dda79758a817132_autotoc_md956}{}\doxysubsubsection{\texorpdfstring{Install}{Install}}\label{dir_49d20383ab012aad7dda79758a817132_autotoc_md956}
+Bootstrap Icons are packaged up and published to npm. We only include the processed SVGs in this package—it\textquotesingle{}s up to you and your team to implement. \href{https://icons.getbootstrap.com/}{\texttt{Read our docs}} for usage instructions.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ i\ bootstrap-\/icons}
+
+\end{DoxyCode}
+
+
+For those \href{https://packagist.org/packages/twbs/bootstrap-icons}{\texttt{using Packagist}}, you can also install Bootstrap Icons via Composer\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{composer\ require\ twbs/bootstrap-\/icons}
+
+\end{DoxyCode}
+
+
+\href{https://www.figma.com/community/file/1042482994486402696/Bootstrap-Icons}{\texttt{Also available in Figma}}.\hypertarget{dir_49d20383ab012aad7dda79758a817132_autotoc_md957}{}\doxysubsubsection{\texorpdfstring{Usage}{Usage}}\label{dir_49d20383ab012aad7dda79758a817132_autotoc_md957}
+Depending on your setup, you can include Bootstrap Icons in a handful of ways.
+
+
+\begin{DoxyItemize}
+\item Copy-\/paste SVGs as embedded HTML
+\item Reference via {\ttfamily \texorpdfstring{$<$}{<}img\texorpdfstring{$>$}{>}} element
+\item Use the SVG sprite
+\item Include via CSS
+\end{DoxyItemize}
+
+\href{https://icons.getbootstrap.com/\#usage}{\texttt{See the docs for more information}}.\hypertarget{dir_49d20383ab012aad7dda79758a817132_autotoc_md958}{}\doxysubsubsection{\texorpdfstring{Development}{Development}}\label{dir_49d20383ab012aad7dda79758a817132_autotoc_md958}
+\href{https://github.com/twbs/icons/actions/workflows/test.yml?query=workflow\%3ATests+branch\%3Amain}{\texttt{}} \href{https://www.npmjs.com/package/bootstrap-icons}{\texttt{}}
+
+Clone the repo, install dependencies, and start the Hugo server locally.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{git\ clone\ https://github.com/twbs/icons/}
+\DoxyCodeLine{cd\ icons}
+\DoxyCodeLine{npm\ i}
+\DoxyCodeLine{npm\ start}
+
+\end{DoxyCode}
+
+
+Then open {\ttfamily \href{http://localhost:4000}{\texttt{http\+://localhost\+:4000}}} in your browser.\hypertarget{dir_49d20383ab012aad7dda79758a817132_autotoc_md959}{}\doxysubsubsubsection{\texorpdfstring{npm scripts}{npm scripts}}\label{dir_49d20383ab012aad7dda79758a817132_autotoc_md959}
+Here are some key scripts you\textquotesingle{}ll use during development. Be sure to look to our {\ttfamily package.\+json} or {\ttfamily npm run} output for a complete list of scripts.
+
+
+\begin{DoxyTable}{2}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Script  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Description  \\
+{\ttfamily start}  &Alias for running {\ttfamily docs-\/serve}  \\
+{\ttfamily docs-\/serve}  &Starts a local Hugo server  \\
+{\ttfamily pages}  &Generates permalink pages for each icon with template Markdown  \\
+{\ttfamily icons}  &Processes and optimizes SVGs in {\ttfamily icons} directory, generates fonts and sprite  \\
+\end{DoxyTable}
+\hypertarget{dir_49d20383ab012aad7dda79758a817132_autotoc_md960}{}\doxysubsubsection{\texorpdfstring{Adding SVGs}{Adding SVGs}}\label{dir_49d20383ab012aad7dda79758a817132_autotoc_md960}
+Icons are typically only added by @mdo, but exceptions can be made. New glyphs are designed in Figma first on a 16x16px grid, then exported as flattened SVGs with {\ttfamily fill} (no stroke). Once a new SVG icon has been added to the {\ttfamily icons} directory, we use an npm script to\+:
+
+
+\begin{DoxyEnumerate}
+\item Optimize our SVGs with SVGO.
+\item Modify the SVGs source code, removing all attributes before setting new attributes and values in our preferred order.
+\end{DoxyEnumerate}
+
+Use {\ttfamily npm run icons} to run the script, run {\ttfamily npm run pages} to build permalink pages, complete those pages, and, finally, commit the results in a new branch for updating.
+
+{\bfseries{Warning}}\+: Please exclude any auto-\/generated files, like {\ttfamily font/\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}} and {\ttfamily bootstrap-\/icons.\+svg} from your branch because they cause conflicts, and we generally update the dist files before a release.\hypertarget{dir_49d20383ab012aad7dda79758a817132_autotoc_md961}{}\doxysubsubsection{\texorpdfstring{Publishing}{Publishing}}\label{dir_49d20383ab012aad7dda79758a817132_autotoc_md961}
+Documentation is published automatically when a new Git tag is published. See our \href{https://github.com/twbs/icons/tree/main/.github/workflows}{\texttt{Git\+Hub Actions}} and \href{https://github.com/twbs/icons/blob/main/package.json}{\texttt{{\ttfamily package.\+json}}} for more information.\hypertarget{dir_49d20383ab012aad7dda79758a817132_autotoc_md962}{}\doxysubsubsection{\texorpdfstring{License}{License}}\label{dir_49d20383ab012aad7dda79758a817132_autotoc_md962}
+\mbox{[}MIT\mbox{]}(LICENSE)\hypertarget{dir_49d20383ab012aad7dda79758a817132_autotoc_md963}{}\doxysubsubsection{\texorpdfstring{Author}{Author}}\label{dir_49d20383ab012aad7dda79758a817132_autotoc_md963}
+\href{https://github.com/mdo}{\texttt{@mdo}} 

@@ -1,0 +1,31 @@
+\doxysection{Brute\+Force\+Backend.\+hh}
+\hypertarget{_brute_force_backend_8hh_source}{}\label{_brute_force_backend_8hh_source}\index{frontend/node\_modules/"@parcel/watcher/src/shared/BruteForceBackend.hh@{frontend/node\_modules/"@parcel/watcher/src/shared/BruteForceBackend.hh}}
+\mbox{\hyperlink{_brute_force_backend_8hh}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ BRUTE\_FORCE\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ BRUTE\_FORCE\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_backend_8hh}{../Backend.hh}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_dir_tree_8hh}{../DirTree.hh}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_watcher_8hh}{../Watcher.hh}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_brute_force_backend}{BruteForceBackend}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_backend}{Backend}}\ \{}
+\DoxyCodeLine{00009\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00010\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_brute_force_backend_ad7d4299e7e04eb75e5027f6e6e969cef}{writeSnapshot}}(\mbox{\hyperlink{_watcher_8hh_a8a32f1740da49095a86d32383c012cc9}{WatcherRef}}\ watcher,\ std::string\ *snapshotPath)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00011\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_brute_force_backend_aad0d99df7fbef5d7ac0281ce8949d785}{getEventsSince}}(\mbox{\hyperlink{_watcher_8hh_a8a32f1740da49095a86d32383c012cc9}{WatcherRef}}\ watcher,\ std::string\ *snapshotPath)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00012\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_brute_force_backend_ab0a63416669bdf396ebf3d0d9f23f4bb}{subscribe}}(\mbox{\hyperlink{_watcher_8hh_a8a32f1740da49095a86d32383c012cc9}{WatcherRef}}\ watcher)\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{stringliteral}{"{}Brute\ force\ backend\ doesn't\ support\ subscriptions."{}};}
+\DoxyCodeLine{00014\ \ \ \}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_brute_force_backend_a242e58d83478473f597eee417c37ba5d}{unsubscribe}}(\mbox{\hyperlink{_watcher_8hh_a8a32f1740da49095a86d32383c012cc9}{WatcherRef}}\ watcher)\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{stringliteral}{"{}Brute\ force\ backend\ doesn't\ support\ subscriptions."{}};}
+\DoxyCodeLine{00018\ \ \ \}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ std::shared\_ptr<DirTree>\ \mbox{\hyperlink{class_brute_force_backend_aee8b6d172861ea5e5a554c96f38f99b7}{getTree}}(\mbox{\hyperlink{_watcher_8hh_a8a32f1740da49095a86d32383c012cc9}{WatcherRef}}\ watcher,\ \textcolor{keywordtype}{bool}\ shouldRead\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00021\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00022\ \ \ \textcolor{keywordtype}{void}\ readTree(\mbox{\hyperlink{_watcher_8hh_a8a32f1740da49095a86d32383c012cc9}{WatcherRef}}\ watcher,\ std::shared\_ptr<DirTree>\ tree);}
+\DoxyCodeLine{00023\ \};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

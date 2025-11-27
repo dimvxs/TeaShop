@@ -1,0 +1,140 @@
+\doxysection{Dir\+Tree Class Reference}
+\hypertarget{class_dir_tree}{}\label{class_dir_tree}\index{DirTree@{DirTree}}
+
+
+{\ttfamily \#include $<$Dir\+Tree.\+hh$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_dir_tree_ab3cd9e25096de872bee2e2a5aef19dee}{Dir\+Tree}} (std\+::string \mbox{\hyperlink{class_dir_tree_a05c8a494af045554647b11ebcd659e6c}{root}})
+\item 
+\mbox{\hyperlink{class_dir_tree_a585ff63fac64f90c15cb52aec1c9ef1e}{Dir\+Tree}} (std\+::string \mbox{\hyperlink{class_dir_tree_a05c8a494af045554647b11ebcd659e6c}{root}}, FILE \texorpdfstring{$\ast$}{*}f)
+\item 
+\mbox{\hyperlink{struct_dir_entry}{Dir\+Entry}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_dir_tree_ab4c18dfbffcc0333bb5520ea53d57e2c}{add}} (std\+::string path, uint64\+\_\+t mtime, bool is\+Dir)
+\item 
+\mbox{\hyperlink{struct_dir_entry}{Dir\+Entry}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_dir_tree_a54a2e54c70d3c0bc736c2867b88e473a}{find}} (std\+::string path)
+\item 
+\mbox{\hyperlink{struct_dir_entry}{Dir\+Entry}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_dir_tree_aa4cc81e0da75d733c070055e0a0cd8c1}{update}} (std\+::string path, uint64\+\_\+t mtime)
+\item 
+void \mbox{\hyperlink{class_dir_tree_a7f0f54099129a8b084e154f0d8383856}{remove}} (std\+::string path)
+\item 
+void \mbox{\hyperlink{class_dir_tree_aa9d2816832744e74b2a5b0dd5d4bf743}{write}} (FILE \texorpdfstring{$\ast$}{*}f)
+\item 
+void \mbox{\hyperlink{class_dir_tree_a568b5d7dcc7f83e1cb1a1def57318f0e}{get\+Changes}} (\mbox{\hyperlink{class_dir_tree}{Dir\+Tree}} \texorpdfstring{$\ast$}{*}snapshot, \mbox{\hyperlink{class_event_list}{Event\+List}} \&events)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_dir_tree}{Dir\+Tree}} $>$ \mbox{\hyperlink{class_dir_tree_a34ecc85d28ae69fd442489eaa9b31745}{get\+Cached}} (std\+::string \mbox{\hyperlink{class_dir_tree_a05c8a494af045554647b11ebcd659e6c}{root}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::mutex \mbox{\hyperlink{class_dir_tree_a6bab71086dc45058b78da5a099402270}{m\+Mutex}}
+\item 
+std\+::string \mbox{\hyperlink{class_dir_tree_a05c8a494af045554647b11ebcd659e6c}{root}}
+\item 
+bool \mbox{\hyperlink{class_dir_tree_a1e40e604b3f87442ef952146feace35a}{is\+Complete}}
+\item 
+std\+::unordered\+\_\+map$<$ std\+::string, \mbox{\hyperlink{struct_dir_entry}{Dir\+Entry}} $>$ \mbox{\hyperlink{class_dir_tree_a2ff76ebfab63e69f97baa25b05b73066}{entries}}
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{class_dir_tree_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_dir_tree_ab3cd9e25096de872bee2e2a5aef19dee}\index{DirTree@{DirTree}!DirTree@{DirTree}}
+\index{DirTree@{DirTree}!DirTree@{DirTree}}
+\doxysubsubsection{\texorpdfstring{DirTree()}{DirTree()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_dir_tree_ab3cd9e25096de872bee2e2a5aef19dee} 
+Dir\+Tree\+::\+Dir\+Tree (\begin{DoxyParamCaption}\item[{std\+::string}]{root}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_dir_tree_a585ff63fac64f90c15cb52aec1c9ef1e}\index{DirTree@{DirTree}!DirTree@{DirTree}}
+\index{DirTree@{DirTree}!DirTree@{DirTree}}
+\doxysubsubsection{\texorpdfstring{DirTree()}{DirTree()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_dir_tree_a585ff63fac64f90c15cb52aec1c9ef1e} 
+Dir\+Tree\+::\+Dir\+Tree (\begin{DoxyParamCaption}\item[{std\+::string}]{root}{, }\item[{FILE \texorpdfstring{$\ast$}{*}}]{f}{}\end{DoxyParamCaption})}
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_dir_tree_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_dir_tree_ab4c18dfbffcc0333bb5520ea53d57e2c}\index{DirTree@{DirTree}!add@{add}}
+\index{add@{add}!DirTree@{DirTree}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily \label{class_dir_tree_ab4c18dfbffcc0333bb5520ea53d57e2c} 
+\mbox{\hyperlink{struct_dir_entry}{Dir\+Entry}} \texorpdfstring{$\ast$}{*} Dir\+Tree\+::add (\begin{DoxyParamCaption}\item[{std\+::string}]{path}{, }\item[{uint64\+\_\+t}]{mtime}{, }\item[{bool}]{is\+Dir}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_dir_tree_a54a2e54c70d3c0bc736c2867b88e473a}\index{DirTree@{DirTree}!find@{find}}
+\index{find@{find}!DirTree@{DirTree}}
+\doxysubsubsection{\texorpdfstring{find()}{find()}}
+{\footnotesize\ttfamily \label{class_dir_tree_a54a2e54c70d3c0bc736c2867b88e473a} 
+\mbox{\hyperlink{struct_dir_entry}{Dir\+Entry}} \texorpdfstring{$\ast$}{*} Dir\+Tree\+::find (\begin{DoxyParamCaption}\item[{std\+::string}]{path}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_dir_tree_a34ecc85d28ae69fd442489eaa9b31745}\index{DirTree@{DirTree}!getCached@{getCached}}
+\index{getCached@{getCached}!DirTree@{DirTree}}
+\doxysubsubsection{\texorpdfstring{getCached()}{getCached()}}
+{\footnotesize\ttfamily \label{class_dir_tree_a34ecc85d28ae69fd442489eaa9b31745} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_dir_tree}{Dir\+Tree}} $>$ Dir\+Tree\+::get\+Cached (\begin{DoxyParamCaption}\item[{std\+::string}]{root}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{class_dir_tree_a568b5d7dcc7f83e1cb1a1def57318f0e}\index{DirTree@{DirTree}!getChanges@{getChanges}}
+\index{getChanges@{getChanges}!DirTree@{DirTree}}
+\doxysubsubsection{\texorpdfstring{getChanges()}{getChanges()}}
+{\footnotesize\ttfamily \label{class_dir_tree_a568b5d7dcc7f83e1cb1a1def57318f0e} 
+void Dir\+Tree\+::get\+Changes (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_dir_tree}{Dir\+Tree}} \texorpdfstring{$\ast$}{*}}]{snapshot}{, }\item[{\mbox{\hyperlink{class_event_list}{Event\+List}} \&}]{events}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_dir_tree_a7f0f54099129a8b084e154f0d8383856}\index{DirTree@{DirTree}!remove@{remove}}
+\index{remove@{remove}!DirTree@{DirTree}}
+\doxysubsubsection{\texorpdfstring{remove()}{remove()}}
+{\footnotesize\ttfamily \label{class_dir_tree_a7f0f54099129a8b084e154f0d8383856} 
+void Dir\+Tree\+::remove (\begin{DoxyParamCaption}\item[{std\+::string}]{path}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_dir_tree_aa4cc81e0da75d733c070055e0a0cd8c1}\index{DirTree@{DirTree}!update@{update}}
+\index{update@{update}!DirTree@{DirTree}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{class_dir_tree_aa4cc81e0da75d733c070055e0a0cd8c1} 
+\mbox{\hyperlink{struct_dir_entry}{Dir\+Entry}} \texorpdfstring{$\ast$}{*} Dir\+Tree\+::update (\begin{DoxyParamCaption}\item[{std\+::string}]{path}{, }\item[{uint64\+\_\+t}]{mtime}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_dir_tree_aa9d2816832744e74b2a5b0dd5d4bf743}\index{DirTree@{DirTree}!write@{write}}
+\index{write@{write}!DirTree@{DirTree}}
+\doxysubsubsection{\texorpdfstring{write()}{write()}}
+{\footnotesize\ttfamily \label{class_dir_tree_aa9d2816832744e74b2a5b0dd5d4bf743} 
+void Dir\+Tree\+::write (\begin{DoxyParamCaption}\item[{FILE \texorpdfstring{$\ast$}{*}}]{f}{}\end{DoxyParamCaption})}
+
+
+
+\label{doc-variable-members}
+\Hypertarget{class_dir_tree_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_dir_tree_a2ff76ebfab63e69f97baa25b05b73066}\index{DirTree@{DirTree}!entries@{entries}}
+\index{entries@{entries}!DirTree@{DirTree}}
+\doxysubsubsection{\texorpdfstring{entries}{entries}}
+{\footnotesize\ttfamily \label{class_dir_tree_a2ff76ebfab63e69f97baa25b05b73066} 
+std\+::unordered\+\_\+map$<$std\+::string, \mbox{\hyperlink{struct_dir_entry}{Dir\+Entry}}$>$ Dir\+Tree\+::entries}
+
+\Hypertarget{class_dir_tree_a1e40e604b3f87442ef952146feace35a}\index{DirTree@{DirTree}!isComplete@{isComplete}}
+\index{isComplete@{isComplete}!DirTree@{DirTree}}
+\doxysubsubsection{\texorpdfstring{isComplete}{isComplete}}
+{\footnotesize\ttfamily \label{class_dir_tree_a1e40e604b3f87442ef952146feace35a} 
+bool Dir\+Tree\+::is\+Complete}
+
+\Hypertarget{class_dir_tree_a6bab71086dc45058b78da5a099402270}\index{DirTree@{DirTree}!mMutex@{mMutex}}
+\index{mMutex@{mMutex}!DirTree@{DirTree}}
+\doxysubsubsection{\texorpdfstring{mMutex}{mMutex}}
+{\footnotesize\ttfamily \label{class_dir_tree_a6bab71086dc45058b78da5a099402270} 
+std\+::mutex Dir\+Tree\+::m\+Mutex}
+
+\Hypertarget{class_dir_tree_a05c8a494af045554647b11ebcd659e6c}\index{DirTree@{DirTree}!root@{root}}
+\index{root@{root}!DirTree@{DirTree}}
+\doxysubsubsection{\texorpdfstring{root}{root}}
+{\footnotesize\ttfamily \label{class_dir_tree_a05c8a494af045554647b11ebcd659e6c} 
+std\+::string Dir\+Tree\+::root}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+frontend/node\+\_\+modules/@parcel/watcher/src/\mbox{\hyperlink{_dir_tree_8hh}{Dir\+Tree.\+hh}}\item 
+frontend/node\+\_\+modules/@parcel/watcher/src/\mbox{\hyperlink{_dir_tree_8cc}{Dir\+Tree.\+cc}}\end{DoxyCompactItemize}

@@ -1,0 +1,47 @@
+\doxysection{frontend/node\+\_\+modules/@parcel/watcher/src/kqueue/\+Kqueue\+Backend.cc File Reference}
+\hypertarget{_kqueue_backend_8cc}{}\label{_kqueue_backend_8cc}\index{frontend/node\_modules/"@parcel/watcher/src/kqueue/KqueueBackend.cc@{frontend/node\_modules/"@parcel/watcher/src/kqueue/KqueueBackend.cc}}
+{\ttfamily \#include $<$memory$>$}\newline
+{\ttfamily \#include $<$poll.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$libgen.\+h$>$}\newline
+{\ttfamily \#include $<$dirent.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
+{\ttfamily \#include "{}Kqueue\+Backend.\+hh"{}}\newline
+Include dependency graph for Kqueue\+Backend.\+cc\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_kqueue_backend_8cc__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_kqueue_backend_8cc_a985c56a5d5adce0c51d004a75ccd27f2}{O\+\_\+\+EVTONLY}}~O\+\_\+\+RDONLY
+\item 
+\#define \mbox{\hyperlink{_kqueue_backend_8cc_afaf5541c2981eaa03c51bb45b26f66d8}{CONVERT\+\_\+\+TIME}}(ts)
+\end{DoxyCompactItemize}
+
+
+\label{doc-define-members}
+\Hypertarget{_kqueue_backend_8cc_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{_kqueue_backend_8cc_afaf5541c2981eaa03c51bb45b26f66d8}\index{KqueueBackend.cc@{KqueueBackend.cc}!CONVERT\_TIME@{CONVERT\_TIME}}
+\index{CONVERT\_TIME@{CONVERT\_TIME}!KqueueBackend.cc@{KqueueBackend.cc}}
+\doxysubsubsection{\texorpdfstring{CONVERT\_TIME}{CONVERT\_TIME}}
+{\footnotesize\ttfamily \label{_kqueue_backend_8cc_afaf5541c2981eaa03c51bb45b26f66d8} 
+\#define CONVERT\+\_\+\+TIME(\begin{DoxyParamCaption}\item[{}]{ts}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((uint64\_t)ts.tv\_sec\ *\ 1000000000\ +\ ts.tv\_nsec)}
+
+\end{DoxyCode}
+\Hypertarget{_kqueue_backend_8cc_a985c56a5d5adce0c51d004a75ccd27f2}\index{KqueueBackend.cc@{KqueueBackend.cc}!O\_EVTONLY@{O\_EVTONLY}}
+\index{O\_EVTONLY@{O\_EVTONLY}!KqueueBackend.cc@{KqueueBackend.cc}}
+\doxysubsubsection{\texorpdfstring{O\_EVTONLY}{O\_EVTONLY}}
+{\footnotesize\ttfamily \label{_kqueue_backend_8cc_a985c56a5d5adce0c51d004a75ccd27f2} 
+\#define O\+\_\+\+EVTONLY~O\+\_\+\+RDONLY}
+

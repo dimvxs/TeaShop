@@ -1,0 +1,9 @@
+<map id="src/main/java/com/goldenleaf/shop/AppMapper.java" name="src/main/java/com/goldenleaf/shop/AppMapper.java">
+<area shape="rect" id="Node000001" title=" " alt="" coords="210,5,401,46"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,94,195,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="257,47,146,91,145,86,251,47"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="219,94,392,120"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="307,44,308,80,303,77,303,48"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="415,94,564,120"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="352,44,450,87,444,88,351,49"/>
+</map>

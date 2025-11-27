@@ -1,0 +1,130 @@
+\doxysection{Napi\+::Type\+Taggable Class Reference}
+\hypertarget{class_napi_1_1_type_taggable}{}\label{class_napi_1_1_type_taggable}\index{Napi::TypeTaggable@{Napi::TypeTaggable}}
+
+
+{\ttfamily \#include $<$napi.\+h$>$}
+
+
+
+Inheritance diagram for Napi\+::Type\+Taggable\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_napi_1_1_type_taggable__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Napi\+::Type\+Taggable\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=182pt]{class_napi_1_1_type_taggable__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_napi_1_1_type_taggable_a458d376034851fa466614ead65d1161d}{Type\+Taggable}} ()
+\item 
+\mbox{\hyperlink{class_napi_1_1_type_taggable_a9b87f81f810c09bd703e0af6ea3e2a3b}{Type\+Taggable}} (napi\+\_\+env env, napi\+\_\+value value)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_napi_1_1_value}{Napi\+::\+Value}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_napi_1_1_value_a4168edf93503c6e68038e8bcaab30db8}{Value}} ()
+\begin{DoxyCompactList}\small\item\em Creates a new {\itshape empty} \doxylink{class_napi_1_1_value}{Value} instance. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_napi_1_1_value_a25933e14341139323cbd16056ca05feb}{Value}} (napi\+\_\+env env, napi\+\_\+value value)
+\begin{DoxyCompactList}\small\item\em Wraps a Node-\/\+API value primitive. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_napi_1_1_value_ad62aa5c8a2ebf992a494d1c2ed6d6710}{operator napi\+\_\+value}} () const
+\item 
+bool \mbox{\hyperlink{class_napi_1_1_value_a5b054aef2af3206131ce9a9da1961705}{operator==}} (const \mbox{\hyperlink{class_value}{Value}} \&other) const
+\begin{DoxyCompactList}\small\item\em Tests if this value strictly equals another value. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_napi_1_1_value_a76be0d6fa61aa4ba64c6ff3d5abce574}{operator!=}} (const \mbox{\hyperlink{class_value}{Value}} \&other) const
+\begin{DoxyCompactList}\small\item\em Tests if this value does not strictly equal another value. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_napi_1_1_value_adfa3774a0c1b24cc2eb7f85a871e91b8}{Strict\+Equals}} (const \mbox{\hyperlink{class_value}{Value}} \&other) const
+\begin{DoxyCompactList}\small\item\em Tests if this value strictly equals another value. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_napi_1_1_env}{Napi\+::\+Env}} \mbox{\hyperlink{class_napi_1_1_value_a34864ebca3d982d294ec0ec31809c461}{Env}} () const
+\begin{DoxyCompactList}\small\item\em Gets the environment the value is associated with. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_napi_1_1_value_acd50ba18beb496ad1405ec137aaeea5c}{Is\+Empty}} () const
+\item 
+napi\+\_\+valuetype \mbox{\hyperlink{class_napi_1_1_value_abab899cfc72c1e154a97112062c4c3cf}{Type}} () const
+\begin{DoxyCompactList}\small\item\em Gets the type of the value. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_napi_1_1_value_ac03dba7261533f19e1cfd0c18ea9b7ac}{Is\+Undefined}} () const
+\begin{DoxyCompactList}\small\item\em Tests if a value is an undefined Java\+Script value. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_napi_1_1_value_a3d2eaa621706c0f38ed8eadff6f46648}{Is\+Null}} () const
+\begin{DoxyCompactList}\small\item\em Tests if a value is a null Java\+Script value. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_napi_1_1_value_aec59850ac07f75c18e23aa10ea66010e}{Is\+Boolean}} () const
+\begin{DoxyCompactList}\small\item\em Tests if a value is a Java\+Script boolean. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_napi_1_1_value_a4e9b507a2a4397b61358d74a0bd674ee}{Is\+Number}} () const
+\begin{DoxyCompactList}\small\item\em Tests if a value is a Java\+Script number. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_napi_1_1_value_a4ff72d8133814f34f2feb42fc8811c24}{Is\+String}} () const
+\begin{DoxyCompactList}\small\item\em Tests if a value is a Java\+Script string. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_napi_1_1_value_a5dd688348db2e06e339b72dc8a33f20f}{Is\+Symbol}} () const
+\begin{DoxyCompactList}\small\item\em Tests if a value is a Java\+Script symbol. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_napi_1_1_value_aac0a802240e540e7e71a2b041f054bb9}{Is\+Array}} () const
+\begin{DoxyCompactList}\small\item\em Tests if a value is a Java\+Script array. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_napi_1_1_value_ac7e7a3ae0743374488fdc5fda2ed33c6}{Is\+Array\+Buffer}} () const
+\begin{DoxyCompactList}\small\item\em Tests if a value is a Java\+Script array buffer. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_napi_1_1_value_aa4c1f3e335ef6c78f751be184d55463c}{Is\+Typed\+Array}} () const
+\begin{DoxyCompactList}\small\item\em Tests if a value is a Java\+Script typed array. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_napi_1_1_value_a1bcf0da3e83617d0ddc9179305731efb}{Is\+Object}} () const
+\begin{DoxyCompactList}\small\item\em Tests if a value is a Java\+Script object. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_napi_1_1_value_ac9dac61ca281aed7a27917008c5ec14e}{Is\+Function}} () const
+\begin{DoxyCompactList}\small\item\em Tests if a value is a Java\+Script function. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_napi_1_1_value_a7914e3f8467ebb0bad4689f284633f91}{Is\+Promise}} () const
+\begin{DoxyCompactList}\small\item\em Tests if a value is a Java\+Script promise. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_napi_1_1_value_a48844c5e72b16b1c1dc2506cfa0b3456}{Is\+Data\+View}} () const
+\begin{DoxyCompactList}\small\item\em Tests if a value is a Java\+Script data view. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_napi_1_1_value_ad843cb84282f7080715690f5c4cd6853}{Is\+Buffer}} () const
+\begin{DoxyCompactList}\small\item\em Tests if a value is a Node buffer. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_napi_1_1_value_aab3acbe37f127282d6e9d243b73d3168}{Is\+External}} () const
+\begin{DoxyCompactList}\small\item\em Tests if a value is a pointer to external data. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T$>$ }\\T \mbox{\hyperlink{class_napi_1_1_value_ae7674633e389ee144a1d641d82b2cd9a}{As}} () const
+\item 
+\mbox{\hyperlink{namespace_napi_a82dbb1ddd7fa35efaf934e22abe0eaee}{Maybe\+Or\+Value}}$<$ \mbox{\hyperlink{class_napi_1_1_boolean}{Boolean}} $>$ \mbox{\hyperlink{class_napi_1_1_value_ae2fac377b9c07f4fc9d5bada4fa3c3e2}{To\+Boolean}} () const
+\begin{DoxyCompactList}\small\item\em Coerces a value to a Java\+Script boolean. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespace_napi_a82dbb1ddd7fa35efaf934e22abe0eaee}{Maybe\+Or\+Value}}$<$ \mbox{\hyperlink{class_napi_1_1_number}{Number}} $>$ \mbox{\hyperlink{class_napi_1_1_value_a5dbeeb53d4b9634ab44c6aa08d1e412a}{To\+Number}} () const
+\begin{DoxyCompactList}\small\item\em Coerces a value to a Java\+Script number. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespace_napi_a82dbb1ddd7fa35efaf934e22abe0eaee}{Maybe\+Or\+Value}}$<$ \mbox{\hyperlink{class_napi_1_1_string}{String}} $>$ \mbox{\hyperlink{class_napi_1_1_value_a1b0ac723ee3c2f0191729adaf5528640}{To\+String}} () const
+\begin{DoxyCompactList}\small\item\em Coerces a value to a Java\+Script string. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespace_napi_a82dbb1ddd7fa35efaf934e22abe0eaee}{Maybe\+Or\+Value}}$<$ \mbox{\hyperlink{class_napi_1_1_object}{Object}} $>$ \mbox{\hyperlink{class_napi_1_1_value_a245e982fadf44547560c66a66f685d29}{To\+Object}} () const
+\begin{DoxyCompactList}\small\item\em Coerces a value to a Java\+Script object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{class_napi_1_1_value}{Napi\+::\+Value}}}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T$>$ }\\static \mbox{\hyperlink{class_value}{Value}} \mbox{\hyperlink{class_napi_1_1_value_ae933bdc74b680f2d63505291d579fd49}{From}} (napi\+\_\+env env, const T \&value)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_napi_1_1_value}{Napi\+::\+Value}}}
+\begin{DoxyCompactItemize}
+\item 
+napi\+\_\+env \mbox{\hyperlink{class_napi_1_1_value_ad0a0cc895c3134df3ca3267dbf2dfe08}{\+\_\+env}}
+\begin{DoxyCompactList}\small\item\em !cond INTERNAL \end{DoxyCompactList}\item 
+napi\+\_\+value \mbox{\hyperlink{class_napi_1_1_value_ae2060cfa039ca4c6abaff238fb00d1f8}{\+\_\+value}}
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{class_napi_1_1_type_taggable_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_napi_1_1_type_taggable_a458d376034851fa466614ead65d1161d}\index{Napi::TypeTaggable@{Napi::TypeTaggable}!TypeTaggable@{TypeTaggable}}
+\index{TypeTaggable@{TypeTaggable}!Napi::TypeTaggable@{Napi::TypeTaggable}}
+\doxysubsubsection{\texorpdfstring{TypeTaggable()}{TypeTaggable()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_napi_1_1_type_taggable_a458d376034851fa466614ead65d1161d} 
+Napi\+::\+Type\+Taggable\+::\+Type\+Taggable (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+\Hypertarget{class_napi_1_1_type_taggable_a9b87f81f810c09bd703e0af6ea3e2a3b}\index{Napi::TypeTaggable@{Napi::TypeTaggable}!TypeTaggable@{TypeTaggable}}
+\index{TypeTaggable@{TypeTaggable}!Napi::TypeTaggable@{Napi::TypeTaggable}}
+\doxysubsubsection{\texorpdfstring{TypeTaggable()}{TypeTaggable()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_napi_1_1_type_taggable_a9b87f81f810c09bd703e0af6ea3e2a3b} 
+Napi\+::\+Type\+Taggable\+::\+Type\+Taggable (\begin{DoxyParamCaption}\item[{napi\+\_\+env}]{env}{, }\item[{napi\+\_\+value}]{value}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+frontend/node\+\_\+modules/node-\/addon-\/api/\mbox{\hyperlink{napi_8h}{napi.\+h}}\item 
+frontend/node\+\_\+modules/node-\/addon-\/api/\mbox{\hyperlink{napi-inl_8h}{napi-\/inl.\+h}}\end{DoxyCompactItemize}

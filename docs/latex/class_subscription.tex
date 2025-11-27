@@ -1,0 +1,101 @@
+\doxysection{Subscription Class Reference}
+\hypertarget{class_subscription}{}\label{class_subscription}\index{Subscription@{Subscription}}
+
+
+Inheritance diagram for Subscription\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=155pt]{class_subscription__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Subscription\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=155pt]{class_subscription__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_subscription_aebb656356c156c2c73503caa56d76d91}{Subscription}} (\mbox{\hyperlink{class_windows_backend}{Windows\+Backend}} \texorpdfstring{$\ast$}{*}backend, \mbox{\hyperlink{_watcher_8hh_a8a32f1740da49095a86d32383c012cc9}{Watcher\+Ref}} watcher, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_dir_tree}{Dir\+Tree}} $>$ tree)
+\item 
+virtual \mbox{\hyperlink{class_subscription_ae0b85868b373ab2f331dc4f5cb32a7b5}{\texorpdfstring{$\sim$}{\string~}\+Subscription}} ()
+\item 
+void \mbox{\hyperlink{class_subscription_a77f56155b7cda5f12dcc293545104f49}{run}} ()
+\item 
+void \mbox{\hyperlink{class_subscription_a8c39bdb45eecd1ca6df1b99258ef5512}{stop}} ()
+\item 
+void \mbox{\hyperlink{class_subscription_a074770033e4d6f8244486a2723fa50bf}{poll}} ()
+\item 
+void \mbox{\hyperlink{class_subscription_ab9e9ade221c48f545cbf99763c03b327}{process\+Events}} (DWORD error\+Code)
+\item 
+void \mbox{\hyperlink{class_subscription_a1df0831c45df7b5cb62d07f6413ef82c}{process\+Event}} (PFILE\+\_\+\+NOTIFY\+\_\+\+INFORMATION info)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_watcher_state}{Watcher\+State}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_watcher_state_a21e2df4b3c29afaafd0be3f6df9bb710}{\texorpdfstring{$\sim$}{\string~}\+Watcher\+State}} ()=default
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{class_subscription_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_subscription_aebb656356c156c2c73503caa56d76d91}\index{Subscription@{Subscription}!Subscription@{Subscription}}
+\index{Subscription@{Subscription}!Subscription@{Subscription}}
+\doxysubsubsection{\texorpdfstring{Subscription()}{Subscription()}}
+{\footnotesize\ttfamily \label{class_subscription_aebb656356c156c2c73503caa56d76d91} 
+Subscription\+::\+Subscription (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_windows_backend}{Windows\+Backend}} \texorpdfstring{$\ast$}{*}}]{backend}{, }\item[{\mbox{\hyperlink{_watcher_8hh_a8a32f1740da49095a86d32383c012cc9}{Watcher\+Ref}}}]{watcher}{, }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_dir_tree}{Dir\+Tree}} $>$}]{tree}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_subscription_ae0b85868b373ab2f331dc4f5cb32a7b5}\index{Subscription@{Subscription}!````~Subscription@{\texorpdfstring{$\sim$}{\string~}Subscription}}
+\index{````~Subscription@{\texorpdfstring{$\sim$}{\string~}Subscription}!Subscription@{Subscription}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Subscription()}{\string~Subscription()}}
+{\footnotesize\ttfamily \label{class_subscription_ae0b85868b373ab2f331dc4f5cb32a7b5} 
+virtual Subscription\+::\texorpdfstring{$\sim$}{\string~}\+Subscription (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_subscription_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_subscription_a074770033e4d6f8244486a2723fa50bf}\index{Subscription@{Subscription}!poll@{poll}}
+\index{poll@{poll}!Subscription@{Subscription}}
+\doxysubsubsection{\texorpdfstring{poll()}{poll()}}
+{\footnotesize\ttfamily \label{class_subscription_a074770033e4d6f8244486a2723fa50bf} 
+void Subscription\+::poll (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_subscription_a1df0831c45df7b5cb62d07f6413ef82c}\index{Subscription@{Subscription}!processEvent@{processEvent}}
+\index{processEvent@{processEvent}!Subscription@{Subscription}}
+\doxysubsubsection{\texorpdfstring{processEvent()}{processEvent()}}
+{\footnotesize\ttfamily \label{class_subscription_a1df0831c45df7b5cb62d07f6413ef82c} 
+void Subscription\+::process\+Event (\begin{DoxyParamCaption}\item[{PFILE\+\_\+\+NOTIFY\+\_\+\+INFORMATION}]{info}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_subscription_ab9e9ade221c48f545cbf99763c03b327}\index{Subscription@{Subscription}!processEvents@{processEvents}}
+\index{processEvents@{processEvents}!Subscription@{Subscription}}
+\doxysubsubsection{\texorpdfstring{processEvents()}{processEvents()}}
+{\footnotesize\ttfamily \label{class_subscription_ab9e9ade221c48f545cbf99763c03b327} 
+void Subscription\+::process\+Events (\begin{DoxyParamCaption}\item[{DWORD}]{error\+Code}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_subscription_a77f56155b7cda5f12dcc293545104f49}\index{Subscription@{Subscription}!run@{run}}
+\index{run@{run}!Subscription@{Subscription}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily \label{class_subscription_a77f56155b7cda5f12dcc293545104f49} 
+void Subscription\+::run (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_subscription_a8c39bdb45eecd1ca6df1b99258ef5512}\index{Subscription@{Subscription}!stop@{stop}}
+\index{stop@{stop}!Subscription@{Subscription}}
+\doxysubsubsection{\texorpdfstring{stop()}{stop()}}
+{\footnotesize\ttfamily \label{class_subscription_a8c39bdb45eecd1ca6df1b99258ef5512} 
+void Subscription\+::stop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+frontend/node\+\_\+modules/@parcel/watcher/src/windows/\mbox{\hyperlink{_windows_backend_8cc}{Windows\+Backend.\+cc}}\end{DoxyCompactItemize}

@@ -1,0 +1,7 @@
+<map id="com.goldenleaf.shop.dto.UserDTO" name="com.goldenleaf.shop.dto.UserDTO">
+<area shape="rect" id="Node000001" title=" " alt="" coords="101,5,269,46"/>
+<area shape="rect" id="Node000002" href="$classcom_1_1goldenleaf_1_1shop_1_1dto_1_1_admin_d_t_o.html" title=" " alt="" coords="5,94,173,135"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="154,56,112,96,109,91,149,58"/>
+<area shape="rect" id="Node000003" href="$classcom_1_1goldenleaf_1_1shop_1_1dto_1_1_customer_d_t_o.html" title=" " alt="" coords="197,94,365,135"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="219,54,262,94,257,93,217,59"/>
+</map>

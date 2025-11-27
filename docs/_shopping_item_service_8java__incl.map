@@ -1,0 +1,19 @@
+<map id="src/main/java/com/goldenleaf/shop/service/ShoppingItemService.java" name="src/main/java/com/goldenleaf/shop/service/ShoppingItemService.java">
+<area shape="rect" id="Node000001" title=" " alt="" coords="629,5,884,46"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,102,97,127"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="626,33,386,54,247,72,109,97,99,99,97,94,108,91,246,67,385,49,631,31"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="120,94,328,135"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="637,47,344,96,343,91,631,47"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="352,94,536,135"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="688,46,531,92,529,87,683,47"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="560,94,744,135"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="735,46,688,87,686,82,730,47"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="768,94,952,135"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="781,44,828,85,823,83,779,49"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="977,102,1189,127"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="831,44,1025,97,1020,97,831,49"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="1213,94,1417,135"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="885,43,1200,93,1195,93,884,48"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="1441,94,1645,135"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="885,35,1132,57,1428,94,1423,94,1131,63,884,40"/>
+</map>

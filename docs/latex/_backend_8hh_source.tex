@@ -1,0 +1,43 @@
+\doxysection{Backend.\+hh}
+\hypertarget{_backend_8hh_source}{}\label{_backend_8hh_source}\index{frontend/node\_modules/"@parcel/watcher/src/Backend.hh@{frontend/node\_modules/"@parcel/watcher/src/Backend.hh}}
+\mbox{\hyperlink{_backend_8hh}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ BACKEND\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ BACKEND\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_event_8hh}{Event.hh}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_watcher_8hh}{Watcher.hh}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_signal_8hh}{Signal.hh}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <thread>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_backend}{Backend}}\ \{}
+\DoxyCodeLine{00010\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00011\ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_backend_ad4a4bc528854a918880d5e6b5de05cc6}{\string~Backend}}();}
+\DoxyCodeLine{00012\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_backend_a6c85ce904a1fbca7d2a830d6c78a3ac4}{run}}();}
+\DoxyCodeLine{00013\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_backend_a696cf25f0d0798c2c8be4c73945a5f5a}{notifyStarted}}();}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_backend_a9666e4e46670d5d7a193af7d49c130f4}{start}}();}
+\DoxyCodeLine{00016\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_backend_ac50b033b4eb9e514600f9d0f326b80ef}{writeSnapshot}}(\mbox{\hyperlink{_watcher_8hh_a8a32f1740da49095a86d32383c012cc9}{WatcherRef}}\ watcher,\ std::string\ *snapshotPath)\ =\ 0;}
+\DoxyCodeLine{00017\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_backend_a5648ac98978ea0631d8846c9677c0833}{getEventsSince}}(\mbox{\hyperlink{_watcher_8hh_a8a32f1740da49095a86d32383c012cc9}{WatcherRef}}\ watcher,\ std::string\ *snapshotPath)\ =\ 0;}
+\DoxyCodeLine{00018\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_backend_aebafc2762c6b68c03177ec47a6b18f1b}{subscribe}}(\mbox{\hyperlink{_watcher_8hh_a8a32f1740da49095a86d32383c012cc9}{WatcherRef}}\ watcher)\ =\ 0;}
+\DoxyCodeLine{00019\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_backend_a8f407ee53658cc2c8183c815eb024874}{unsubscribe}}(\mbox{\hyperlink{_watcher_8hh_a8a32f1740da49095a86d32383c012cc9}{WatcherRef}}\ watcher)\ =\ 0;}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \textcolor{keyword}{static}\ std::shared\_ptr<Backend>\ \mbox{\hyperlink{class_backend_a9c6bbfd736bdd495df3ab33bd3cd6689}{getShared}}(std::string\ backend);}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_backend_ad8bd4e0dc21b738a822db0e92c84584b}{watch}}(\mbox{\hyperlink{_watcher_8hh_a8a32f1740da49095a86d32383c012cc9}{WatcherRef}}\ watcher);}
+\DoxyCodeLine{00024\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_backend_abb1639ccca33f82066fa49b158d31a48}{unwatch}}(\mbox{\hyperlink{_watcher_8hh_a8a32f1740da49095a86d32383c012cc9}{WatcherRef}}\ watcher);}
+\DoxyCodeLine{00025\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_backend_af91e12caf83063a27d4e8ebefef7d852}{unref}}();}
+\DoxyCodeLine{00026\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_backend_a1a8b5171005c826c8d1ef94056a0b7f9}{handleWatcherError}}(\mbox{\hyperlink{class_watcher_error}{WatcherError}}\ \&err);}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ std::mutex\ \mbox{\hyperlink{class_backend_ade8716f023ec98c68d6c86dad02206c3}{mMutex}};}
+\DoxyCodeLine{00029\ \ \ std::thread\ \mbox{\hyperlink{class_backend_aa405b10aaabf3dca83ddb73585ced69d}{mThread}};}
+\DoxyCodeLine{00030\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00031\ \ \ std::unordered\_set<WatcherRef>\ mSubscriptions;}
+\DoxyCodeLine{00032\ \ \ \mbox{\hyperlink{class_signal}{Signal}}\ mStartedSignal;}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \textcolor{keywordtype}{void}\ handleError(std::exception\ \&err);}
+\DoxyCodeLine{00035\ \};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

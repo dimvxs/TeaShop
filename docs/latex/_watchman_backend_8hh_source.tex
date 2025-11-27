@@ -1,0 +1,41 @@
+\doxysection{Watchman\+Backend.\+hh}
+\hypertarget{_watchman_backend_8hh_source}{}\label{_watchman_backend_8hh_source}\index{frontend/node\_modules/"@parcel/watcher/src/watchman/WatchmanBackend.hh@{frontend/node\_modules/"@parcel/watcher/src/watchman/WatchmanBackend.hh}}
+\mbox{\hyperlink{_watchman_backend_8hh}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ WATCHMAN\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ WATCHMAN\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_backend_8hh}{../Backend.hh}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_b_s_e_r_8hh}{./BSER.hh}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_signal_8hh}{../Signal.hh}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_i_p_c_8hh}{./IPC.hh}}"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_watchman_backend_af22b75eed7f94f4f1647e35e3c47cee1}{WatchmanBackend}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_backend}{Backend}}\ \{}
+\DoxyCodeLine{00010\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00011\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_watchman_backend_aeca11eb9d96b6c11094f5b5de578bbd6}{checkAvailable}}();}
+\DoxyCodeLine{00012\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_watchman_backend_a1cc1baf14598b321fac9007a13fed022}{start}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00013\ \ \ \mbox{\hyperlink{class_watchman_backend_af22b75eed7f94f4f1647e35e3c47cee1}{WatchmanBackend}}()\ :\ mStopped(false)\ \{\};}
+\DoxyCodeLine{00014\ \ \ \mbox{\hyperlink{class_watchman_backend_a2ff72452f958739fad175d7ed49e8c1e}{\string~WatchmanBackend}}();}
+\DoxyCodeLine{00015\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_watchman_backend_a893126879f928f9bcd24fba6dfff274d}{writeSnapshot}}(\mbox{\hyperlink{_watcher_8hh_a8a32f1740da49095a86d32383c012cc9}{WatcherRef}}\ watcher,\ std::string\ *snapshotPath)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00016\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_watchman_backend_ae017a1e63eea4bd42a66891c08d43622}{getEventsSince}}(\mbox{\hyperlink{_watcher_8hh_a8a32f1740da49095a86d32383c012cc9}{WatcherRef}}\ watcher,\ std::string\ *snapshotPath)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00017\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_watchman_backend_a5c8b717156bb6db628b539b82c6a6e66}{subscribe}}(\mbox{\hyperlink{_watcher_8hh_a8a32f1740da49095a86d32383c012cc9}{WatcherRef}}\ watcher)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00018\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_watchman_backend_a45140cc83c48ac8cbbf954851d27d953}{unsubscribe}}(\mbox{\hyperlink{_watcher_8hh_a8a32f1740da49095a86d32383c012cc9}{WatcherRef}}\ watcher)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00019\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00020\ \ \ std::unique\_ptr<IPC>\ mIPC;}
+\DoxyCodeLine{00021\ \ \ \mbox{\hyperlink{class_signal}{Signal}}\ mRequestSignal;}
+\DoxyCodeLine{00022\ \ \ \mbox{\hyperlink{class_signal}{Signal}}\ mResponseSignal;}
+\DoxyCodeLine{00023\ \ \ \mbox{\hyperlink{class_b_s_e_r_ac943b1602ec958645b76be247a8005ff}{BSER::Object}}\ mResponse;}
+\DoxyCodeLine{00024\ \ \ std::string\ mError;}
+\DoxyCodeLine{00025\ \ \ std::unordered\_map<std::string,\ WatcherRef>\ mSubscriptions;}
+\DoxyCodeLine{00026\ \ \ \textcolor{keywordtype}{bool}\ mStopped;}
+\DoxyCodeLine{00027\ \ \ \mbox{\hyperlink{class_signal}{Signal}}\ mEndedSignal;}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ std::string\ clock(\mbox{\hyperlink{_watcher_8hh_a8a32f1740da49095a86d32383c012cc9}{WatcherRef}}\ watcher);}
+\DoxyCodeLine{00030\ \ \ \textcolor{keywordtype}{void}\ watchmanWatch(std::string\ dir);}
+\DoxyCodeLine{00031\ \ \ \mbox{\hyperlink{class_b_s_e_r_ac943b1602ec958645b76be247a8005ff}{BSER::Object}}\ watchmanRequest(\mbox{\hyperlink{class_b_s_e_r}{BSER}}\ cmd);}
+\DoxyCodeLine{00032\ \ \ \textcolor{keywordtype}{void}\ handleSubscription(\mbox{\hyperlink{class_b_s_e_r_ac943b1602ec958645b76be247a8005ff}{BSER::Object}}\ obj);}
+\DoxyCodeLine{00033\ \};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

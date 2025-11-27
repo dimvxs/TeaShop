@@ -1,0 +1,124 @@
+\doxysection{com.\+goldenleaf.\+shop.\+model.\+Shopping\+Cart Class Reference}
+\hypertarget{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_cart}{}\label{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_cart}\index{com.goldenleaf.shop.model.ShoppingCart@{com.goldenleaf.shop.model.ShoppingCart}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_cart_ab2ebcfae81e4204a6b1b39380d6603e7}{Shopping\+Cart}} ()
+\item 
+\mbox{\hyperlink{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_cart_ad214592affa597bde18c3d264f8ad217}{Shopping\+Cart}} (List$<$ \mbox{\hyperlink{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_item}{Shopping\+Item}} $>$ items, \mbox{\hyperlink{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_customer}{Customer}} customer, double total\+Price)
+\item 
+Long \mbox{\hyperlink{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_cart_a08910969b530f27404958a38e7c438e8}{get\+Id}} ()
+\item 
+List$<$ \mbox{\hyperlink{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_item}{Shopping\+Item}} $>$ \mbox{\hyperlink{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_cart_a6e271436f6c952b16472e1ba710f7341}{get\+Items}} ()
+\item 
+void \mbox{\hyperlink{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_cart_aef012d4f117d8fdd8b9af9a6dd77d163}{set\+Items}} (List$<$ \mbox{\hyperlink{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_item}{Shopping\+Item}} $>$ items)  throws \mbox{\hyperlink{classcom_1_1goldenleaf_1_1shop_1_1exception_1_1_empty_product_exception}{Empty\+Product\+Exception}}
+\item 
+void \mbox{\hyperlink{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_cart_a4f9810c30678222dd6ff7e8c47fd55b0}{add\+Item}} (\mbox{\hyperlink{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_product}{Product}} product, int quantity)  throws \mbox{\hyperlink{classcom_1_1goldenleaf_1_1shop_1_1exception_1_1_empty_product_exception}{Empty\+Product\+Exception}}, \mbox{\hyperlink{classcom_1_1goldenleaf_1_1shop_1_1exception_1_1_incorrect_quantity_exception}{Incorrect\+Quantity\+Exception}} 
+\item 
+void \mbox{\hyperlink{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_cart_a919d4b12886e19742cb986f04080667d}{remove\+Item}} (\mbox{\hyperlink{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_item}{Shopping\+Item}} item)
+\item 
+void \mbox{\hyperlink{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_cart_a32ac14ac463a023b0aff484b1cced2fc}{clear}} ()
+\item 
+void \mbox{\hyperlink{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_cart_a51311a4e53ea5dd767300edf39a21e36}{remove\+Item}} (\mbox{\hyperlink{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_product}{Product}} product)
+\item 
+void \mbox{\hyperlink{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_cart_a46738c137688a80e0da68141cc82a019}{set\+Customer}} (\mbox{\hyperlink{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_customer}{Customer}} customer)
+\item 
+double \mbox{\hyperlink{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_cart_a113d3feca1b9a521872485f6803f4b78}{calculate\+Total\+Price}} ()
+\item 
+double \mbox{\hyperlink{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_cart_aab1c6eb60ae3ad5578f4b6289a90ba59}{get\+Total\+Price}} ()
+\item 
+void \mbox{\hyperlink{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_cart_a775c741860373d9931f3b8f28b64558c}{set\+Total\+Price}} (double total\+Price)  throws \mbox{\hyperlink{classcom_1_1goldenleaf_1_1shop_1_1exception_1_1_incorrect_price_exception}{Incorrect\+Price\+Exception}}     
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_cart_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_cart_ab2ebcfae81e4204a6b1b39380d6603e7}\index{com.goldenleaf.shop.model.ShoppingCart@{com.goldenleaf.shop.model.ShoppingCart}!ShoppingCart@{ShoppingCart}}
+\index{ShoppingCart@{ShoppingCart}!com.goldenleaf.shop.model.ShoppingCart@{com.goldenleaf.shop.model.ShoppingCart}}
+\doxysubsubsection{\texorpdfstring{ShoppingCart()}{ShoppingCart()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_cart_ab2ebcfae81e4204a6b1b39380d6603e7} 
+com.\+goldenleaf.\+shop.\+model.\+Shopping\+Cart.\+Shopping\+Cart (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_cart_ad214592affa597bde18c3d264f8ad217}\index{com.goldenleaf.shop.model.ShoppingCart@{com.goldenleaf.shop.model.ShoppingCart}!ShoppingCart@{ShoppingCart}}
+\index{ShoppingCart@{ShoppingCart}!com.goldenleaf.shop.model.ShoppingCart@{com.goldenleaf.shop.model.ShoppingCart}}
+\doxysubsubsection{\texorpdfstring{ShoppingCart()}{ShoppingCart()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_cart_ad214592affa597bde18c3d264f8ad217} 
+com.\+goldenleaf.\+shop.\+model.\+Shopping\+Cart.\+Shopping\+Cart (\begin{DoxyParamCaption}\item[{List$<$ \mbox{\hyperlink{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_item}{Shopping\+Item}} $>$}]{items}{, }\item[{\mbox{\hyperlink{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_customer}{Customer}}}]{customer}{, }\item[{double}]{total\+Price}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_cart_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_cart_a4f9810c30678222dd6ff7e8c47fd55b0}\index{com.goldenleaf.shop.model.ShoppingCart@{com.goldenleaf.shop.model.ShoppingCart}!addItem@{addItem}}
+\index{addItem@{addItem}!com.goldenleaf.shop.model.ShoppingCart@{com.goldenleaf.shop.model.ShoppingCart}}
+\doxysubsubsection{\texorpdfstring{addItem()}{addItem()}}
+{\footnotesize\ttfamily \label{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_cart_a4f9810c30678222dd6ff7e8c47fd55b0} 
+void com.\+goldenleaf.\+shop.\+model.\+Shopping\+Cart.\+add\+Item (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_product}{Product}}}]{product}{, }\item[{int}]{quantity}{}\end{DoxyParamCaption}) throws \mbox{\hyperlink{classcom_1_1goldenleaf_1_1shop_1_1exception_1_1_empty_product_exception}{Empty\+Product\+Exception}}, \mbox{\hyperlink{classcom_1_1goldenleaf_1_1shop_1_1exception_1_1_incorrect_quantity_exception}{Incorrect\+Quantity\+Exception}}\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_cart_a113d3feca1b9a521872485f6803f4b78}\index{com.goldenleaf.shop.model.ShoppingCart@{com.goldenleaf.shop.model.ShoppingCart}!calculateTotalPrice@{calculateTotalPrice}}
+\index{calculateTotalPrice@{calculateTotalPrice}!com.goldenleaf.shop.model.ShoppingCart@{com.goldenleaf.shop.model.ShoppingCart}}
+\doxysubsubsection{\texorpdfstring{calculateTotalPrice()}{calculateTotalPrice()}}
+{\footnotesize\ttfamily \label{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_cart_a113d3feca1b9a521872485f6803f4b78} 
+double com.\+goldenleaf.\+shop.\+model.\+Shopping\+Cart.\+calculate\+Total\+Price (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_cart_a32ac14ac463a023b0aff484b1cced2fc}\index{com.goldenleaf.shop.model.ShoppingCart@{com.goldenleaf.shop.model.ShoppingCart}!clear@{clear}}
+\index{clear@{clear}!com.goldenleaf.shop.model.ShoppingCart@{com.goldenleaf.shop.model.ShoppingCart}}
+\doxysubsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily \label{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_cart_a32ac14ac463a023b0aff484b1cced2fc} 
+void com.\+goldenleaf.\+shop.\+model.\+Shopping\+Cart.\+clear (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_cart_a08910969b530f27404958a38e7c438e8}\index{com.goldenleaf.shop.model.ShoppingCart@{com.goldenleaf.shop.model.ShoppingCart}!getId@{getId}}
+\index{getId@{getId}!com.goldenleaf.shop.model.ShoppingCart@{com.goldenleaf.shop.model.ShoppingCart}}
+\doxysubsubsection{\texorpdfstring{getId()}{getId()}}
+{\footnotesize\ttfamily \label{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_cart_a08910969b530f27404958a38e7c438e8} 
+Long com.\+goldenleaf.\+shop.\+model.\+Shopping\+Cart.\+get\+Id (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_cart_a6e271436f6c952b16472e1ba710f7341}\index{com.goldenleaf.shop.model.ShoppingCart@{com.goldenleaf.shop.model.ShoppingCart}!getItems@{getItems}}
+\index{getItems@{getItems}!com.goldenleaf.shop.model.ShoppingCart@{com.goldenleaf.shop.model.ShoppingCart}}
+\doxysubsubsection{\texorpdfstring{getItems()}{getItems()}}
+{\footnotesize\ttfamily \label{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_cart_a6e271436f6c952b16472e1ba710f7341} 
+List$<$ \mbox{\hyperlink{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_item}{Shopping\+Item}} $>$ com.\+goldenleaf.\+shop.\+model.\+Shopping\+Cart.\+get\+Items (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_cart_aab1c6eb60ae3ad5578f4b6289a90ba59}\index{com.goldenleaf.shop.model.ShoppingCart@{com.goldenleaf.shop.model.ShoppingCart}!getTotalPrice@{getTotalPrice}}
+\index{getTotalPrice@{getTotalPrice}!com.goldenleaf.shop.model.ShoppingCart@{com.goldenleaf.shop.model.ShoppingCart}}
+\doxysubsubsection{\texorpdfstring{getTotalPrice()}{getTotalPrice()}}
+{\footnotesize\ttfamily \label{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_cart_aab1c6eb60ae3ad5578f4b6289a90ba59} 
+double com.\+goldenleaf.\+shop.\+model.\+Shopping\+Cart.\+get\+Total\+Price (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_cart_a51311a4e53ea5dd767300edf39a21e36}\index{com.goldenleaf.shop.model.ShoppingCart@{com.goldenleaf.shop.model.ShoppingCart}!removeItem@{removeItem}}
+\index{removeItem@{removeItem}!com.goldenleaf.shop.model.ShoppingCart@{com.goldenleaf.shop.model.ShoppingCart}}
+\doxysubsubsection{\texorpdfstring{removeItem()}{removeItem()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_cart_a51311a4e53ea5dd767300edf39a21e36} 
+void com.\+goldenleaf.\+shop.\+model.\+Shopping\+Cart.\+remove\+Item (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_product}{Product}}}]{product}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_cart_a919d4b12886e19742cb986f04080667d}\index{com.goldenleaf.shop.model.ShoppingCart@{com.goldenleaf.shop.model.ShoppingCart}!removeItem@{removeItem}}
+\index{removeItem@{removeItem}!com.goldenleaf.shop.model.ShoppingCart@{com.goldenleaf.shop.model.ShoppingCart}}
+\doxysubsubsection{\texorpdfstring{removeItem()}{removeItem()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_cart_a919d4b12886e19742cb986f04080667d} 
+void com.\+goldenleaf.\+shop.\+model.\+Shopping\+Cart.\+remove\+Item (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_item}{Shopping\+Item}}}]{item}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_cart_a46738c137688a80e0da68141cc82a019}\index{com.goldenleaf.shop.model.ShoppingCart@{com.goldenleaf.shop.model.ShoppingCart}!setCustomer@{setCustomer}}
+\index{setCustomer@{setCustomer}!com.goldenleaf.shop.model.ShoppingCart@{com.goldenleaf.shop.model.ShoppingCart}}
+\doxysubsubsection{\texorpdfstring{setCustomer()}{setCustomer()}}
+{\footnotesize\ttfamily \label{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_cart_a46738c137688a80e0da68141cc82a019} 
+void com.\+goldenleaf.\+shop.\+model.\+Shopping\+Cart.\+set\+Customer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_customer}{Customer}}}]{customer}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_cart_aef012d4f117d8fdd8b9af9a6dd77d163}\index{com.goldenleaf.shop.model.ShoppingCart@{com.goldenleaf.shop.model.ShoppingCart}!setItems@{setItems}}
+\index{setItems@{setItems}!com.goldenleaf.shop.model.ShoppingCart@{com.goldenleaf.shop.model.ShoppingCart}}
+\doxysubsubsection{\texorpdfstring{setItems()}{setItems()}}
+{\footnotesize\ttfamily \label{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_cart_aef012d4f117d8fdd8b9af9a6dd77d163} 
+void com.\+goldenleaf.\+shop.\+model.\+Shopping\+Cart.\+set\+Items (\begin{DoxyParamCaption}\item[{List$<$ \mbox{\hyperlink{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_item}{Shopping\+Item}} $>$}]{items}{}\end{DoxyParamCaption}) throws \mbox{\hyperlink{classcom_1_1goldenleaf_1_1shop_1_1exception_1_1_empty_product_exception}{Empty\+Product\+Exception}}\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_cart_a775c741860373d9931f3b8f28b64558c}\index{com.goldenleaf.shop.model.ShoppingCart@{com.goldenleaf.shop.model.ShoppingCart}!setTotalPrice@{setTotalPrice}}
+\index{setTotalPrice@{setTotalPrice}!com.goldenleaf.shop.model.ShoppingCart@{com.goldenleaf.shop.model.ShoppingCart}}
+\doxysubsubsection{\texorpdfstring{setTotalPrice()}{setTotalPrice()}}
+{\footnotesize\ttfamily \label{classcom_1_1goldenleaf_1_1shop_1_1model_1_1_shopping_cart_a775c741860373d9931f3b8f28b64558c} 
+void com.\+goldenleaf.\+shop.\+model.\+Shopping\+Cart.\+set\+Total\+Price (\begin{DoxyParamCaption}\item[{double}]{total\+Price}{}\end{DoxyParamCaption}) throws \mbox{\hyperlink{classcom_1_1goldenleaf_1_1shop_1_1exception_1_1_incorrect_price_exception}{Incorrect\+Price\+Exception}}\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/com/goldenleaf/shop/model/\mbox{\hyperlink{_shopping_cart_8java}{Shopping\+Cart.\+java}}\end{DoxyCompactItemize}

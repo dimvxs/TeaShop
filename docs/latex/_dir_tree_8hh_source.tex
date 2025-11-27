@@ -1,0 +1,56 @@
+\doxysection{Dir\+Tree.\+hh}
+\hypertarget{_dir_tree_8hh_source}{}\label{_dir_tree_8hh_source}\index{frontend/node\_modules/"@parcel/watcher/src/DirTree.hh@{frontend/node\_modules/"@parcel/watcher/src/DirTree.hh}}
+\mbox{\hyperlink{_dir_tree_8hh}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ DIR\_TREE\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ DIR\_TREE\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_event_8hh}{Event.hh}}"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#ifdef\ \_WIN32}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ DIR\_SEP\ "{}\(\backslash\)\(\backslash\)"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ DIR\_SEP\ "{}/"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_dir_entry_a0efda572c11443706fdafc65cb1d8614}{DirEntry}}\ \{}
+\DoxyCodeLine{00016\ \ \ std::string\ \mbox{\hyperlink{struct_dir_entry_a06f1ad172ddcd09eba7c08a9e9dd6c57}{path}};}
+\DoxyCodeLine{00017\ \ \ uint64\_t\ \mbox{\hyperlink{struct_dir_entry_a9296d0dc0c2f2ec57b85267b097fece4}{mtime}};}
+\DoxyCodeLine{00018\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{struct_dir_entry_a4044221b7a290e0f1703f14b7f62a453}{isDir}};}
+\DoxyCodeLine{00019\ \ \ \textcolor{keyword}{mutable}\ \textcolor{keywordtype}{void}\ *\mbox{\hyperlink{struct_dir_entry_a388570e4a532755a411c5db0f6ea7c04}{state}};}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \mbox{\hyperlink{struct_dir_entry_a0efda572c11443706fdafc65cb1d8614}{DirEntry}}(std::string\ p,\ uint64\_t\ t,\ \textcolor{keywordtype}{bool}\ d);}
+\DoxyCodeLine{00022\ \ \ \mbox{\hyperlink{struct_dir_entry_a0efda572c11443706fdafc65cb1d8614}{DirEntry}}(FILE\ *f);}
+\DoxyCodeLine{00023\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{struct_dir_entry_a9e5b6b988476a8763ad71a9344be664c}{write}}(FILE\ *f)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00024\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{struct_dir_entry_a6860610ccdd2924ceb0fa66987e059bd}{operator==}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_dir_entry_a0efda572c11443706fdafc65cb1d8614}{DirEntry}}\ \&other)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{struct_dir_entry_a06f1ad172ddcd09eba7c08a9e9dd6c57}{path}}\ ==\ other.\mbox{\hyperlink{struct_dir_entry_a06f1ad172ddcd09eba7c08a9e9dd6c57}{path}};}
+\DoxyCodeLine{00026\ \ \ \}}
+\DoxyCodeLine{00027\ \};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_dir_tree_ab3cd9e25096de872bee2e2a5aef19dee}{DirTree}}\ \{}
+\DoxyCodeLine{00030\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00031\ \ \ \textcolor{keyword}{static}\ std::shared\_ptr<DirTree>\ \mbox{\hyperlink{class_dir_tree_a34ecc85d28ae69fd442489eaa9b31745}{getCached}}(std::string\ \mbox{\hyperlink{class_dir_tree_a05c8a494af045554647b11ebcd659e6c}{root}});}
+\DoxyCodeLine{00032\ \ \ \mbox{\hyperlink{class_dir_tree_ab3cd9e25096de872bee2e2a5aef19dee}{DirTree}}(std::string\ \mbox{\hyperlink{class_dir_tree_a05c8a494af045554647b11ebcd659e6c}{root}})\ :\ \mbox{\hyperlink{class_dir_tree_a05c8a494af045554647b11ebcd659e6c}{root}}(\mbox{\hyperlink{class_dir_tree_a05c8a494af045554647b11ebcd659e6c}{root}}),\ \mbox{\hyperlink{class_dir_tree_a1e40e604b3f87442ef952146feace35a}{isComplete}}(false)\ \{\}}
+\DoxyCodeLine{00033\ \ \ \mbox{\hyperlink{class_dir_tree_ab3cd9e25096de872bee2e2a5aef19dee}{DirTree}}(std::string\ \mbox{\hyperlink{class_dir_tree_a05c8a494af045554647b11ebcd659e6c}{root}},\ FILE\ *f);}
+\DoxyCodeLine{00034\ \ \ \mbox{\hyperlink{struct_dir_entry}{DirEntry}}\ *\mbox{\hyperlink{class_dir_tree_ab4c18dfbffcc0333bb5520ea53d57e2c}{add}}(std::string\ path,\ uint64\_t\ mtime,\ \textcolor{keywordtype}{bool}\ isDir);}
+\DoxyCodeLine{00035\ \ \ \mbox{\hyperlink{struct_dir_entry}{DirEntry}}\ *\mbox{\hyperlink{class_dir_tree_a54a2e54c70d3c0bc736c2867b88e473a}{find}}(std::string\ path);}
+\DoxyCodeLine{00036\ \ \ \mbox{\hyperlink{struct_dir_entry}{DirEntry}}\ *\mbox{\hyperlink{class_dir_tree_aa4cc81e0da75d733c070055e0a0cd8c1}{update}}(std::string\ path,\ uint64\_t\ mtime);}
+\DoxyCodeLine{00037\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_dir_tree_a7f0f54099129a8b084e154f0d8383856}{remove}}(std::string\ path);}
+\DoxyCodeLine{00038\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_dir_tree_aa9d2816832744e74b2a5b0dd5d4bf743}{write}}(FILE\ *f);}
+\DoxyCodeLine{00039\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_dir_tree_a568b5d7dcc7f83e1cb1a1def57318f0e}{getChanges}}(\mbox{\hyperlink{class_dir_tree}{DirTree}}\ *snapshot,\ \mbox{\hyperlink{class_event_list}{EventList}}\ \&events);}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ std::mutex\ \mbox{\hyperlink{class_dir_tree_a6bab71086dc45058b78da5a099402270}{mMutex}};}
+\DoxyCodeLine{00042\ \ \ std::string\ \mbox{\hyperlink{class_dir_tree_a05c8a494af045554647b11ebcd659e6c}{root}};}
+\DoxyCodeLine{00043\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_dir_tree_a1e40e604b3f87442ef952146feace35a}{isComplete}};}
+\DoxyCodeLine{00044\ \ \ std::unordered\_map<std::string,\ DirEntry>\ \mbox{\hyperlink{class_dir_tree_a2ff76ebfab63e69f97baa25b05b73066}{entries}};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00047\ \ \ \mbox{\hyperlink{struct_dir_entry}{DirEntry}}\ *\_find(std::string\ path);}
+\DoxyCodeLine{00048\ \};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,72 @@
+\doxysection{Signal Class Reference}
+\hypertarget{class_signal}{}\label{class_signal}\index{Signal@{Signal}}
+
+
+{\ttfamily \#include $<$Signal.\+hh$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_signal_a7e69e538253d90c3f551f4701a1f94a5}{Signal}} ()
+\item 
+void \mbox{\hyperlink{class_signal_adbf9cdcf24b9633d46bf77a5cef544cd}{wait}} ()
+\item 
+std\+::cv\+\_\+status \mbox{\hyperlink{class_signal_af11f830041c2b6792eb4cac4ac1ff7a4}{wait\+For}} (std\+::chrono\+::milliseconds ms)
+\item 
+void \mbox{\hyperlink{class_signal_a4ddddf27d0d4fea7bbfdbb2e498cd8f9}{notify}} ()
+\item 
+void \mbox{\hyperlink{class_signal_acbb90eb75e0fac35786055ef177c95d5}{reset}} ()
+\item 
+bool \mbox{\hyperlink{class_signal_a7738a263c418e9c72bfa0e4cfa36a26b}{is\+Waiting}} ()
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{class_signal_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_signal_a7e69e538253d90c3f551f4701a1f94a5}\index{Signal@{Signal}!Signal@{Signal}}
+\index{Signal@{Signal}!Signal@{Signal}}
+\doxysubsubsection{\texorpdfstring{Signal()}{Signal()}}
+{\footnotesize\ttfamily \label{class_signal_a7e69e538253d90c3f551f4701a1f94a5} 
+Signal\+::\+Signal (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_signal_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_signal_a7738a263c418e9c72bfa0e4cfa36a26b}\index{Signal@{Signal}!isWaiting@{isWaiting}}
+\index{isWaiting@{isWaiting}!Signal@{Signal}}
+\doxysubsubsection{\texorpdfstring{isWaiting()}{isWaiting()}}
+{\footnotesize\ttfamily \label{class_signal_a7738a263c418e9c72bfa0e4cfa36a26b} 
+bool Signal\+::is\+Waiting (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_signal_a4ddddf27d0d4fea7bbfdbb2e498cd8f9}\index{Signal@{Signal}!notify@{notify}}
+\index{notify@{notify}!Signal@{Signal}}
+\doxysubsubsection{\texorpdfstring{notify()}{notify()}}
+{\footnotesize\ttfamily \label{class_signal_a4ddddf27d0d4fea7bbfdbb2e498cd8f9} 
+void Signal\+::notify (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_signal_acbb90eb75e0fac35786055ef177c95d5}\index{Signal@{Signal}!reset@{reset}}
+\index{reset@{reset}!Signal@{Signal}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily \label{class_signal_acbb90eb75e0fac35786055ef177c95d5} 
+void Signal\+::reset (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_signal_adbf9cdcf24b9633d46bf77a5cef544cd}\index{Signal@{Signal}!wait@{wait}}
+\index{wait@{wait}!Signal@{Signal}}
+\doxysubsubsection{\texorpdfstring{wait()}{wait()}}
+{\footnotesize\ttfamily \label{class_signal_adbf9cdcf24b9633d46bf77a5cef544cd} 
+void Signal\+::wait (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_signal_af11f830041c2b6792eb4cac4ac1ff7a4}\index{Signal@{Signal}!waitFor@{waitFor}}
+\index{waitFor@{waitFor}!Signal@{Signal}}
+\doxysubsubsection{\texorpdfstring{waitFor()}{waitFor()}}
+{\footnotesize\ttfamily \label{class_signal_af11f830041c2b6792eb4cac4ac1ff7a4} 
+std\+::cv\+\_\+status Signal\+::wait\+For (\begin{DoxyParamCaption}\item[{std\+::chrono\+::milliseconds}]{ms}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+frontend/node\+\_\+modules/@parcel/watcher/src/\mbox{\hyperlink{_signal_8hh}{Signal.\+hh}}\end{DoxyCompactItemize}

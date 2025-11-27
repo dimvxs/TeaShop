@@ -1,0 +1,162 @@
+\doxysection{Watchman\+Backend Class Reference}
+\hypertarget{class_watchman_backend}{}\label{class_watchman_backend}\index{WatchmanBackend@{WatchmanBackend}}
+
+
+{\ttfamily \#include $<$Watchman\+Backend.\+hh$>$}
+
+
+
+Inheritance diagram for Watchman\+Backend\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=181pt]{class_watchman_backend__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Watchman\+Backend\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=181pt]{class_watchman_backend__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_watchman_backend_a1cc1baf14598b321fac9007a13fed022}{start}} () override
+\item 
+\mbox{\hyperlink{class_watchman_backend_af22b75eed7f94f4f1647e35e3c47cee1}{Watchman\+Backend}} ()
+\item 
+\mbox{\hyperlink{class_watchman_backend_a2ff72452f958739fad175d7ed49e8c1e}{\texorpdfstring{$\sim$}{\string~}\+Watchman\+Backend}} ()
+\item 
+void \mbox{\hyperlink{class_watchman_backend_a893126879f928f9bcd24fba6dfff274d}{write\+Snapshot}} (\mbox{\hyperlink{_watcher_8hh_a8a32f1740da49095a86d32383c012cc9}{Watcher\+Ref}} watcher, std\+::string \texorpdfstring{$\ast$}{*}snapshot\+Path) override
+\item 
+void \mbox{\hyperlink{class_watchman_backend_ae017a1e63eea4bd42a66891c08d43622}{get\+Events\+Since}} (\mbox{\hyperlink{_watcher_8hh_a8a32f1740da49095a86d32383c012cc9}{Watcher\+Ref}} watcher, std\+::string \texorpdfstring{$\ast$}{*}snapshot\+Path) override
+\item 
+void \mbox{\hyperlink{class_watchman_backend_a5c8b717156bb6db628b539b82c6a6e66}{subscribe}} (\mbox{\hyperlink{_watcher_8hh_a8a32f1740da49095a86d32383c012cc9}{Watcher\+Ref}} watcher) override
+\item 
+void \mbox{\hyperlink{class_watchman_backend_a45140cc83c48ac8cbbf954851d27d953}{unsubscribe}} (\mbox{\hyperlink{_watcher_8hh_a8a32f1740da49095a86d32383c012cc9}{Watcher\+Ref}} watcher) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_backend}{Backend}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_backend_ad4a4bc528854a918880d5e6b5de05cc6}{\texorpdfstring{$\sim$}{\string~}\+Backend}} ()
+\item 
+void \mbox{\hyperlink{class_backend_a6c85ce904a1fbca7d2a830d6c78a3ac4}{run}} ()
+\item 
+void \mbox{\hyperlink{class_backend_a696cf25f0d0798c2c8be4c73945a5f5a}{notify\+Started}} ()
+\item 
+void \mbox{\hyperlink{class_backend_ad8bd4e0dc21b738a822db0e92c84584b}{watch}} (\mbox{\hyperlink{_watcher_8hh_a8a32f1740da49095a86d32383c012cc9}{Watcher\+Ref}} watcher)
+\item 
+void \mbox{\hyperlink{class_backend_abb1639ccca33f82066fa49b158d31a48}{unwatch}} (\mbox{\hyperlink{_watcher_8hh_a8a32f1740da49095a86d32383c012cc9}{Watcher\+Ref}} watcher)
+\item 
+void \mbox{\hyperlink{class_backend_af91e12caf83063a27d4e8ebefef7d852}{unref}} ()
+\item 
+void \mbox{\hyperlink{class_backend_a1a8b5171005c826c8d1ef94056a0b7f9}{handle\+Watcher\+Error}} (\mbox{\hyperlink{class_watcher_error}{Watcher\+Error}} \&err)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \mbox{\hyperlink{class_watchman_backend_aeca11eb9d96b6c11094f5b5de578bbd6}{check\+Available}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{class_backend}{Backend}}}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_backend}{Backend}} $>$ \mbox{\hyperlink{class_backend_a9c6bbfd736bdd495df3ab33bd3cd6689}{get\+Shared}} (std\+::string backend)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{class_backend}{Backend}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::mutex \mbox{\hyperlink{class_backend_ade8716f023ec98c68d6c86dad02206c3}{m\+Mutex}}
+\item 
+std\+::thread \mbox{\hyperlink{class_backend_aa405b10aaabf3dca83ddb73585ced69d}{m\+Thread}}
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{class_watchman_backend_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_watchman_backend_af22b75eed7f94f4f1647e35e3c47cee1}\index{WatchmanBackend@{WatchmanBackend}!WatchmanBackend@{WatchmanBackend}}
+\index{WatchmanBackend@{WatchmanBackend}!WatchmanBackend@{WatchmanBackend}}
+\doxysubsubsection{\texorpdfstring{WatchmanBackend()}{WatchmanBackend()}}
+{\footnotesize\ttfamily \label{class_watchman_backend_af22b75eed7f94f4f1647e35e3c47cee1} 
+Watchman\+Backend\+::\+Watchman\+Backend (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_watchman_backend_a2ff72452f958739fad175d7ed49e8c1e}\index{WatchmanBackend@{WatchmanBackend}!````~WatchmanBackend@{\texorpdfstring{$\sim$}{\string~}WatchmanBackend}}
+\index{````~WatchmanBackend@{\texorpdfstring{$\sim$}{\string~}WatchmanBackend}!WatchmanBackend@{WatchmanBackend}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}WatchmanBackend()}{\string~WatchmanBackend()}}
+{\footnotesize\ttfamily \label{class_watchman_backend_a2ff72452f958739fad175d7ed49e8c1e} 
+Watchman\+Backend\+::\texorpdfstring{$\sim$}{\string~}\+Watchman\+Backend (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_watchman_backend_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_watchman_backend_aeca11eb9d96b6c11094f5b5de578bbd6}\index{WatchmanBackend@{WatchmanBackend}!checkAvailable@{checkAvailable}}
+\index{checkAvailable@{checkAvailable}!WatchmanBackend@{WatchmanBackend}}
+\doxysubsubsection{\texorpdfstring{checkAvailable()}{checkAvailable()}}
+{\footnotesize\ttfamily \label{class_watchman_backend_aeca11eb9d96b6c11094f5b5de578bbd6} 
+bool Watchman\+Backend\+::check\+Available (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{class_watchman_backend_ae017a1e63eea4bd42a66891c08d43622}\index{WatchmanBackend@{WatchmanBackend}!getEventsSince@{getEventsSince}}
+\index{getEventsSince@{getEventsSince}!WatchmanBackend@{WatchmanBackend}}
+\doxysubsubsection{\texorpdfstring{getEventsSince()}{getEventsSince()}}
+{\footnotesize\ttfamily \label{class_watchman_backend_ae017a1e63eea4bd42a66891c08d43622} 
+void Watchman\+Backend\+::get\+Events\+Since (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_watcher_8hh_a8a32f1740da49095a86d32383c012cc9}{Watcher\+Ref}}}]{watcher}{, }\item[{std\+::string \texorpdfstring{$\ast$}{*}}]{snapshot\+Path}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_backend_a5648ac98978ea0631d8846c9677c0833}{Backend}}.
+
+\Hypertarget{class_watchman_backend_a1cc1baf14598b321fac9007a13fed022}\index{WatchmanBackend@{WatchmanBackend}!start@{start}}
+\index{start@{start}!WatchmanBackend@{WatchmanBackend}}
+\doxysubsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily \label{class_watchman_backend_a1cc1baf14598b321fac9007a13fed022} 
+void Watchman\+Backend\+::start (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{class_backend_a9666e4e46670d5d7a193af7d49c130f4}{Backend}}.
+
+\Hypertarget{class_watchman_backend_a5c8b717156bb6db628b539b82c6a6e66}\index{WatchmanBackend@{WatchmanBackend}!subscribe@{subscribe}}
+\index{subscribe@{subscribe}!WatchmanBackend@{WatchmanBackend}}
+\doxysubsubsection{\texorpdfstring{subscribe()}{subscribe()}}
+{\footnotesize\ttfamily \label{class_watchman_backend_a5c8b717156bb6db628b539b82c6a6e66} 
+void Watchman\+Backend\+::subscribe (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_watcher_8hh_a8a32f1740da49095a86d32383c012cc9}{Watcher\+Ref}}}]{watcher}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_backend_aebafc2762c6b68c03177ec47a6b18f1b}{Backend}}.
+
+\Hypertarget{class_watchman_backend_a45140cc83c48ac8cbbf954851d27d953}\index{WatchmanBackend@{WatchmanBackend}!unsubscribe@{unsubscribe}}
+\index{unsubscribe@{unsubscribe}!WatchmanBackend@{WatchmanBackend}}
+\doxysubsubsection{\texorpdfstring{unsubscribe()}{unsubscribe()}}
+{\footnotesize\ttfamily \label{class_watchman_backend_a45140cc83c48ac8cbbf954851d27d953} 
+void Watchman\+Backend\+::unsubscribe (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_watcher_8hh_a8a32f1740da49095a86d32383c012cc9}{Watcher\+Ref}}}]{watcher}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_backend_a8f407ee53658cc2c8183c815eb024874}{Backend}}.
+
+\Hypertarget{class_watchman_backend_a893126879f928f9bcd24fba6dfff274d}\index{WatchmanBackend@{WatchmanBackend}!writeSnapshot@{writeSnapshot}}
+\index{writeSnapshot@{writeSnapshot}!WatchmanBackend@{WatchmanBackend}}
+\doxysubsubsection{\texorpdfstring{writeSnapshot()}{writeSnapshot()}}
+{\footnotesize\ttfamily \label{class_watchman_backend_a893126879f928f9bcd24fba6dfff274d} 
+void Watchman\+Backend\+::write\+Snapshot (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_watcher_8hh_a8a32f1740da49095a86d32383c012cc9}{Watcher\+Ref}}}]{watcher}{, }\item[{std\+::string \texorpdfstring{$\ast$}{*}}]{snapshot\+Path}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_backend_ac50b033b4eb9e514600f9d0f326b80ef}{Backend}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+frontend/node\+\_\+modules/@parcel/watcher/src/watchman/\mbox{\hyperlink{_watchman_backend_8hh}{Watchman\+Backend.\+hh}}\item 
+frontend/node\+\_\+modules/@parcel/watcher/src/watchman/\mbox{\hyperlink{_watchman_backend_8cc}{Watchman\+Backend.\+cc}}\end{DoxyCompactItemize}

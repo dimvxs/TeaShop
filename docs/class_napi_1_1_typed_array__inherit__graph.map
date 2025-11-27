@@ -1,0 +1,29 @@
+<map id="Napi::TypedArray" name="Napi::TypedArray">
+<area shape="rect" id="Node000001" title=" " alt="" coords="468,274,591,300"/>
+<area shape="rect" id="Node000005" href="$class_napi_1_1_typed_array_of.html" title=" " alt="" coords="655,5,791,46"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="535,258,547,215,567,161,597,106,616,80,637,57,658,45,654,48,640,61,620,84,601,109,572,164,552,217,539,261"/>
+<area shape="rect" id="Node000006" href="$class_napi_1_1_typed_array_of.html" title=" " alt="" coords="655,71,791,111"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="541,258,577,191,605,155,637,122,660,110,656,113,640,126,609,158,582,194,545,262"/>
+<area shape="rect" id="Node000008" href="$class_napi_1_1_typed_array_of.html" title=" " alt="" coords="655,136,791,177"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="551,261,589,224,637,187,665,176,660,178,640,192,593,228,554,265"/>
+<area shape="rect" id="Node000009" href="$class_napi_1_1_typed_array_of.html" title=" " alt="" coords="655,201,791,242"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="583,266,663,242,658,244,585,271"/>
+<area shape="rect" id="Node000010" href="$class_napi_1_1_typed_array_of.html" title=" " alt="" coords="655,267,791,307"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="606,284,657,286,652,288,607,290"/>
+<area shape="rect" id="Node000011" href="$class_napi_1_1_typed_array_of.html" title=" " alt="" coords="655,332,791,373"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="584,303,663,331,658,332,584,308"/>
+<area shape="rect" id="Node000012" href="$class_napi_1_1_typed_array_of.html" title=" " alt="" coords="655,397,791,438"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="553,308,593,346,640,382,665,397,660,397,637,387,589,350,552,314"/>
+<area shape="rect" id="Node000013" href="$class_napi_1_1_typed_array_of.html" title=" " alt="" coords="655,463,791,503"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="544,312,582,380,609,416,640,448,660,463,655,462,637,452,605,419,577,383,541,317"/>
+<area shape="rect" id="Node000014" href="$class_napi_1_1_typed_array_of.html" title=" " alt="" coords="639,528,807,553"/>
+<area shape="poly" id="edge13_Node000001_Node000014" title=" " alt="" coords="538,312,551,358,571,411,600,466,619,491,640,513,660,528,655,526,637,517,615,495,596,469,566,414,546,359,535,317"/>
+<area shape="rect" id="Node000002" href="$class_napi_1_1_object.html" title="A JavaScript object value." alt="" coords="326,274,420,300"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="435,284,470,286,465,288,436,290"/>
+<area shape="rect" id="Node000003" href="$class_napi_1_1_type_taggable.html" title=" " alt="" coords="142,274,278,300"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="293,284,328,286,323,288,295,290"/>
+<area shape="rect" id="Node000004" href="$class_napi_1_1_value.html" title=" " alt="" coords="5,274,94,300"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="108,285,143,285,139,289,111,289"/>
+<area shape="rect" id="Node000007" href="$class_napi_1_1_buffer.html" title=" " alt="" coords="855,78,978,104"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="806,88,857,90,852,92,807,94"/>
+</map>

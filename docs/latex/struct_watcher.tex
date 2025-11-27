@@ -1,0 +1,182 @@
+\doxysection{Watcher Struct Reference}
+\hypertarget{struct_watcher}{}\label{struct_watcher}\index{Watcher@{Watcher}}
+
+
+{\ttfamily \#include $<$Watcher.\+hh$>$}
+
+
+
+Collaboration diagram for Watcher\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=154pt]{struct_watcher__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_watcher_a99356e7c319134ff88e8bdd121efcf0d}{Watcher}} (std\+::string dir, std\+::unordered\+\_\+set$<$ std\+::string $>$ ignore\+Paths, std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{struct_glob}{Glob}} $>$ ignore\+Globs)
+\item 
+\mbox{\hyperlink{struct_watcher_a84db4a7c7f7c7d3a62104713920678c8}{\texorpdfstring{$\sim$}{\string~}\+Watcher}} ()
+\item 
+bool \mbox{\hyperlink{struct_watcher_af8497f1321d3f0505ff0096540370a68}{operator==}} (const \mbox{\hyperlink{struct_watcher}{Watcher}} \&other) const
+\item 
+void \mbox{\hyperlink{struct_watcher_a3ba7abfdc6dbf51d361a4451a00e4b3d}{wait}} ()
+\item 
+void \mbox{\hyperlink{struct_watcher_aa525380da86c818ad61d182460963712}{notify}} ()
+\item 
+void \mbox{\hyperlink{struct_watcher_a068e899ec6899b93d598b21bd54cefbe}{notify\+Error}} (std\+::exception \&err)
+\item 
+bool \mbox{\hyperlink{struct_watcher_a2e11f4c2edbb391a73ad2d60bbf7e7f4}{watch}} (\mbox{\hyperlink{class_napi_1_1_function}{Function}} callback)
+\item 
+bool \mbox{\hyperlink{struct_watcher_abcad882e24905c6d4cfd0a91b9c32d83}{unwatch}} (\mbox{\hyperlink{class_napi_1_1_function}{Function}} callback)
+\item 
+void \mbox{\hyperlink{struct_watcher_a848e0ba54581cdc2a89348bf3c370f93}{unref}} ()
+\item 
+bool \mbox{\hyperlink{struct_watcher_ab68d175922930045322434c1fa34b6fa}{is\+Ignored}} (std\+::string path)
+\item 
+void \mbox{\hyperlink{struct_watcher_a189c7c3c042b546c4284c0c8a0dd7998}{destroy}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{_watcher_8hh_a8a32f1740da49095a86d32383c012cc9}{Watcher\+Ref}} \mbox{\hyperlink{struct_watcher_af1339c6345ff707c2d312e215b5b11d5}{get\+Shared}} (std\+::string dir, std\+::unordered\+\_\+set$<$ std\+::string $>$ ignore\+Paths, std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{struct_glob}{Glob}} $>$ ignore\+Globs)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{struct_watcher_a83428ab27a42c95b96911e3a8211876e}{m\+Dir}}
+\item 
+std\+::unordered\+\_\+set$<$ std\+::string $>$ \mbox{\hyperlink{struct_watcher_a39330ad481100a71d5217f2c8bc02ced}{m\+Ignore\+Paths}}
+\item 
+std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{struct_glob}{Glob}} $>$ \mbox{\hyperlink{struct_watcher_a7ffc9433db04f723952b4d134758154f}{m\+Ignore\+Globs}}
+\item 
+\mbox{\hyperlink{class_event_list}{Event\+List}} \mbox{\hyperlink{struct_watcher_a06cf1fb43fbc6448b4d329f559e07f64}{m\+Events}}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_watcher_state}{Watcher\+State}} $>$ \mbox{\hyperlink{struct_watcher_a62cd0a3167f48db2e1cd41fd425bf57d}{state}}
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{struct_watcher_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{struct_watcher_a99356e7c319134ff88e8bdd121efcf0d}\index{Watcher@{Watcher}!Watcher@{Watcher}}
+\index{Watcher@{Watcher}!Watcher@{Watcher}}
+\doxysubsubsection{\texorpdfstring{Watcher()}{Watcher()}}
+{\footnotesize\ttfamily \label{struct_watcher_a99356e7c319134ff88e8bdd121efcf0d} 
+Watcher\+::\+Watcher (\begin{DoxyParamCaption}\item[{std\+::string}]{dir}{, }\item[{std\+::unordered\+\_\+set$<$ std\+::string $>$}]{ignore\+Paths}{, }\item[{std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{struct_glob}{Glob}} $>$}]{ignore\+Globs}{}\end{DoxyParamCaption})}
+
+\Hypertarget{struct_watcher_a84db4a7c7f7c7d3a62104713920678c8}\index{Watcher@{Watcher}!````~Watcher@{\texorpdfstring{$\sim$}{\string~}Watcher}}
+\index{````~Watcher@{\texorpdfstring{$\sim$}{\string~}Watcher}!Watcher@{Watcher}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Watcher()}{\string~Watcher()}}
+{\footnotesize\ttfamily \label{struct_watcher_a84db4a7c7f7c7d3a62104713920678c8} 
+Watcher\+::\texorpdfstring{$\sim$}{\string~}\+Watcher (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+\label{doc-func-members}
+\Hypertarget{struct_watcher_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{struct_watcher_a189c7c3c042b546c4284c0c8a0dd7998}\index{Watcher@{Watcher}!destroy@{destroy}}
+\index{destroy@{destroy}!Watcher@{Watcher}}
+\doxysubsubsection{\texorpdfstring{destroy()}{destroy()}}
+{\footnotesize\ttfamily \label{struct_watcher_a189c7c3c042b546c4284c0c8a0dd7998} 
+void Watcher\+::destroy (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{struct_watcher_af1339c6345ff707c2d312e215b5b11d5}\index{Watcher@{Watcher}!getShared@{getShared}}
+\index{getShared@{getShared}!Watcher@{Watcher}}
+\doxysubsubsection{\texorpdfstring{getShared()}{getShared()}}
+{\footnotesize\ttfamily \label{struct_watcher_af1339c6345ff707c2d312e215b5b11d5} 
+\mbox{\hyperlink{_watcher_8hh_a8a32f1740da49095a86d32383c012cc9}{Watcher\+Ref}} Watcher\+::get\+Shared (\begin{DoxyParamCaption}\item[{std\+::string}]{dir}{, }\item[{std\+::unordered\+\_\+set$<$ std\+::string $>$}]{ignore\+Paths}{, }\item[{std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{struct_glob}{Glob}} $>$}]{ignore\+Globs}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{struct_watcher_ab68d175922930045322434c1fa34b6fa}\index{Watcher@{Watcher}!isIgnored@{isIgnored}}
+\index{isIgnored@{isIgnored}!Watcher@{Watcher}}
+\doxysubsubsection{\texorpdfstring{isIgnored()}{isIgnored()}}
+{\footnotesize\ttfamily \label{struct_watcher_ab68d175922930045322434c1fa34b6fa} 
+bool Watcher\+::is\+Ignored (\begin{DoxyParamCaption}\item[{std\+::string}]{path}{}\end{DoxyParamCaption})}
+
+\Hypertarget{struct_watcher_aa525380da86c818ad61d182460963712}\index{Watcher@{Watcher}!notify@{notify}}
+\index{notify@{notify}!Watcher@{Watcher}}
+\doxysubsubsection{\texorpdfstring{notify()}{notify()}}
+{\footnotesize\ttfamily \label{struct_watcher_aa525380da86c818ad61d182460963712} 
+void Watcher\+::notify (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{struct_watcher_a068e899ec6899b93d598b21bd54cefbe}\index{Watcher@{Watcher}!notifyError@{notifyError}}
+\index{notifyError@{notifyError}!Watcher@{Watcher}}
+\doxysubsubsection{\texorpdfstring{notifyError()}{notifyError()}}
+{\footnotesize\ttfamily \label{struct_watcher_a068e899ec6899b93d598b21bd54cefbe} 
+void Watcher\+::notify\+Error (\begin{DoxyParamCaption}\item[{std\+::exception \&}]{err}{}\end{DoxyParamCaption})}
+
+\Hypertarget{struct_watcher_af8497f1321d3f0505ff0096540370a68}\index{Watcher@{Watcher}!operator==@{operator==}}
+\index{operator==@{operator==}!Watcher@{Watcher}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily \label{struct_watcher_af8497f1321d3f0505ff0096540370a68} 
+bool Watcher\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_watcher}{Watcher}} \&}]{other}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{struct_watcher_a848e0ba54581cdc2a89348bf3c370f93}\index{Watcher@{Watcher}!unref@{unref}}
+\index{unref@{unref}!Watcher@{Watcher}}
+\doxysubsubsection{\texorpdfstring{unref()}{unref()}}
+{\footnotesize\ttfamily \label{struct_watcher_a848e0ba54581cdc2a89348bf3c370f93} 
+void Watcher\+::unref (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{struct_watcher_abcad882e24905c6d4cfd0a91b9c32d83}\index{Watcher@{Watcher}!unwatch@{unwatch}}
+\index{unwatch@{unwatch}!Watcher@{Watcher}}
+\doxysubsubsection{\texorpdfstring{unwatch()}{unwatch()}}
+{\footnotesize\ttfamily \label{struct_watcher_abcad882e24905c6d4cfd0a91b9c32d83} 
+bool Watcher\+::unwatch (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_napi_1_1_function}{Function}}}]{callback}{}\end{DoxyParamCaption})}
+
+\Hypertarget{struct_watcher_a3ba7abfdc6dbf51d361a4451a00e4b3d}\index{Watcher@{Watcher}!wait@{wait}}
+\index{wait@{wait}!Watcher@{Watcher}}
+\doxysubsubsection{\texorpdfstring{wait()}{wait()}}
+{\footnotesize\ttfamily \label{struct_watcher_a3ba7abfdc6dbf51d361a4451a00e4b3d} 
+void Watcher\+::wait (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{struct_watcher_a2e11f4c2edbb391a73ad2d60bbf7e7f4}\index{Watcher@{Watcher}!watch@{watch}}
+\index{watch@{watch}!Watcher@{Watcher}}
+\doxysubsubsection{\texorpdfstring{watch()}{watch()}}
+{\footnotesize\ttfamily \label{struct_watcher_a2e11f4c2edbb391a73ad2d60bbf7e7f4} 
+bool Watcher\+::watch (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_napi_1_1_function}{Function}}}]{callback}{}\end{DoxyParamCaption})}
+
+
+
+\label{doc-variable-members}
+\Hypertarget{struct_watcher_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{struct_watcher_a83428ab27a42c95b96911e3a8211876e}\index{Watcher@{Watcher}!mDir@{mDir}}
+\index{mDir@{mDir}!Watcher@{Watcher}}
+\doxysubsubsection{\texorpdfstring{mDir}{mDir}}
+{\footnotesize\ttfamily \label{struct_watcher_a83428ab27a42c95b96911e3a8211876e} 
+std\+::string Watcher\+::m\+Dir}
+
+\Hypertarget{struct_watcher_a06cf1fb43fbc6448b4d329f559e07f64}\index{Watcher@{Watcher}!mEvents@{mEvents}}
+\index{mEvents@{mEvents}!Watcher@{Watcher}}
+\doxysubsubsection{\texorpdfstring{mEvents}{mEvents}}
+{\footnotesize\ttfamily \label{struct_watcher_a06cf1fb43fbc6448b4d329f559e07f64} 
+\mbox{\hyperlink{class_event_list}{Event\+List}} Watcher\+::m\+Events}
+
+\Hypertarget{struct_watcher_a7ffc9433db04f723952b4d134758154f}\index{Watcher@{Watcher}!mIgnoreGlobs@{mIgnoreGlobs}}
+\index{mIgnoreGlobs@{mIgnoreGlobs}!Watcher@{Watcher}}
+\doxysubsubsection{\texorpdfstring{mIgnoreGlobs}{mIgnoreGlobs}}
+{\footnotesize\ttfamily \label{struct_watcher_a7ffc9433db04f723952b4d134758154f} 
+std\+::unordered\+\_\+set$<$\mbox{\hyperlink{struct_glob}{Glob}}$>$ Watcher\+::m\+Ignore\+Globs}
+
+\Hypertarget{struct_watcher_a39330ad481100a71d5217f2c8bc02ced}\index{Watcher@{Watcher}!mIgnorePaths@{mIgnorePaths}}
+\index{mIgnorePaths@{mIgnorePaths}!Watcher@{Watcher}}
+\doxysubsubsection{\texorpdfstring{mIgnorePaths}{mIgnorePaths}}
+{\footnotesize\ttfamily \label{struct_watcher_a39330ad481100a71d5217f2c8bc02ced} 
+std\+::unordered\+\_\+set$<$std\+::string$>$ Watcher\+::m\+Ignore\+Paths}
+
+\Hypertarget{struct_watcher_a62cd0a3167f48db2e1cd41fd425bf57d}\index{Watcher@{Watcher}!state@{state}}
+\index{state@{state}!Watcher@{Watcher}}
+\doxysubsubsection{\texorpdfstring{state}{state}}
+{\footnotesize\ttfamily \label{struct_watcher_a62cd0a3167f48db2e1cd41fd425bf57d} 
+std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{class_watcher_state}{Watcher\+State}}$>$ Watcher\+::state}
+
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+frontend/node\+\_\+modules/@parcel/watcher/src/\mbox{\hyperlink{_watcher_8hh}{Watcher.\+hh}}\item 
+frontend/node\+\_\+modules/@parcel/watcher/src/\mbox{\hyperlink{_watcher_8cc}{Watcher.\+cc}}\end{DoxyCompactItemize}

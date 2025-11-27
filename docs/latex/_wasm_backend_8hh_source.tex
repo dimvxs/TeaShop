@@ -1,0 +1,40 @@
+\doxysection{Wasm\+Backend.\+hh}
+\hypertarget{_wasm_backend_8hh_source}{}\label{_wasm_backend_8hh_source}\index{frontend/node\_modules/"@parcel/watcher/src/wasm/WasmBackend.hh@{frontend/node\_modules/"@parcel/watcher/src/wasm/WasmBackend.hh}}
+\mbox{\hyperlink{_wasm_backend_8hh}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ WASM\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ WASM\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_brute_force_backend_8hh}{../shared/BruteForceBackend.hh}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_dir_tree_8hh}{../DirTree.hh}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00009\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_wasm_backend_8hh_a381cdbf52a0b8fc07bc3132a7f36add2}{wasm\_backend\_add\_watch}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *filename,\ \textcolor{keywordtype}{void}\ *backend);}
+\DoxyCodeLine{00010\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_wasm_backend_8hh_a5ba0f6d7a0faa0db7b45e5ec8d0c6a3c}{wasm\_backend\_remove\_watch}}(\textcolor{keywordtype}{int}\ wd);}
+\DoxyCodeLine{00011\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_wasm_backend_8hh_a58dcf0fcc11afdac1859fa63f83629ba}{wasm\_backend\_event\_handler}}(\textcolor{keywordtype}{void}\ *backend,\ \textcolor{keywordtype}{int}\ wd,\ \textcolor{keywordtype}{int}\ type,\ \textcolor{keywordtype}{char}\ *filename);}
+\DoxyCodeLine{00012\ \};}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_wasm_subscription}{WasmSubscription}}\ \{}
+\DoxyCodeLine{00015\ \ \ std::shared\_ptr<DirTree>\ \mbox{\hyperlink{struct_wasm_subscription_a841a915d10dea8ddd99ca0e7fb70c127}{tree}};}
+\DoxyCodeLine{00016\ \ \ std::string\ \mbox{\hyperlink{struct_wasm_subscription_a0fd2b60d763694a73c5ec370bdb2419f}{path}};}
+\DoxyCodeLine{00017\ \ \ \mbox{\hyperlink{_watcher_8hh_a8a32f1740da49095a86d32383c012cc9}{WatcherRef}}\ \mbox{\hyperlink{struct_wasm_subscription_a8dda616804619272682076412cdabdf0}{watcher}};}
+\DoxyCodeLine{00018\ \};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_wasm_backend}{WasmBackend}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_brute_force_backend}{BruteForceBackend}}\ \{}
+\DoxyCodeLine{00021\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00022\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_wasm_backend_a59ed25193823e8674c748aff6250f09b}{start}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00023\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_wasm_backend_a41ef48717b25b2a0fcc2418eda154158}{subscribe}}(\mbox{\hyperlink{_watcher_8hh_a8a32f1740da49095a86d32383c012cc9}{WatcherRef}}\ watcher)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00024\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_wasm_backend_ad2e0c1c240611a4672af2b9ba3308758}{unsubscribe}}(\mbox{\hyperlink{_watcher_8hh_a8a32f1740da49095a86d32383c012cc9}{WatcherRef}}\ watcher)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00025\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_wasm_backend_aa2ef807d56f596f18a2e1d7d7c003a6a}{handleEvent}}(\textcolor{keywordtype}{int}\ wd,\ \textcolor{keywordtype}{int}\ type,\ \textcolor{keywordtype}{char}\ *filename);}
+\DoxyCodeLine{00026\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00027\ \ \ \textcolor{keywordtype}{int}\ mWasm;}
+\DoxyCodeLine{00028\ \ \ std::unordered\_multimap<int,\ std::shared\_ptr<WasmSubscription>>\ mSubscriptions;}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \textcolor{keywordtype}{void}\ watchDir(\mbox{\hyperlink{_watcher_8hh_a8a32f1740da49095a86d32383c012cc9}{WatcherRef}}\ watcher,\ std::string\ path,\ std::shared\_ptr<DirTree>\ tree);}
+\DoxyCodeLine{00031\ \ \ \textcolor{keywordtype}{bool}\ handleSubscription(\textcolor{keywordtype}{int}\ type,\ \textcolor{keywordtype}{char}\ *filename,\ std::shared\_ptr<WasmSubscription>\ sub);}
+\DoxyCodeLine{00032\ \};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

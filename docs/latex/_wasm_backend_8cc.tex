@@ -1,0 +1,49 @@
+\doxysection{frontend/node\+\_\+modules/@parcel/watcher/src/wasm/\+Wasm\+Backend.cc File Reference}
+\hypertarget{_wasm_backend_8cc}{}\label{_wasm_backend_8cc}\index{frontend/node\_modules/"@parcel/watcher/src/wasm/WasmBackend.cc@{frontend/node\_modules/"@parcel/watcher/src/wasm/WasmBackend.cc}}
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
+{\ttfamily \#include "{}Wasm\+Backend.\+hh"{}}\newline
+Include dependency graph for Wasm\+Backend.\+cc\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_wasm_backend_8cc__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_wasm_backend_8cc_afaf5541c2981eaa03c51bb45b26f66d8}{CONVERT\+\_\+\+TIME}}(ts)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_wasm_backend_8cc_a58dcf0fcc11afdac1859fa63f83629ba}{wasm\+\_\+backend\+\_\+event\+\_\+handler}} (void \texorpdfstring{$\ast$}{*}backend, int wd, int type, char \texorpdfstring{$\ast$}{*}filename)
+\end{DoxyCompactItemize}
+
+
+\label{doc-define-members}
+\Hypertarget{_wasm_backend_8cc_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{_wasm_backend_8cc_afaf5541c2981eaa03c51bb45b26f66d8}\index{WasmBackend.cc@{WasmBackend.cc}!CONVERT\_TIME@{CONVERT\_TIME}}
+\index{CONVERT\_TIME@{CONVERT\_TIME}!WasmBackend.cc@{WasmBackend.cc}}
+\doxysubsubsection{\texorpdfstring{CONVERT\_TIME}{CONVERT\_TIME}}
+{\footnotesize\ttfamily \label{_wasm_backend_8cc_afaf5541c2981eaa03c51bb45b26f66d8} 
+\#define CONVERT\+\_\+\+TIME(\begin{DoxyParamCaption}\item[{}]{ts}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((uint64\_t)ts.tv\_sec\ *\ 1000000000\ +\ ts.tv\_nsec)}
+
+\end{DoxyCode}
+
+
+\label{doc-func-members}
+\Hypertarget{_wasm_backend_8cc_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_wasm_backend_8cc_a58dcf0fcc11afdac1859fa63f83629ba}\index{WasmBackend.cc@{WasmBackend.cc}!wasm\_backend\_event\_handler@{wasm\_backend\_event\_handler}}
+\index{wasm\_backend\_event\_handler@{wasm\_backend\_event\_handler}!WasmBackend.cc@{WasmBackend.cc}}
+\doxysubsubsection{\texorpdfstring{wasm\_backend\_event\_handler()}{wasm\_backend\_event\_handler()}}
+{\footnotesize\ttfamily \label{_wasm_backend_8cc_a58dcf0fcc11afdac1859fa63f83629ba} 
+void wasm\+\_\+backend\+\_\+event\+\_\+handler (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{backend}{, }\item[{int}]{wd}{, }\item[{int}]{type}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{filename}{}\end{DoxyParamCaption})}
+

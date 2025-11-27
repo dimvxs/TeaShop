@@ -1,0 +1,75 @@
+\doxysection{frontend/node\+\_\+modules/detect-\/libc Directory Reference}
+\hypertarget{dir_82cfc848b8e8dab35f41d853d1d375cf}{}\label{dir_82cfc848b8e8dab35f41d853d1d375cf}\index{frontend/node\_modules/detect-\/libc Directory Reference@{frontend/node\_modules/detect-\/libc Directory Reference}}
+Directory dependency graph for detect-\/libc\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=175pt]{dir_82cfc848b8e8dab35f41d853d1d375cf_dep}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_82cfc848b8e8dab35f41d853d1d375cf_autotoc_md1189}{}\doxysubsection{\texorpdfstring{detect-\/libc}{detect-\/libc}}\label{dir_82cfc848b8e8dab35f41d853d1d375cf_autotoc_md1189}
+Node.\+js module to detect the C standard library (libc) implementation family and version in use on a given Linux system.
+
+Provides a value suitable for use with the {\ttfamily LIBC} option of \href{https://www.npmjs.com/package/prebuild}{\texttt{prebuild}}, \href{https://www.npmjs.com/package/prebuild-ci}{\texttt{prebuild-\/ci}} and \href{https://www.npmjs.com/package/prebuild-install}{\texttt{prebuild-\/install}}, therefore allowing build and provision of pre-\/compiled binaries for musl-\/based Linux e.\+g. Alpine as well as glibc-\/based.
+
+Currently supports libc detection of {\ttfamily glibc} and {\ttfamily musl}.\hypertarget{dir_82cfc848b8e8dab35f41d853d1d375cf_autotoc_md1190}{}\doxysubsection{\texorpdfstring{Install}{Install}}\label{dir_82cfc848b8e8dab35f41d853d1d375cf_autotoc_md1190}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ detect-\/libc}
+
+\end{DoxyCode}
+\hypertarget{dir_82cfc848b8e8dab35f41d853d1d375cf_autotoc_md1191}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{dir_82cfc848b8e8dab35f41d853d1d375cf_autotoc_md1191}
+\hypertarget{dir_82cfc848b8e8dab35f41d853d1d375cf_autotoc_md1192}{}\doxysubsubsection{\texorpdfstring{API}{API}}\label{dir_82cfc848b8e8dab35f41d853d1d375cf_autotoc_md1192}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ \{\ GLIBC,\ MUSL,\ family,\ version,\ isNonGlibcLinux\ \}\ =\ require('detect-\/libc');}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily GLIBC} is a String containing the value "{}glibc"{} for comparison with {\ttfamily family}.
+\item {\ttfamily MUSL} is a String containing the value "{}musl"{} for comparison with {\ttfamily family}.
+\item {\ttfamily family} is a String representing the system libc family.
+\item {\ttfamily version} is a String representing the system libc version number.
+\item {\ttfamily is\+Non\+Glibc\+Linux} is a Boolean representing whether the system is a non-\/glibc Linux, e.\+g. Alpine.
+\end{DoxyItemize}\hypertarget{dir_82cfc848b8e8dab35f41d853d1d375cf_autotoc_md1193}{}\doxysubsubsection{\texorpdfstring{detect-\/libc command line tool}{detect-\/libc command line tool}}\label{dir_82cfc848b8e8dab35f41d853d1d375cf_autotoc_md1193}
+When run on a Linux system with a non-\/glibc libc, the child command will be run with the {\ttfamily LIBC} environment variable set to the relevant value.
+
+On all other platforms will run the child command as-\/is.
+
+The command line feature requires {\ttfamily spawn\+Sync} provided by Node v0.\+12+.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{detect-\/libc\ child-\/command}
+
+\end{DoxyCode}
+\hypertarget{dir_82cfc848b8e8dab35f41d853d1d375cf_autotoc_md1194}{}\doxysubsection{\texorpdfstring{Integrating with prebuild}{Integrating with prebuild}}\label{dir_82cfc848b8e8dab35f41d853d1d375cf_autotoc_md1194}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{"{}scripts"{}:\ \{}
+\DoxyCodeLine{\ \ "{}install"{}:\ "{}detect-\/libc\ prebuild-\/install\ ||\ node-\/gyp\ rebuild"{},}
+\DoxyCodeLine{\ \ "{}test"{}:\ "{}mocha\ \&\&\ detect-\/libc\ prebuild-\/ci"{}}
+\DoxyCodeLine{\},}
+\DoxyCodeLine{"{}dependencies"{}:\ \{}
+\DoxyCodeLine{\ \ "{}detect-\/libc"{}:\ "{}\string^1.0.2"{},}
+\DoxyCodeLine{\ \ "{}prebuild-\/install"{}:\ "{}\string^2.2.0"{}}
+\DoxyCodeLine{\},}
+\DoxyCodeLine{"{}devDependencies"{}:\ \{}
+\DoxyCodeLine{\ \ "{}prebuild"{}:\ "{}\string^6.2.1"{},}
+\DoxyCodeLine{\ \ "{}prebuild-\/ci"{}:\ "{}\string^2.2.3"{}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{dir_82cfc848b8e8dab35f41d853d1d375cf_autotoc_md1195}{}\doxysubsection{\texorpdfstring{Licence}{Licence}}\label{dir_82cfc848b8e8dab35f41d853d1d375cf_autotoc_md1195}
+Copyright 2017 Lovell Fuller
+
+Licensed under the Apache License, Version 2.\+0 (the "{}\+License"{}); you may not use this file except in compliance with the License. You may obtain a copy of the License at \href{http://www.apache.org/licenses/LICENSE-2.0.html}{\texttt{http\+://www.\+apache.\+org/licenses/\+LICENSE-\/2.\+0}}
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "{}\+AS IS"{} BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License. 

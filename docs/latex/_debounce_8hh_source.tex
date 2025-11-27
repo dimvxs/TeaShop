@@ -1,0 +1,55 @@
+\doxysection{Debounce.\+hh}
+\hypertarget{_debounce_8hh_source}{}\label{_debounce_8hh_source}\index{frontend/node\_modules/"@parcel/watcher/src/Debounce.hh@{frontend/node\_modules/"@parcel/watcher/src/Debounce.hh}}
+\mbox{\hyperlink{_debounce_8hh}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ DEBOUNCE\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ DEBOUNCE\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <thread>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_signal_8hh}{Signal.hh}}"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ MIN\_WAIT\_TIME\ 50}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ MAX\_WAIT\_TIME\ 500}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#ifdef\ \_\_wasm32\_\_}}
+\DoxyCodeLine{00013\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00014\ \ \ \textcolor{keywordtype}{int}\ set\_timeout(\textcolor{keywordtype}{int}\ ms,\ \textcolor{keywordtype}{void}\ *ctx);}
+\DoxyCodeLine{00015\ \ \ \textcolor{keywordtype}{void}\ clear\_timeout(\textcolor{keywordtype}{int}\ timeout);}
+\DoxyCodeLine{00016\ \ \ \textcolor{keywordtype}{void}\ on\_timeout(\textcolor{keywordtype}{void}\ *ctx);}
+\DoxyCodeLine{00017\ \};}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_debounce_a4b24adf526b6f1d38313d47ba4941101}{Debounce}}\ \{}
+\DoxyCodeLine{00021\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00022\ \ \ \textcolor{keyword}{static}\ std::shared\_ptr<Debounce>\ \mbox{\hyperlink{class_debounce_a0f691bebbbea19ce610b35899dc52f00}{getShared}}();}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \mbox{\hyperlink{class_debounce_a4b24adf526b6f1d38313d47ba4941101}{Debounce}}();}
+\DoxyCodeLine{00025\ \ \ \mbox{\hyperlink{class_debounce_acccb5f8bf99a0af161fd49db9dd3b72f}{\string~Debounce}}();}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_debounce_a824af3b9bf08f208241bbb9806b3e886}{add}}(\textcolor{keywordtype}{void}\ *key,\ std::function<\textcolor{keywordtype}{void}()>\ cb);}
+\DoxyCodeLine{00028\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_debounce_ab07d5ce123134c908b61415afbfa23fc}{remove}}(\textcolor{keywordtype}{void}\ *key);}
+\DoxyCodeLine{00029\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_debounce_aabd28872ce800a790a4cd1fbfa51d698}{trigger}}();}
+\DoxyCodeLine{00030\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_debounce_ad98c0e6cd9576c54d078ac7caa35d848}{notify}}();}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00033\ \ \ \textcolor{keywordtype}{bool}\ mRunning;}
+\DoxyCodeLine{00034\ \ \ std::mutex\ mMutex;}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\ \ \#ifdef\ \_\_wasm32\_\_}}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{int}\ mTimeout;}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\ \ \#else}}
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{class_signal}{Signal}}\ mWaitSignal;}
+\DoxyCodeLine{00039\ \ \ \ \ std::thread\ mThread;}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00041\ \ \ std::unordered\_map<\textcolor{keywordtype}{void}\ *,\ std::function<void()>>\ mCallbacks;}
+\DoxyCodeLine{00042\ \ \ std::chrono::time\_point<std::chrono::steady\_clock>\ mLastTime;}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \textcolor{keywordtype}{void}\ loop();}
+\DoxyCodeLine{00045\ \ \ \textcolor{keywordtype}{void}\ notifyIfReady();}
+\DoxyCodeLine{00046\ \ \ \textcolor{keywordtype}{void}\ wait();}
+\DoxyCodeLine{00047\ \};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,79 @@
+\doxysection{frontend/node\+\_\+modules/p-\/limit Directory Reference}
+\hypertarget{dir_0decfc3462fbb555a51bcc4e38cc558e}{}\label{dir_0decfc3462fbb555a51bcc4e38cc558e}\index{frontend/node\_modules/p-\/limit Directory Reference@{frontend/node\_modules/p-\/limit Directory Reference}}
+Directory dependency graph for p-\/limit\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=175pt]{dir_0decfc3462fbb555a51bcc4e38cc558e_dep}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_0decfc3462fbb555a51bcc4e38cc558e_autotoc_md2245}{}\doxysubsection{\texorpdfstring{p-\/limit}{p-\/limit}}\label{dir_0decfc3462fbb555a51bcc4e38cc558e_autotoc_md2245}
+\begin{quote}
+Run multiple promise-\/returning \& async functions with limited concurrency \end{quote}
+\hypertarget{dir_0decfc3462fbb555a51bcc4e38cc558e_autotoc_md2246}{}\doxysubsection{\texorpdfstring{Install}{Install}}\label{dir_0decfc3462fbb555a51bcc4e38cc558e_autotoc_md2246}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ npm\ install\ p-\/limit}
+
+\end{DoxyCode}
+\hypertarget{dir_0decfc3462fbb555a51bcc4e38cc558e_autotoc_md2247}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{dir_0decfc3462fbb555a51bcc4e38cc558e_autotoc_md2247}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ pLimit\ =\ require('p-\/limit');}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ limit\ =\ pLimit(1);}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ input\ =\ [}
+\DoxyCodeLine{\ \ \ \ limit(()\ =>\ fetchSomething('foo')),}
+\DoxyCodeLine{\ \ \ \ limit(()\ =>\ fetchSomething('bar')),}
+\DoxyCodeLine{\ \ \ \ limit(()\ =>\ doSomething())}
+\DoxyCodeLine{];}
+\DoxyCodeLine{}
+\DoxyCodeLine{(async\ ()\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ //\ Only\ one\ promise\ is\ run\ at\ once}
+\DoxyCodeLine{\ \ \ \ const\ result\ =\ await\ Promise.all(input);}
+\DoxyCodeLine{\ \ \ \ console.log(result);}
+\DoxyCodeLine{\})();}
+
+\end{DoxyCode}
+\hypertarget{dir_0decfc3462fbb555a51bcc4e38cc558e_autotoc_md2248}{}\doxysubsection{\texorpdfstring{API}{API}}\label{dir_0decfc3462fbb555a51bcc4e38cc558e_autotoc_md2248}
+\hypertarget{dir_0decfc3462fbb555a51bcc4e38cc558e_autotoc_md2249}{}\doxysubsubsection{\texorpdfstring{p\+Limit(concurrency)}{p\+Limit(concurrency)}}\label{dir_0decfc3462fbb555a51bcc4e38cc558e_autotoc_md2249}
+Returns a {\ttfamily limit} function.\hypertarget{dir_0decfc3462fbb555a51bcc4e38cc558e_autotoc_md2250}{}\doxysubsubsubsection{\texorpdfstring{concurrency}{concurrency}}\label{dir_0decfc3462fbb555a51bcc4e38cc558e_autotoc_md2250}
+Type\+: {\ttfamily number}\textbackslash{} Minimum\+: {\ttfamily 1}\textbackslash{} Default\+: {\ttfamily Infinity}
+
+Concurrency limit.\hypertarget{dir_0decfc3462fbb555a51bcc4e38cc558e_autotoc_md2251}{}\doxysubsubsection{\texorpdfstring{limit(fn, ...\+args)}{limit(fn, ...\+args)}}\label{dir_0decfc3462fbb555a51bcc4e38cc558e_autotoc_md2251}
+Returns the promise returned by calling {\ttfamily fn(...\+args)}.\hypertarget{dir_0decfc3462fbb555a51bcc4e38cc558e_autotoc_md2252}{}\doxysubsubsubsection{\texorpdfstring{fn}{fn}}\label{dir_0decfc3462fbb555a51bcc4e38cc558e_autotoc_md2252}
+Type\+: {\ttfamily Function}
+
+Promise-\/returning/async function.\hypertarget{dir_0decfc3462fbb555a51bcc4e38cc558e_autotoc_md2253}{}\doxysubsubsubsection{\texorpdfstring{args}{args}}\label{dir_0decfc3462fbb555a51bcc4e38cc558e_autotoc_md2253}
+Any arguments to pass through to {\ttfamily fn}.
+
+Support for passing arguments on to the {\ttfamily fn} is provided in order to be able to avoid creating unnecessary closures. You probably don\textquotesingle{}t need this optimization unless you\textquotesingle{}re pushing a {\itshape lot} of functions.\hypertarget{dir_0decfc3462fbb555a51bcc4e38cc558e_autotoc_md2254}{}\doxysubsubsection{\texorpdfstring{limit.\+active\+Count}{limit.\+active\+Count}}\label{dir_0decfc3462fbb555a51bcc4e38cc558e_autotoc_md2254}
+The number of promises that are currently running.\hypertarget{dir_0decfc3462fbb555a51bcc4e38cc558e_autotoc_md2255}{}\doxysubsubsection{\texorpdfstring{limit.\+pending\+Count}{limit.\+pending\+Count}}\label{dir_0decfc3462fbb555a51bcc4e38cc558e_autotoc_md2255}
+The number of promises that are waiting to run (i.\+e. their internal {\ttfamily fn} was not called yet).\hypertarget{dir_0decfc3462fbb555a51bcc4e38cc558e_autotoc_md2256}{}\doxysubsubsection{\texorpdfstring{limit.\+clear\+Queue()}{limit.\+clear\+Queue()}}\label{dir_0decfc3462fbb555a51bcc4e38cc558e_autotoc_md2256}
+Discard pending promises that are waiting to run.
+
+This might be useful if you want to teardown the queue at the end of your program\textquotesingle{}s lifecycle or discard any function calls referencing an intermediary state of your app.
+
+Note\+: This does not cancel promises that are already running.\hypertarget{dir_0decfc3462fbb555a51bcc4e38cc558e_autotoc_md2257}{}\doxysubsection{\texorpdfstring{FAQ}{FAQ}}\label{dir_0decfc3462fbb555a51bcc4e38cc558e_autotoc_md2257}
+\hypertarget{dir_0decfc3462fbb555a51bcc4e38cc558e_autotoc_md2258}{}\doxysubsubsection{\texorpdfstring{How is this different from the \href{https://github.com/sindresorhus/p-queue}{\texttt{{\ttfamily p-\/queue}}} package?}{How is this different from the \href{https://github.com/sindresorhus/p-queue}{\texttt{{\ttfamily p-\/queue}}} package?}}\label{dir_0decfc3462fbb555a51bcc4e38cc558e_autotoc_md2258}
+This package is only about limiting the number of concurrent executions, while {\ttfamily p-\/queue} is a fully featured queue implementation with lots of different options, introspection, and ability to pause the queue.\hypertarget{dir_0decfc3462fbb555a51bcc4e38cc558e_autotoc_md2259}{}\doxysubsection{\texorpdfstring{Related}{Related}}\label{dir_0decfc3462fbb555a51bcc4e38cc558e_autotoc_md2259}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/sindresorhus/p-queue}{\texttt{p-\/queue}} -\/ Promise queue with concurrency control
+\item \href{https://github.com/sindresorhus/p-throttle}{\texttt{p-\/throttle}} -\/ Throttle promise-\/returning \& async functions
+\item \href{https://github.com/sindresorhus/p-debounce}{\texttt{p-\/debounce}} -\/ \doxylink{class_debounce}{Debounce} promise-\/returning \& async functions
+\item \href{https://github.com/sindresorhus/p-all}{\texttt{p-\/all}} -\/ Run promise-\/returning \& async functions concurrently with optional limited concurrency
+\item \href{https://github.com/sindresorhus/promise-fun}{\texttt{More…}}
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+
+
+ {\bfseries{ \href{https://tidelift.com/subscription/pkg/npm-p-limit?utm_source=npm-p-limit&utm_medium=referral&utm_campaign=readme}{\texttt{Get professional support for this package with a Tidelift subscription}} }} ~\newline
+ \textsubscript{ Tidelift helps make open source sustainable for maintainers while giving companies~\newline
+assurances about security, maintenance, and licensing for their dependencies. }  

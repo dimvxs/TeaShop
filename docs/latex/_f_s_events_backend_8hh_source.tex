@@ -1,0 +1,26 @@
+\doxysection{FSEvents\+Backend.\+hh}
+\hypertarget{_f_s_events_backend_8hh_source}{}\label{_f_s_events_backend_8hh_source}\index{frontend/node\_modules/"@parcel/watcher/src/macos/FSEventsBackend.hh@{frontend/node\_modules/"@parcel/watcher/src/macos/FSEventsBackend.hh}}
+\mbox{\hyperlink{_f_s_events_backend_8hh}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ FS\_EVENTS\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ FS\_EVENTS\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <CoreServices/CoreServices.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_backend_8hh}{../Backend.hh}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_f_s_events_backend}{FSEventsBackend}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_backend}{Backend}}\ \{}
+\DoxyCodeLine{00008\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00009\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_f_s_events_backend_a85c0b05be60a56e9a1edeb1ce2ec13d5}{start}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00010\ \ \ \mbox{\hyperlink{class_f_s_events_backend_adb584e465d69db0383e922cc85d784b4}{\string~FSEventsBackend}}();}
+\DoxyCodeLine{00011\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_f_s_events_backend_a89a16a78bf7d2cbdc8866d7a5254782c}{writeSnapshot}}(\mbox{\hyperlink{_watcher_8hh_a8a32f1740da49095a86d32383c012cc9}{WatcherRef}}\ watcher,\ std::string\ *snapshotPath)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00012\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_f_s_events_backend_a657bd1c85dec446111186f7530528ad5}{getEventsSince}}(\mbox{\hyperlink{_watcher_8hh_a8a32f1740da49095a86d32383c012cc9}{WatcherRef}}\ watcher,\ std::string\ *snapshotPath)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00013\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_f_s_events_backend_a941a69d31eed8665a28e590e3f70305d}{subscribe}}(\mbox{\hyperlink{_watcher_8hh_a8a32f1740da49095a86d32383c012cc9}{WatcherRef}}\ watcher)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00014\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_f_s_events_backend_a5852a003b72a3910ea49c62b272bfe45}{unsubscribe}}(\mbox{\hyperlink{_watcher_8hh_a8a32f1740da49095a86d32383c012cc9}{WatcherRef}}\ watcher)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00015\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00016\ \ \ \textcolor{keywordtype}{void}\ startStream(\mbox{\hyperlink{_watcher_8hh_a8a32f1740da49095a86d32383c012cc9}{WatcherRef}}\ watcher,\ FSEventStreamEventId\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00017\ \ \ CFRunLoopRef\ mRunLoop;}
+\DoxyCodeLine{00018\ \};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

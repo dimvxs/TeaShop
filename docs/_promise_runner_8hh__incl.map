@@ -1,0 +1,34 @@
+<map id="frontend/node_modules/@parcel/watcher/src/PromiseRunner.hh" name="frontend/node_modules/@parcel/watcher/src/PromiseRunner.hh">
+<area shape="rect" id="Node000001" title=" " alt="" coords="153,5,310,61"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,183,90,208"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="201,64,74,174,71,170,199,59"/>
+<area shape="rect" id="Node000003" href="$include_8h.html" title=" " alt="" coords="175,109,288,135"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="233,59,234,94,229,92,230,64"/>
+<area shape="rect" id="Node000004" href="$napi_8h.html" title=" " alt="" coords="342,109,398,135"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="275,59,341,100,336,101,275,64"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="341,132,106,184,104,179,342,127"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="114,183,192,208"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="339,134,205,180,204,175,344,131"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="215,183,312,208"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="354,134,296,176,293,171,350,136"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="336,183,404,208"/>
+<area shape="poly" id="edge7_Node000004_Node000007" title=" " alt="" coords="372,133,372,168,368,165,369,137"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="428,183,486,208"/>
+<area shape="poly" id="edge8_Node000004_Node000008" title=" " alt="" coords="386,133,433,173,428,173,384,138"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="510,183,564,208"/>
+<area shape="poly" id="edge9_Node000004_Node000009" title=" " alt="" coords="399,133,498,176,493,177,398,138"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="588,183,646,208"/>
+<area shape="poly" id="edge10_Node000004_Node000010" title=" " alt="" coords="399,129,576,181,571,182,399,134"/>
+<area shape="rect" id="Node000011" href="$napi-inl_8h.html" title=" " alt="" coords="670,183,743,208"/>
+<area shape="poly" id="edge11_Node000004_Node000011" title=" " alt="" coords="399,126,657,181,652,183,399,131"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="481,256,555,282"/>
+<area shape="poly" id="edge12_Node000011_Node000012" title=" " alt="" coords="677,208,565,253,564,248,672,209"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="580,256,640,282"/>
+<area shape="poly" id="edge13_Node000011_Node000013" title=" " alt="" coords="692,208,639,250,637,245,687,210"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="665,256,747,282"/>
+<area shape="poly" id="edge14_Node000011_Node000014" title=" " alt="" coords="708,207,708,242,704,239,704,210"/>
+<area shape="rect" id="Node000015" title=" " alt="" coords="772,256,824,282"/>
+<area shape="poly" id="edge15_Node000011_Node000015" title=" " alt="" coords="723,206,774,247,768,246,721,211"/>
+<area shape="rect" id="Node000016" href="$napi-inl_8deprecated_8h.html" title=" " alt="" coords="849,256,990,282"/>
+<area shape="poly" id="edge16_Node000011_Node000016" title=" " alt="" coords="743,206,872,251,866,251,742,212"/>
+</map>

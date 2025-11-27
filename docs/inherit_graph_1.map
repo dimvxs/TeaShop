@@ -1,0 +1,17 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$class_backend.html" title=" " alt="" coords="5,128,78,154"/>
+<area shape="rect" id="Node000001" href="$class_brute_force_backend.html" title=" " alt="" coords="126,79,262,104"/>
+<area shape="poly" id="edge8_Node000000_Node000001" title=" " alt="" coords="91,122,154,103,150,107,94,127"/>
+<area shape="rect" id="Node000006" href="$class_f_s_events_backend.html" title=" " alt="" coords="129,128,259,154"/>
+<area shape="poly" id="edge13_Node000000_Node000006" title=" " alt="" coords="93,138,131,140,126,142,94,143"/>
+<area shape="rect" id="Node000007" href="$class_watchman_backend.html" title=" " alt="" coords="127,177,261,203"/>
+<area shape="poly" id="edge14_Node000000_Node000007" title=" " alt="" coords="93,155,154,176,150,178,92,160"/>
+<area shape="rect" id="Node000002" href="$class_inotify_backend.html" title=" " alt="" coords="319,5,427,31"/>
+<area shape="poly" id="edge9_Node000001_Node000002" title=" " alt="" coords="239,70,309,40,339,31,334,33,311,45,241,74"/>
+<area shape="rect" id="Node000003" href="$class_kqueue_backend.html" title=" " alt="" coords="315,55,431,80"/>
+<area shape="poly" id="edge10_Node000001_Node000003" title=" " alt="" coords="277,78,317,74,312,76,278,83"/>
+<area shape="rect" id="Node000004" href="$class_wasm_backend.html" title=" " alt="" coords="318,104,428,130"/>
+<area shape="poly" id="edge11_Node000001_Node000004" title=" " alt="" coords="277,101,321,109,315,109,277,106"/>
+<area shape="rect" id="Node000005" href="$class_windows_backend.html" title=" " alt="" coords="310,153,436,179"/>
+<area shape="poly" id="edge12_Node000001_Node000005" title=" " alt="" coords="250,108,263,113,311,140,338,153,332,153,309,145,261,118,250,113"/>
+</map>
