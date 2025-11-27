@@ -1,9 +1,0 @@
-<map id="WriteSnapshotRunner" name="WriteSnapshotRunner">
-<area shape="rect" id="Node000001" title=" " alt="" coords="43,177,191,203"/>
-<area shape="rect" id="Node000002" href="$class_promise_runner.html" title=" " alt="" coords="61,102,173,128"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="119,141,119,178,115,176,115,145"/>
-<area shape="rect" id="Node000003" href="$class_napi_1_1_env.html" title=" " alt="" coords="5,5,85,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="64,41,110,101,105,102,63,46"/>
-<area shape="rect" id="Node000004" href="$class_napi_1_1_promise_1_1_deferred.html" title=" " alt="" coords="109,5,272,31"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="174,41,128,103,124,100,170,45"/>
-</map>

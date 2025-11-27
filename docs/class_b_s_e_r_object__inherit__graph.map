@@ -1,7 +1,0 @@
-<map id="BSERObject" name="BSERObject">
-<area shape="rect" id="Node000001" title=" " alt="" coords="37,153,134,178"/>
-<area shape="rect" id="Node000002" href="$class_value.html" title=" " alt="" coords="5,79,166,105"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="87,118,88,153,83,151,84,122"/>
-<area shape="rect" id="Node000003" href="$class_b_s_e_r_value.html" title=" " alt="" coords="40,5,131,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="87,44,88,79,83,78,84,49"/>
-</map>
