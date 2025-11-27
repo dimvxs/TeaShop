@@ -1,13 +1,18 @@
-import React from 'react';
-import Header from './components/Header.tsx';
+import { useNavigate } from 'react-router-dom'
 
-function App() {
-    return (
-        <>
-            <Header />
+function MainPage() {
+  const navigate = useNavigate()
 
-        </>
-    );
+  const goToLogin = () => {
+    navigate('/login')
+  }
+
+  return (
+    <div>
+      <h1>Main Page</h1>
+      <button onClick={goToLogin}>Go to Login</button>
+    </div>
+  )
 }
 
-export default App;
+export default MainPage

@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'Gilroy';
+  src: url('./assets/fonts/Gilroy-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+$main-font: 'Gilroy', sans-serif;
+
+* {
+  font-family: $main-font;
+}

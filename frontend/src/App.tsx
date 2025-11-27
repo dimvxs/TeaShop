@@ -1,13 +1,17 @@
-import React from 'react';
-import MainPage from './pages/MainPage/MainPage.tsx';
+import './App.css'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import MainPage from './pages/MainPage/MainPage'
+import LoginPage from './pages/LoginPage/LoginPage'
 
 function App() {
-    return (
-        <>
-            <MainPage />
-
-        </>
-    );
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/login" element={<LoginPage />} />
+      </Routes>
+    </BrowserRouter>
+  )
 }
 
-export default App;
+export default App
