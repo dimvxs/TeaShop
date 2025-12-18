@@ -1,0 +1,229 @@
+// Header.scss — твои стили + мягкий фиолетовый Wildberries
+
+$white: #ffffff;
+$wb-purple: #a435f0;       // именно этот оттенок сейчас у WB (2025)
+$wb-purple-hover: #9120e0;
+$light-purple: rgba(164, 53, 240, 0.08);
+
+.header-site {
+  background-color: $white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  .header-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+
+    @media (max-width: 768px) {
+      padding: 0.75rem 0.5rem;
+    }
+  }
+
+  .logo img {
+    height: 100px;
+    width: auto;
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  // Поиск — теперь с фиолетовым акцентом
+  .search-form {
+    flex: 1;
+    max-width: 900px;
+    background-color: $white;
+    border: 1.5px solid #e5e5e5;
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    transition: all 0.25s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+    &:hover {
+      border-color: #d0b8ff;
+      box-shadow: 0 4px 20px rgba(164, 53, 240, 0.12);
+    }
+
+    &:focus-within {
+      border-color: $wb-purple;
+      box-shadow: 0 0 0 4px $light-purple;
+      transform: translateY(-1px);
+    }
+
+    input {
+      flex: 1;
+      padding: 0.85rem 1rem;
+      border: none;
+      outline: none;
+      font-size: 1rem;
+      background: transparent;
+    }
+
+    button {
+      background: $wb-purple;
+      color: white;
+      border: none;
+      padding: 0.85rem 1.2rem;
+      cursor: pointer;
+      font-size: 1.35rem;
+      transition: all 0.25s ease;
+
+      &:hover {
+        background: $wb-purple-hover;
+        transform: scale(1.08);
+      }
+
+      &:active {
+        transform: scale(1.02);
+      }
+    }
+  }
+
+  .nav-links{
+    display: flex;
+    gap: 2.5rem;
+  }
+    // Навигация — фиолетовое подчёркивание и hover
+  .nav-links a {
+
+    color: #333;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 0.5rem 0;
+    position: relative;
+    transition: color 0.25s ease;
+    white-space: nowrap;
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2.5px;
+      bottom: 0;
+      left: 50%;
+      background: linear-gradient(90deg, transparent, $wb-purple, transparent);
+      transition: all 0.35s ease;
+      border-radius: 2px;
+    }
+
+    &:hover {
+      color: $wb-purple;
+
+      &::after {
+        width: 100%;
+        left: 0;
+      }
+    }
+  }
+
+
+
+
+}
+
+// Гамбургер-кнопка (видна только на мобильных)
+.menu-toggle {
+  display: block;
+  background: none;
+  border: none;
+  color: #333;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 1001;
+}
+
+
+// Оверлей при открытом меню
+.mobile-menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.15s ease;
+  z-index: 1499;
+
+  &.open {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+// Боковое меню
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 320px;
+  max-width: 85vw;
+  height: 100vh;
+  background: $white;
+  box-shadow: 8px 0 25px rgba(0, 0, 0, 0.15);
+  transition: left 0.15s cubic-bezier(0.25, 0.8, 0.25, 1);
+  z-index: 1500;
+  display: flex;
+  flex-direction: column;
+
+  &.open {
+    left: 0;
+  }
+
+  .mobile-menu-header {
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #eee;
+
+    .mobile-logo img {
+      height: 44px;
+    }
+
+    .close-menu {
+      background: none;
+      border: none;
+      color: #666;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+  }
+
+  .mobile-nav {
+    flex: 1;
+    padding: 1.5rem 0;
+
+    a {
+      display: block;
+      padding: 1rem 2rem;
+      color: #333;
+      font-size: 1.1rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.25s ease;
+
+      &:hover {
+        background: $light-purple;
+        color: $wb-purple;
+        padding-left: 2.5rem;
+      }
+    }
+  }
+
+  .mobile-menu-footer {
+    padding: 1.5rem;
+    border-top: 1px solid #eee;
+    color: #888;
+    font-size: 0.9rem;
+    text-align: center;
+  }
+}
