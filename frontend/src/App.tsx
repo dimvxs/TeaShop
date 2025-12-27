@@ -1,5 +1,7 @@
 import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import DefaultLayout from './layouts/DefaultLayout/DefaultLayout'
+
 import MainPage from './pages/MainPage/MainPage'
 import LoginPage from './pages/LoginPage/LoginPage'
 import RegisterPage from './pages/RegisterPage/RegisterPage'
@@ -9,11 +11,26 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<MainPage />} />
+      <Route
+          path="/"
+          element={
+            <DefaultLayout>
+              <MainPage />
+            </DefaultLayout>
+          }
+        />
+        <Route
+          path="/product/:id"
+          element={
+            <DefaultLayout>
+              <ProductPage />
+            </DefaultLayout>
+          }
+        />
+        
+        <Route path="/admin" element={<AdminPanel />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/product/:id" element={<ProductPage />} />
-        <Route path="/admin" element={<AdminPanel />} />
       </Routes>
     </BrowserRouter>
   )

@@ -1,13 +1,10 @@
 import { Link } from "react-router-dom";
-import Header from "./components/Header/Header.tsx";
 import ProductCard from "../ProductCard/ProductCard.tsx";
 
-import Footer from "./components/Footer/Footer.tsx";
 
 function MainPage() {
   return (
     <div>
-      <Header />
       <h1>Main Page</h1>
       <ProductCard
         id={1}
@@ -35,7 +32,6 @@ function MainPage() {
           Перейти в админ-панель
         </Link>
       </div>
-      <Footer />
     </div>
   );
 }
