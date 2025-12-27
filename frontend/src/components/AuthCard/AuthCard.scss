@@ -31,9 +31,10 @@ $white: #ffffff;
   }
 
   form {
+
     input.form-control,
     .btn {
-      padding: 0.65rem 1rem;
+      height: 50px;
       font-size: 1rem;
       border: none;
 
@@ -47,6 +48,7 @@ $white: #ffffff;
       background-color: $btn-color;
       width: 100%;
       margin-bottom: 1rem;
+
     }
   }
 }

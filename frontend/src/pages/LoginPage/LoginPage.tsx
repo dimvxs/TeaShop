@@ -1,20 +1,20 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import AuthCard from '../../components/AuthCard/AuthCard'
-import './LoginPage.scss'
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import AuthCard from "../../components/AuthCard/AuthCard";
+import "./LoginPage.scss";
 
 function LoginPage() {
-  const navigate = useNavigate()
-  const [login, setLogin] = useState('')
-  const [password, setPassword] = useState('')
+  const navigate = useNavigate();
+  const [login, setLogin] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-  }
+    e.preventDefault();
+  };
 
   const goToRegister = () => {
-    navigate('/register')
-  }
+    navigate("/register");
+  };
 
   return (
     <AuthCard title="Login">
@@ -28,7 +28,9 @@ function LoginPage() {
             className="form-control"
             id="login"
             value={login}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setLogin(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setLogin(e.target.value)
+            }
             placeholder="Enter login"
             required
           />
@@ -42,7 +44,9 @@ function LoginPage() {
             className="form-control"
             id="password"
             value={password}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setPassword(e.target.value)
+            }
             placeholder="Enter password"
             required
           />
@@ -53,7 +57,7 @@ function LoginPage() {
 
         <div className="text-center mb-4">Or continue with</div>
         <div className="social-icons">
-          {['google', 'github', 'facebook'].map((icon) => (
+          {["google", "github", "facebook"].map((icon) => (
             <div key={icon} className="icon-wrapper">
               <i className={`bi bi-${icon}`} />
             </div>
@@ -61,14 +65,14 @@ function LoginPage() {
         </div>
 
         <p className="register-text">
-          Don't have an account?{' '}
+          Don't have an account?{" "}
           <span className="register-link" onClick={goToRegister}>
             Register
           </span>
         </p>
       </form>
     </AuthCard>
-  )
+  );
 }
 
-export default LoginPage
+export default LoginPage;

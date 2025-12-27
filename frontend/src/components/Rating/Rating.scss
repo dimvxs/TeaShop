@@ -1,0 +1,26 @@
+@import '../../styles/_variables';
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  .stars {
+    display: flex;
+    gap: 2px;
+  }
+
+  .star {
+    font-size: 23px;
+    color: #ccc;
+
+    &.filled {
+      color: $color-accent-light;
+    }
+  }
+
+  .rating-value {
+    font-size: 14px;
+    color: #666;
+  }
+}

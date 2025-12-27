@@ -1,0 +1,41 @@
+.quantity-control {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  overflow: hidden;
+  height: 42px;
+
+  input {
+    width: 50px;
+    text-align: center;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    background: transparent;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+
+  .qty-btn {
+    height: 100%;
+    border: none;
+    background: #f3f3f3;
+    padding: 0 12px;
+    cursor: pointer;
+    font-size: 1.2rem;
+
+    &:hover {
+      background: #e5e5e5;
+    }
+
+    &:active {
+      background: #dcdcdc;
+    }
+  }
+}

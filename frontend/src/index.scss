@@ -8,5 +8,15 @@
 $main-font: 'Gilroy', sans-serif;
 
 * {
+  padding: 0;
+  margin: 0;
   font-family: $main-font;
+  box-sizing: border-box;
+}
+
+button{
+  padding: 0!important;
+  // background-color: white!important;
+  // border: none!important;
+  // outline: none!important;
 }
