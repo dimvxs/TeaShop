@@ -1,0 +1,91 @@
+.profile {
+    max-width: 80%;
+    height: 80%;
+    margin: 45px auto;
+    font-family: Arial, sans-serif;
+}
+
+.profile-item {
+    margin:40px;
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    overflow: hidden;
+    background: #fff;
+}
+
+.profile-header {
+    width: 100%;
+    padding: 24px 24px;
+    font-size: 18px;
+    min-height: 80px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+}
+
+.title {
+    font-size: 20px;
+    margin-left:25px;
+    font-weight: 600;
+}
+
+.subtitle {
+    display: flex;
+    flex-wrap: wrap;
+    gap:38px;
+}
+
+.subtitle-upper-text {
+    font-size: 14px;
+    color: #777;
+    white-space: nowrap;
+}
+
+.subtitle-lower-text {
+    font-size: 20px;
+}
+
+.arrow {
+    font-size: 18px;
+    transition: transform 0.2s ease;
+}
+
+    .arrow.open {
+        transform: rotate(180deg);
+    }
+
+.profile-body {
+    display:flex;
+    flex-direction:column;
+    padding: 16px 10px;
+    border-top: 1px solid #eee;
+    background: #fafafa;
+}
+
+.edit-btn {
+    align-self: flex-start;
+    height: 40px;
+    margin-top: 25px;
+    padding: 8px 14px;
+    border-radius: 6px;
+    border: 1px solid #3e77aa;
+    background: white;
+    color: #3e77aa;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+    .edit-btn:hover {
+        background: #3e77aa;
+        color: white;
+    }
+
+.edit-text{
+    margin:25px;
+    font-size:1.1em;
+}

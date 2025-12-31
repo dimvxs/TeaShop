@@ -7,6 +7,7 @@ import LoginPage from './pages/LoginPage/LoginPage'
 import RegisterPage from './pages/RegisterPage/RegisterPage'
 import ProductPage from './pages/ProductPage/ProductPage'
 import AdminPanel from './pages/AdminPanel/AdminPanel'
+import ProfilePage from './pages/ProfilePage/ProfilePage'
 function App() {
   return (
     <BrowserRouter>
@@ -24,6 +25,14 @@ function App() {
           element={
             <DefaultLayout>
               <ProductPage />
+            </DefaultLayout>
+          }
+              />
+        <Route
+          path="/profile"
+          element={
+            <DefaultLayout>
+              <ProfilePage />
             </DefaultLayout>
           }
         />
