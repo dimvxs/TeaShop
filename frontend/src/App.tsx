@@ -40,6 +40,7 @@ function App() {
         <Route path="/admin" element={<AdminPanel />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
       </Routes>
     </BrowserRouter>
   )
