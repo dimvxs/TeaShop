@@ -1,11 +1,17 @@
 package com.goldenleaf.shop.service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import com.goldenleaf.shop.dto.ProductDTO;
 import com.goldenleaf.shop.model.Product;
 import com.goldenleaf.shop.repository.ProductRepository;
+
+import jakarta.persistence.EntityNotFoundException;
 
 /**
  * Service class for managing {@link Product} entities.
@@ -78,6 +84,10 @@ public class ProductService {
         return productRepository.findByName(name)
                 .orElseThrow(() -> new RuntimeException("Product not found by name: " + name));
     }
+    
+
+
+
 
     /**
      * Retrieves a {@link Product} by its brand.
@@ -100,8 +110,8 @@ public class ProductService {
      *
      * @see ProductRepository#save(Object)
      */
-    public void addProduct(Product product) {
-        productRepository.save(product);
+    public Product addProduct(Product product) {
+        return productRepository.save(product);
     }
 
     /**
@@ -154,10 +164,10 @@ public class ProductService {
      * @see ProductRepository#save(Object)
      * @see ProductRepository#existsById(Object)
      */
-    public void editProduct(Product product) {
+    public Product editProduct(Product product) {
         if (product.getId() == null || !productRepository.existsById(product.getId())) {
             throw new RuntimeException("Product not found");
         }
-        productRepository.save(product);
+        return productRepository.save(product);
     }
 }

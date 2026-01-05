@@ -1,9 +1,17 @@
 package com.goldenleaf.shop.service;
 
+import java.time.LocalDate;
+
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.goldenleaf.shop.dto.AdminDTO;
+import com.goldenleaf.shop.exception.EmptyLastActivityException;
+import com.goldenleaf.shop.exception.EmptyLoginException;
 import com.goldenleaf.shop.model.Admin;
 import com.goldenleaf.shop.repository.AdminRepository;
+
+import jakarta.persistence.EntityNotFoundException;
 
 /**
  * Service class providing business logic for working with {@link Admin} entities.
@@ -16,12 +24,13 @@ import com.goldenleaf.shop.repository.AdminRepository;
  * @see AdminRepository
  */
 @Service
-public class AdminService {
+public class AdminService{
 
     /**
      * Repository used for accessing {@link Admin} data.
      */
     private final AdminRepository adminRepository;
+    private final PasswordEncoder passwordEncoder;
 
     /**
      * Creates an instance of {@code AdminService}.
@@ -31,11 +40,16 @@ public class AdminService {
      *
      * @see AdminRepository
      */
-    public AdminService(AdminRepository repo) {
+    public AdminService(AdminRepository repo, PasswordEncoder passwordEncoder) {
         if (repo == null) {
             throw new IllegalArgumentException("AdminRepository cannot be null");
         }
         this.adminRepository = repo;
+        
+        if(passwordEncoder == null) {
+			throw new IllegalArgumentException("PasswordEncoder cannot be null");
+		}
+        this.passwordEncoder = passwordEncoder;
     }
 
     /**
@@ -69,4 +83,65 @@ public class AdminService {
                 () -> { throw new RuntimeException("Admin not found with secretWord: " + secretWord); }
             );
     }
+    
+
+    
+    public Admin findById(Long id) {
+        return adminRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Admin not found with id: " + id));
+    }
+
+
+    public Admin create(AdminDTO dto) {
+        String rawPassword = dto.getPassword();
+        if (rawPassword == null || rawPassword.isBlank()) {
+            throw new IllegalArgumentException("Password required");
+        }
+
+        Admin admin = new Admin(
+            dto.getLogin(),
+            passwordEncoder.encode(rawPassword),  // хешируем и передаём в конструктор
+            dto.getName(),
+            LocalDate.now(),
+            dto.getSecretWord(),
+            dto.isSuperAdmin()
+        );
+
+        return adminRepository.save(admin);
+    }
+
+    public Admin update(Long id, AdminDTO dto) throws EmptyLastActivityException, EmptyLoginException {
+        Admin admin = findById(id);
+
+        // Обновляем только то, что пришло в DTO
+        if (dto.getLogin() != null && !dto.getLogin().isBlank()) {
+            admin.setLogin(dto.getLogin());  // предполагаем, что в User есть setLogin
+        }
+        if (dto.getName() != null && !dto.getName().isBlank()) {
+            admin.setName(dto.getName());    // предполагаем, что в User есть setName
+        }
+        if (dto.getLastActivity() != null) {
+            admin.setLastActivity(dto.getLastActivity());
+        }
+
+        // Пароль обновляем только если передан
+        if (dto.getPassword() != null && !dto.getPassword().isBlank()) {
+            admin.setPassword(passwordEncoder.encode(dto.getPassword()));
+        }
+
+        // Поля из Admin
+        admin.setSecretWord(dto.getSecretWord());
+        admin.setSuperAdmin(dto.isSuperAdmin());
+
+        return adminRepository.save(admin);
+    }
+
+    public void deleteById(Long id) {
+        if (!adminRepository.existsById(id)) {
+            throw new EntityNotFoundException("Admin not found with id: " + id);
+        }
+        adminRepository.deleteById(id);
+    }
+
+	
 }

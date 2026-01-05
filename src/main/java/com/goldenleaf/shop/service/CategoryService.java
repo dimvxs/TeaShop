@@ -1,9 +1,15 @@
 package com.goldenleaf.shop.service;
 
-import java.util.List;
 
+import java.util.List;
 import org.springframework.stereotype.Service;
 
+import com.goldenleaf.shop.dto.AdminDTO;
+import com.goldenleaf.shop.dto.CategoryDTO;
+import com.goldenleaf.shop.exception.EmptyLastActivityException;
+import com.goldenleaf.shop.exception.EmptyLoginException;
+import com.goldenleaf.shop.exception.EmptyNameException;
+import com.goldenleaf.shop.model.Admin;
 import com.goldenleaf.shop.model.Category;
 import com.goldenleaf.shop.repository.CategoryRepository;
 
@@ -89,6 +95,27 @@ public class CategoryService {
     public void addCategory(Category category) {
         categoryRepository.save(category);
     }
+    
+    public Category create(CategoryDTO dto) throws EmptyNameException {
+		Category category = new Category(
+			dto.getName()
+		);
+
+		return categoryRepository.save(category);
+	}
+    
+ 
+    
+    public Category update(Long id, CategoryDTO dto) throws EmptyNameException {
+    	
+    			Category category = getCategoryById(id);
+    			if (dto.getName() != null && !dto.getName().isBlank()) {
+					category.setName(dto.getName());
+				}
+    			return categoryRepository.save(category);
+    }
+    
+ 
 
     /**
      * Removes an existing {@link Category} from the database.

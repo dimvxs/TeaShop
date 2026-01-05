@@ -8,11 +8,43 @@ function LoginPage() {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-  };
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
 
-  const goToRegister = () => {
+        try {
+            const response = await fetch("http://localhost:8080/api/customers/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    login: login,
+                    password: password,
+                }),
+                credentials: "include", // нужно для работы с сессией / cookie
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => ({}));
+                throw new Error(errorData.message || "Ошибка входа");
+            }
+
+            const user = await response.json();
+            console.log("Вход выполнен:", user);
+
+            // Здесь можно сохранить токен или user info в localStorage / context
+            localStorage.setItem("currentUser", JSON.stringify(user));
+
+            alert("Вход успешен!");
+            navigate("/"); // перенаправление на главную
+
+        } catch (err: any) {
+            alert(err.message || "Не удалось войти");
+        }
+    };
+
+
+    const goToRegister = () => {
     navigate("/register");
   };
 

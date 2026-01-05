@@ -2,6 +2,8 @@ package com.goldenleaf.shop.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.goldenleaf.shop.model.Review;
 import com.goldenleaf.shop.model.Customer;
 import com.goldenleaf.shop.model.Product;
@@ -20,6 +22,7 @@ import com.goldenleaf.shop.repository.ReviewRepository;
  * @see Product
  * @see Customer
  */
+@Service
 public class ReviewService {
 
     /**
@@ -74,7 +77,7 @@ public class ReviewService {
      * @see ReviewRepository#findByCustomer(Customer)
      */
     public List<Review> getAllReviewsOfCustomer(Customer customer) {
-        return reviewRepository.findByCustomer(customer);
+        return reviewRepository.findByAuthor(customer);
     }
 
     /**
@@ -86,7 +89,7 @@ public class ReviewService {
      * @see ReviewRepository#findByCustomerLogin(String)
      */
     public List<Review> getAllReviewsOfCustomerLogin(String login) {
-        return reviewRepository.findByCustomerLogin(login);
+        return reviewRepository.findByAuthorLogin(login);
     }
 
     /**
@@ -110,8 +113,8 @@ public class ReviewService {
      *
      * @see ReviewRepository#save(Object)
      */
-    public void addReview(Review review) {
-        reviewRepository.save(review);
+    public Review addReview(Review review) {
+        return reviewRepository.save(review);
     }
 
     /**
@@ -153,11 +156,11 @@ public class ReviewService {
      * @see ReviewRepository#save(Object)
      * @see ReviewRepository#existsById(Object)
      */
-    public void editReview(Review review) {
+    public Review editReview(Review review) {
         if (review.getId() == null || !reviewRepository.existsById(review.getId())) {
             throw new RuntimeException("Review not found");
         }
-        reviewRepository.save(review);
+       return reviewRepository.save(review);
     }
 
     /**
@@ -169,7 +172,7 @@ public class ReviewService {
      * @see ReviewRepository#findByCustomer(Customer)
      */
     public List<Review> getReviewsByCustomer(Customer customer) {
-        return reviewRepository.findByCustomer(customer);
+        return reviewRepository.findByAuthor(customer);
     }
 
     /**
@@ -181,7 +184,7 @@ public class ReviewService {
      * @see ReviewRepository#findByCustomerLogin(String)
      */
     public List<Review> getReviewsByCustomerLogin(String login) {
-        return reviewRepository.findByCustomerLogin(login);
+        return reviewRepository.findByAuthorLogin(login);
     }
 
     /**

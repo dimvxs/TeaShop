@@ -1,5 +1,7 @@
 package com.goldenleaf.shop.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
@@ -21,6 +23,9 @@ public class AdminDTO extends UserDTO {
     @NotBlank(message = "Secret word is mandatory")
     @Size(min = 4, max = 100, message = "Secret word must be between 4 and 100 characters")
     private String secretWord;
+    
+    @Size(min = 6, message = "Password must be at least 6 characters")
+    private String password;  // не @NotBlank — при update может быть пустым
 
     private boolean isSuperAdmin;
 
@@ -38,6 +43,17 @@ public class AdminDTO extends UserDTO {
 
     public void setSuperAdmin(boolean superAdmin) {
         isSuperAdmin = superAdmin;
+    }
+
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
+    
+    @JsonIgnore  // Jackson не сериализует в JSON
+    public String getPassword() {
+        return password;
     }
 
     @Override

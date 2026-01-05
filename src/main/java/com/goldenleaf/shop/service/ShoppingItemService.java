@@ -89,8 +89,8 @@ public class ShoppingItemService {
      *
      * @see ShoppingItemRepository#save(Object)
      */
-    public void addShoppingItem(ShoppingItem item) {
-        shoppingItemRepository.save(item);
+    public ShoppingItem addShoppingItem(ShoppingItem item) {
+        return shoppingItemRepository.save(item);
     }
 
     /**
@@ -149,10 +149,10 @@ public class ShoppingItemService {
      * @see ShoppingItemRepository#save(Object)
      * @see ShoppingItemRepository#existsById(Object)
      */
-    public void editShoppingItem(ShoppingItem item) {
+    public ShoppingItem editShoppingItem(ShoppingItem item) {
         if (item.getId() == null || !shoppingItemRepository.existsById(item.getId())) {
             throw new RuntimeException("Shopping item not found");
         }
-        shoppingItemRepository.save(item);
+       return shoppingItemRepository.save(item);
     }
 }

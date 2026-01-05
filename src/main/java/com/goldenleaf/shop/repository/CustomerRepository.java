@@ -70,6 +70,17 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
      * @param mobile the mobile number of the customer to delete
      */
     void deleteByMobile(String mobile);
+    /**
+	 * Finds a customer by their unique login.
+	 * <p>
+	 * Login is the primary identifier used during authentication.
+	 * </p>
+	 *
+	 * @param login the unique login/username
+	 * @return an {@link Optional} containing the {@link Customer} if found,
+	 *         or {@link Optional#empty()} if no customer has this login
+	 */
+    Optional<Customer> findByLogin(String login);
 
     /**
      * Optional: case-insensitive email lookup (commonly needed).

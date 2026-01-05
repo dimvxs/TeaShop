@@ -1,9 +1,22 @@
 package com.goldenleaf.shop.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
+import com.goldenleaf.shop.dto.AdminDTO;
+import com.goldenleaf.shop.dto.CategoryDTO;
+import com.goldenleaf.shop.dto.CreditCardDTO;
+import com.goldenleaf.shop.exception.EmptyNameException;
+import com.goldenleaf.shop.model.Admin;
+import com.goldenleaf.shop.model.Category;
 import com.goldenleaf.shop.model.CreditCard;
 import com.goldenleaf.shop.repository.CreditCardRepository;
 
@@ -74,9 +87,9 @@ public class CreditCardService {
      *
      * @see CreditCardRepository#findByNumber(String)
      */
-    public CreditCard getCardByNumber(String number) {
-        return creditCardRepository.findByNumber(number)
-                .orElseThrow(() -> new RuntimeException("Credit card not found with number: " + number));
+    public CreditCard getCardByNumber(String cardNumber) {
+        return creditCardRepository.findByCardNumber(cardNumber)
+                .orElseThrow(() -> new RuntimeException("Credit card not found with number: " + cardNumber));
     }
 
     /**
@@ -86,8 +99,8 @@ public class CreditCardService {
      *
      * @see CreditCardRepository#save(Object)
      */
-    public void addCreditCard(CreditCard card) {
-        creditCardRepository.save(card);
+    public CreditCard addCreditCard(CreditCard card) {
+       return creditCardRepository.save(card);
     }
 
     /**
@@ -126,13 +139,14 @@ public class CreditCardService {
      * @see CreditCardRepository#findByNumber(String)
      * @see CreditCardRepository#delete(Object)
      */
-    public void removeCreditCardByNumber(String number) {
-        creditCardRepository.findByNumber(number)
+    public void removeCreditCardByNumber(String cardNumber) {
+        creditCardRepository.findByCardNumber(cardNumber)
                 .ifPresentOrElse(
                         creditCardRepository::delete,
-                        () -> { throw new RuntimeException("Credit card not found with number: " + number); }
+                        () -> { throw new RuntimeException("Credit card not found with number: " + cardNumber); }
                 );
     }
+
 
     /**
      * Updates an existing {@link CreditCard}.

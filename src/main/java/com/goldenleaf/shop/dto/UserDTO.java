@@ -59,6 +59,11 @@ public abstract class UserDTO {
         this.name = name;
         this.lastActivity = lastActivity;
     }
+    
+    protected UserDTO(Long id, String login) {
+    	this.id = id;
+		this.login = login;
+    }
 
     public Long getId() {
         return id;
