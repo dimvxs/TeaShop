@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ReviewItem from "../ReviewItem/ReviewItem";
+import ReviewModal from "../ReviewModal/ReviewModal";
 import type { Review } from "../../types/Review";
 import "./ReviewSection.scss";
 
@@ -12,6 +13,7 @@ const ReviewSection = ({ reviews }: ReviewSectionProps) => {
   const LOAD_COUNT = 5;
 
   const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleButtonClick = () => {
     if (visibleCount >= reviews.length) {
@@ -32,7 +34,11 @@ const ReviewSection = ({ reviews }: ReviewSectionProps) => {
           <span className="review-section__count">({reviews.length})</span>
         </h3>
 
-        <button type="button" className="review-section__add-btn">
+        <button
+          type="button"
+          className="review-section__add-btn"
+          onClick={() => setIsModalOpen(true)}
+        >
           Add review
         </button>
       </div>
@@ -54,6 +60,7 @@ const ReviewSection = ({ reviews }: ReviewSectionProps) => {
           </button>
         </div>
       )}
+      <ReviewModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   );
 };
