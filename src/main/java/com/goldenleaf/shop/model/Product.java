@@ -9,6 +9,7 @@ import com.goldenleaf.shop.exception.EmptyNameException;
 import com.goldenleaf.shop.exception.IncorrectPriceException;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -66,6 +67,9 @@ public class Product {
      * </p>
      */
     private double price;
+    
+    @Column(name = "DESCRIPTION", columnDefinition = "CLOB")
+    private String description;
 
     /**
      * <p>
@@ -136,7 +140,8 @@ public class Product {
             double price,
             Set<Category> categories,
             List<String> imageUrls,
-            List<Review> reviews
+            List<Review> reviews,
+            String description
     ) throws EmptyBrandException, EmptyNameException, IncorrectPriceException {
 
         if (name == null || name.isBlank()) {
@@ -155,6 +160,7 @@ public class Product {
         this.brand = brand;
         this.price = price;
         this.categories = categories;
+        this.description = description;
         this.imageUrls = imageUrls;
         this.reviews = reviews;
     }
@@ -297,4 +303,13 @@ public class Product {
     public void addReview(Review review) {
         reviews.add(review);
     }
+    
+    
+    public void setDescription(String description) {
+		this.description = description;
+	}
+    
+    public String getDescription() {
+		return description;
+	}
 }

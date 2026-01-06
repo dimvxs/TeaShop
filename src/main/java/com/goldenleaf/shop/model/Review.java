@@ -1,5 +1,6 @@
 package com.goldenleaf.shop.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.goldenleaf.shop.exception.EmptyAuthorException;
 import com.goldenleaf.shop.exception.EmptyContentException;
 import com.goldenleaf.shop.exception.EmptyProductException;
@@ -86,6 +87,7 @@ public class Review {
      */
     @ManyToOne
     @JoinColumn(name = "product_id")
+    @JsonIgnore  // ← ЭТО КЛЮЧЕВОЕ!
     private Product product;
 
     /**
@@ -218,4 +220,8 @@ public class Review {
         }
         this.rating = rating;
     }
+
+	public Product getProduct() {
+		return product;
+	}
 }

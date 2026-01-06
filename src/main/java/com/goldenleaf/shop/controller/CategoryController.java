@@ -1,4 +1,6 @@
 package com.goldenleaf.shop.controller;
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,6 +29,12 @@ public class CategoryController {
 	public CategoryController(CategoryService categoryService) {
 		this.categoryService = categoryService;
 	}
+	
+	@GetMapping
+	public ResponseEntity<List<Category>> getAll() {
+	    return ResponseEntity.ok(categoryService.getAllCategories());
+	}
+
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Category> get(@PathVariable Long id) {
@@ -43,14 +51,14 @@ public class CategoryController {
 
 	@PutMapping("/{id}")
 	@PreAuthorize("hasRole('ADMIN')")
-	public ResponseEntity<Category> update(@PathVariable Long id, @RequestBody CategoryDTO dto) throws EmptyNameException {
+	public ResponseEntity<Category> update(@PathVariable("id") Long id, @RequestBody CategoryDTO dto) throws EmptyNameException {
 		// Implementation goes here
 		return ResponseEntity.ok(categoryService.update(id, dto));
 	}
 
 	@DeleteMapping("/{id}")
 	@PreAuthorize("hasRole('ADMIN')")
-	public ResponseEntity<Void> delete(@PathVariable Long id) {
+	public ResponseEntity<Void> delete(@PathVariable("id")  Long id) {
 		categoryService.removeCategoryById(id);
 		return ResponseEntity.noContent().build();
 	}

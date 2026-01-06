@@ -25,9 +25,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         <div className="product-image-wrapper">
           <img src={image} alt={title} className="product-image" />
 
-          <button className="favorite-btn" aria-label="В избранное">
-            ♥
-          </button>
+
         </div>
 
         {/* Цена */}
@@ -55,3 +53,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
 };
 
 export default ProductCard;
+
+
+

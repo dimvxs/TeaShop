@@ -114,6 +114,8 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
      */
     void deleteByProductName(String name);
 
+	List<Review> findByProductId(Long productId);
+
     /* Recommended additional methods (uncomment when needed): */
     /*
     // Average rating for a product

@@ -1,4 +1,6 @@
 package com.goldenleaf.shop.controller;
+import java.io.IOException;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -8,12 +10,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.goldenleaf.shop.dto.ProductCreateDTO;
+import com.goldenleaf.shop.dto.ProductUpdateDTO;
 import com.goldenleaf.shop.exception.EmptyNameException;
 import com.goldenleaf.shop.model.Product;
 import com.goldenleaf.shop.service.ProductService;
-
+import java.util.List;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 
@@ -30,39 +37,55 @@ public class ProductController {
 	
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Product> get(@PathVariable Long id) {
+	public ResponseEntity<Product> get(@PathVariable("id") Long id){
 	
 		return ResponseEntity.ok(productService.getProductById(id));
 	}
 	
 	
-
+	@GetMapping
+	public ResponseEntity<List<Product>> getAll() {
 	
-	
-	@PostMapping
-	@PreAuthorize("hasRole('ADMIN')")
-	public ResponseEntity<Product> create(@RequestBody Product product) {
-		return ResponseEntity.ok(productService.addProduct(product));
+		return ResponseEntity.ok(productService.getAllProducts());
 	}
 	
+
+	// Создание с файлами
+    @PostMapping(consumes = "multipart/form-data")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<Product> create(
+            @RequestPart("product") @Valid ProductCreateDTO dto,
+            @RequestPart(value = "images", required = false) List<MultipartFile> images
+    ) throws IOException, EmptyNameException {
+        Product product = productService.createProductWithImages(dto, images);
+        return ResponseEntity.ok(product);
+    }
+	
 	
 
 
 	
-	@PutMapping("/{id}")
-	@PreAuthorize("hasRole('ADMIN')")
-			public ResponseEntity<Product> update(@RequestBody Product product) throws EmptyNameException {
-				return ResponseEntity.ok(productService.editProduct(product));
-			}
-	
+	// Обновление с файлами
+	@PutMapping(value = "/{id}", consumes = "multipart/form-data")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<Product> update(
+    		@PathVariable("id") Long id,
+            @RequestPart("product") @Valid ProductUpdateDTO dto,
+            @RequestPart(value = "images", required = false) List<MultipartFile> images
+    ) throws IOException, EmptyNameException {
+        Product product = productService.updateProductWithImages(id, dto, images);
+        return ResponseEntity.ok(product);
+    }
 	
 
 	   @DeleteMapping("/{id}")
 	    @PreAuthorize("hasRole('ADMIN')")
-	    public ResponseEntity<Void> delete(@PathVariable Long id) {
+	    public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
 	        productService.removeProductById(id);
 	        return ResponseEntity.noContent().build();
 	   }
+	   
+	 
 	   
 
 }

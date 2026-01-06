@@ -2,11 +2,20 @@ package com.goldenleaf.shop.service;
 
 import java.util.List;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.goldenleaf.shop.model.Review;
+import com.goldenleaf.shop.dto.ReviewDTO;
+import com.goldenleaf.shop.exception.EmptyAuthorException;
+import com.goldenleaf.shop.exception.EmptyContentException;
+import com.goldenleaf.shop.exception.EmptyLoginException;
+import com.goldenleaf.shop.exception.EmptyProductException;
+import com.goldenleaf.shop.exception.IncorrectRatingException;
 import com.goldenleaf.shop.model.Customer;
 import com.goldenleaf.shop.model.Product;
+import com.goldenleaf.shop.repository.CustomerRepository;
+import com.goldenleaf.shop.repository.ProductRepository;
 import com.goldenleaf.shop.repository.ReviewRepository;
 
 /**
@@ -29,6 +38,8 @@ public class ReviewService {
      * Repository used for performing CRUD operations on {@link Review} entities.
      */
     private final ReviewRepository reviewRepository;
+    private final ProductRepository productRepo;
+    private final CustomerRepository customerRepo;
 
     /**
      * Constructs a new {@code ReviewService} with the provided repository.
@@ -38,11 +49,13 @@ public class ReviewService {
      *
      * @see ReviewRepository
      */
-    public ReviewService(ReviewRepository repo) {
+    public ReviewService(ReviewRepository repo, ProductRepository productRepo, CustomerRepository customerRepo) {
         if (repo == null) {
             throw new IllegalArgumentException("ReviewRepository cannot be null");
         }
         this.reviewRepository = repo;
+        this.productRepo = productRepo;
+        this.customerRepo = customerRepo;
     }
 
     /**
@@ -55,6 +68,99 @@ public class ReviewService {
     public List<Review> getAllReviews() {
         return reviewRepository.findAll();
     }
+    
+    
+    public List<Review> getReviewsByProduct(Long productId) {
+        return reviewRepository.findByProductId(productId);
+    }
+    
+    public List<ReviewDTO> getReviewsDtoByProduct(Long productId) {
+        return reviewRepository.findByProductId(productId).stream()
+            .map(r -> {
+				try {
+					return new ReviewDTO(
+					    r.getId(),
+					    r.getAuthor() != null ? r.getAuthor().getId() : null,
+					    r.getAuthor() != null ? r.getAuthor().getLogin() : null, // или getName()
+					    r.getContent(),
+					    r.getRating(),
+					    r.getProduct() != null ? r.getProduct().getId() : null
+					);
+				} catch (EmptyLoginException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return null;
+			})
+            .toList();
+    }
+
+    public ReviewDTO addReview(ReviewDTO dto)
+            throws IncorrectRatingException, EmptyAuthorException, EmptyContentException, EmptyProductException, EmptyLoginException {
+
+        // 1) Находим сущности по id из DTO
+        Customer author = customerRepo.findById(dto.getAuthorId())
+                .orElseThrow(() -> new IllegalArgumentException("Customer not found: " + dto.getAuthorId()));
+
+        Product product = productRepo.findById(dto.getProductId())
+                .orElseThrow(() -> new IllegalArgumentException("Product not found: " + dto.getProductId()));
+
+        // 2) Создаём Review с привязками (важно!)
+        Review review = new Review(author, dto.getContent(), dto.getRating(), product);
+
+        // 3) Сохраняем
+        Review saved = reviewRepository.save(review);
+
+        // 4) Возвращаем DTO (можно не трогать saved.getProduct(), просто product.getId())
+        return new ReviewDTO(
+                saved.getId(),
+                author.getId(),
+                author.getLogin(),
+                saved.getContent(),
+                saved.getRating(),
+                product.getId()
+        );
+    }
+    
+//    public Review addReview(ReviewDTO dto)
+//            throws IncorrectRatingException, EmptyAuthorException, EmptyContentException, EmptyProductException, EmptyLoginException {
+//
+//        // 1) Находим сущности по id из DTO
+//        Customer author = customerRepo.findById(dto.getAuthorId())
+//                .orElseThrow(() -> new IllegalArgumentException("Customer not found: " + dto.getAuthorId()));
+//
+//        Product product = productRepo.findById(dto.getProductId())
+//                .orElseThrow(() -> new IllegalArgumentException("Product not found: " + dto.getProductId()));
+//
+//        // 2) Создаём Review с привязками (важно!)
+//        Review review = new Review(author, dto.getContent(), dto.getRating(), product);
+//        return reviewRepository.save(review);
+//        
+//
+//
+//    }
+//    
+    
+    
+    
+
+
+
+
+    
+//
+//    public Review addReview(ReviewDTO dto) {
+//        // Берём пользователя из SecurityContext
+//        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+//        Customer user = customerRepo.findByUsername(username)
+//                .orElseThrow(() -> new RuntimeException("Пользователь не найден"));
+//
+//        Product product = productRepo.findById(dto.getProductId())
+//                .orElseThrow(() -> new RuntimeException("Товар не найден"));
+//
+//        Review review = new Review(user, dto.getContent(), dto.getRating(), product);
+//        return reviewRepository.save(review);
+//    }
 
     /**
      * Retrieves all reviews associated with a specific product.

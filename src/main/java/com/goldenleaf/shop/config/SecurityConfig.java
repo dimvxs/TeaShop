@@ -8,10 +8,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
@@ -66,23 +69,51 @@ public class SecurityConfig {
     }
     
     
-    
+   
+
+//    @Bean
+//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//        http
+//            .csrf(csrf -> csrf.disable())
+//            .cors(Customizer.withDefaults())
+//            .authorizeHttpRequests(auth -> auth
+//                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll() // preflight
+//                .requestMatchers("/api/customers/register", "/api/customers/login").permitAll()
+//                .anyRequest().authenticated()
+//            )
+//            .formLogin(form -> form.disable()) // отключаем стандартную форму, если фронт сам логинит
+//            .sessionManagement(session -> session
+//                .maximumSessions(1) // можно ограничить 1 сессию на пользователя
+//            )
+//            .logout(logout -> logout.permitAll()); // разлогинивание разрешено всем
+//        return http.build();
+//    }
+
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .csrf(csrf -> csrf.disable())
-            .cors(Customizer.withDefaults())
+            .csrf(csrf -> csrf.disable())                    // CSRF не нужен для API
+            .cors(Customizer.withDefaults())                 // CORS уже настроен отдельно
+
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll() // разрешаем preflight
+                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .requestMatchers("/api/customers/register", "/api/customers/login").permitAll()
-                .anyRequest().authenticated()
+                .requestMatchers("/api/products/**").permitAll()
+                .anyRequest().permitAll()                    // ← Вот главное изменение
             )
-            .httpBasic(httpBasic -> httpBasic.disable()); // отключаем basic auth для публичных API
+
+            .formLogin(form -> form.disable())
+            .httpBasic(basic -> basic.disable())
+            .logout(logout -> logout.disable())
+
+            .sessionManagement(session -> session
+                .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+                .maximumSessions(1)
+            );
+
         return http.build();
     }
-
-
-    
     
     @Bean
     public WebMvcConfigurer corsConfigurer() { // allow CORS for frontend dev server
@@ -92,11 +123,22 @@ public class SecurityConfig {
                 registry.addMapping("/**")
                         .allowedOrigins("http://localhost:5173")
                         .allowedMethods("*")
+                        .allowedHeaders("*")
+                        .exposedHeaders("Set-Cookie")
                         .allowCredentials(true);
             }
+            
+            @Override
+            public void addResourceHandlers(ResourceHandlerRegistry registry) {
+                registry.addResourceHandler("/uploads/**")
+                        .addResourceLocations("file:uploads/");
+            }
         };
+        
+        
     }
     
+   
     
     
 

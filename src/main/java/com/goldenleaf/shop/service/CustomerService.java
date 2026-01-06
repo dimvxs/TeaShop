@@ -10,6 +10,7 @@ import com.goldenleaf.shop.exception.IncorrectMobileException;
 import com.goldenleaf.shop.model.Customer;
 import com.goldenleaf.shop.repository.CustomerRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.servlet.http.HttpServletRequest;
 
 /**
  * Service class for managing {@link Customer} entities.
@@ -103,9 +104,22 @@ public class CustomerService {
         if (!passwordEncoder.matches(rawPassword, customer.getPasswordHash())) {
             throw new RuntimeException("Invalid password");
         }
+        
 
         return customer;
     }
+    
+
+    public Customer changePasswordAndReturn(Customer customer, String oldPassword, String newPassword) {
+        if (!passwordEncoder.matches(oldPassword, customer.getPasswordHash())) {
+            throw new IllegalArgumentException("Неверный старый пароль");
+        }
+
+        customer.setPassword(passwordEncoder.encode(newPassword));
+        return customerRepository.save(customer);
+    }
+
+
 
     
     
