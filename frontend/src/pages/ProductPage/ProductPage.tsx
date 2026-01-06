@@ -4,6 +4,7 @@ import QuantityControl from "../../components/QuantityControl/QuantityControl";
 import ProductImages from "../../components/ProductImages/ProductImages";
 import BodySection from "../../components/BodySection/BodySection";
 import Rating from "../../components/Rating/Rating";
+import ReviewSection from "../../components/ReviewSection/ReviewSection";
 
 function ProductPage() {
   const product = {
@@ -24,6 +25,31 @@ function ProductPage() {
     ],
     perks: ["Free shipping over $30", "30-day return policy"],
   };
+
+  const baseReviews = [
+    {
+      author: "John",
+      avatar: "/src/assets/img/prod1.jpg",
+      rating: 5,
+      createdAt: "2026-01-02T10:30:00Z",
+      advantages: "Great quality, fast delivery",
+      disadvantages: "None",
+      text: "Great product, very high quality!",
+    },
+    {
+      author: "Jane",
+      avatar: "/src/assets/img/prod1.jpg",
+      rating: 4,
+      createdAt: "2026-01-01T18:15:00Z",
+      advantages: "Nice taste",
+      disadvantages: "A bit expensive",
+      text: "Nice taste, but a bit expensive.",
+    },
+  ];
+
+  const reviews: typeof baseReviews = Array.from({ length: 5 }).flatMap(() =>
+    baseReviews.map((r) => ({ ...r }))
+  );
 
   const [mainImage, setMainImage] = useState(product.images[0]);
   const [qty, setQty] = useState(1);
@@ -91,6 +117,7 @@ function ProductPage() {
             </div>
           </div>
         </div>
+        <ReviewSection reviews={reviews} />
       </BodySection>
     </div>
   );

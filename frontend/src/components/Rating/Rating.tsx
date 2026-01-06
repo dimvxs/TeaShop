@@ -8,7 +8,6 @@ type RatingProps = {
 
 function Rating({ value, max = 5, showValue = true }: RatingProps) {
   const filledStars = Math.max(0, Math.min(value, max));
-
   return (
     <div className="rating">
       <div className="stars">

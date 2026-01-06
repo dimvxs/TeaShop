@@ -1,0 +1,33 @@
+
+@import "../../styles/_variables";
+
+.review-section {
+  &__header {
+    gap: 12px;
+  }
+
+  &__count {
+    font-weight: 300;
+    font-size: 1.2rem;
+    color: #666;
+  }
+
+  &__add-btn {
+    height: 100%;
+    padding: 10px 20px !important;
+    background-color: $color-accent-light !important;
+    border: none !important;
+    color: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: darken($color-accent-light, 10%) !important;
+    }
+
+    &:active {
+      background-color: darken($color-accent-light, 15%) !important;
+    }
+  }
+}
