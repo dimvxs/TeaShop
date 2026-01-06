@@ -126,6 +126,24 @@ public class Customer extends User {
         this.shoppingCart = shoppingCart;
         this.payments = payments;
     }
+    
+    public Customer(String login, String passwordHash, String phone, String email ) 
+			throws IncorrectMobileException, IncorrectEmailException {
+		super(login, passwordHash, login, LocalDate.now());
+		
+		if (!checkField(phone)) {
+			throw new IncorrectMobileException("Incorrect mobile");
+		}
+		if (!checkField(email)) {
+			throw new IncorrectEmailException("Incorrect email");
+		}
+		
+		this.mobile = phone;
+		this.email = email;
+		this.bonusPoints = 0;
+        this.shoppingCart = null;
+        this.payments = new ArrayList<>();
+	}
 
     /**
      * Utility method to validate string fields (mobile, email).

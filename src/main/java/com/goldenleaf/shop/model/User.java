@@ -108,6 +108,13 @@ public abstract class User {
         this.name = name;
         this.lastActivity = lastActivity;
     }
+    
+    public User(String login, String passwordHash) {
+		this.login = login;
+		this.passwordHash = passwordHash;
+		this.name = null;
+		this.lastActivity = LocalDate.now();
+	}
 
     public Long getId() {
         return id;
@@ -144,6 +151,10 @@ public abstract class User {
     public void setPassword(String hashedPassword) {
        this.passwordHash = hashedPassword;
     }
+    
+    public String getPasswordHash() {
+        return passwordHash;
+    }
 
     public LocalDate getLastActivity() {
         return lastActivity;
@@ -164,6 +175,13 @@ public abstract class User {
         this.lastActivity = lastActivity;
     }
     
+    
+    public void setName(String name) {
+    	if(name != null || !name.isBlank()) {
+	
+		 this.name = name;
+    	}
+    }
   
 }
 

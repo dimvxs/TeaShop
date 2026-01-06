@@ -1,9 +1,15 @@
 package com.goldenleaf.shop.service;
 
-import org.springframework.stereotype.Service;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+import com.goldenleaf.shop.dto.CustomerDTO;
+import com.goldenleaf.shop.exception.EmptyLoginException;
+import com.goldenleaf.shop.exception.IncorrectEmailException;
+import com.goldenleaf.shop.exception.IncorrectMobileException;
 import com.goldenleaf.shop.model.Customer;
 import com.goldenleaf.shop.repository.CustomerRepository;
+import jakarta.persistence.EntityNotFoundException;
 
 /**
  * Service class for managing {@link Customer} entities.
@@ -22,6 +28,7 @@ public class CustomerService {
      * Repository used for performing CRUD operations on {@link Customer} entities.
      */
     private final CustomerRepository customerRepository;
+    private final PasswordEncoder passwordEncoder;
 
     /**
      * Constructs a new {@code CustomerService} with the provided repository.
@@ -31,11 +38,82 @@ public class CustomerService {
      *
      * @see CustomerRepository
      */
-    public CustomerService(CustomerRepository repo) {
+    public CustomerService(CustomerRepository repo, PasswordEncoder passwordEncoder) {
         if (repo == null) {
             throw new IllegalArgumentException("CustomerRepository cannot be null");
         }
         this.customerRepository = repo;
+        
+        if(passwordEncoder == null) {
+        				throw new IllegalArgumentException("PasswordEncoder cannot be null");
+        				
+        }
+        this.passwordEncoder = passwordEncoder;
+    }
+    
+    
+
+    
+    public Customer get(Long id) {
+		return customerRepository.findById(id)
+				.orElseThrow(() -> new RuntimeException("Customer not found with id: " + id));
+	}
+    
+    
+    
+    public Customer create(CustomerDTO dto) throws IncorrectMobileException, IncorrectEmailException {
+        if (dto.getPassword() == null || dto.getPassword().isBlank()) {
+            throw new IllegalArgumentException("Password required");
+        }
+
+        String hashedPassword = passwordEncoder.encode(dto.getPassword());
+        Customer customer = new Customer(
+            dto.getLogin(),
+            hashedPassword,
+            dto.getMobile(),
+            dto.getEmail()
+        );
+        return customerRepository.save(customer);
+    }
+
+    
+    public Customer update(Long id, CustomerDTO dto) throws IncorrectMobileException, IncorrectEmailException, EmptyLoginException {
+    			Customer existingCustomer = get(id);
+    			
+    			if(existingCustomer == null) {
+    				
+					throw new RuntimeException("Customer not found with id: " + id);
+					
+				}
+    			
+    			else
+    			{
+    				existingCustomer.setName(dto.getName());
+    				existingCustomer.setEmail(dto.getEmail());
+    				existingCustomer.setLogin(dto.getLogin());
+    				existingCustomer.setPassword(passwordEncoder.encode(dto.getPassword()));
+    			}
+    			return customerRepository.save(existingCustomer);
+    }
+    
+    public Customer login(String login, String rawPassword) {
+        Customer customer = customerRepository.findByLogin(login)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        if (!passwordEncoder.matches(rawPassword, customer.getPasswordHash())) {
+            throw new RuntimeException("Invalid password");
+        }
+
+        return customer;
+    }
+
+    
+    
+    public void deleteById(Long id) {
+        if (!customerRepository.existsById(id)) {
+            throw new EntityNotFoundException("Customer not found with id: " + id);
+        }
+        customerRepository.deleteById(id);
     }
 
     /**

@@ -53,7 +53,7 @@ public interface CreditCardRepository extends JpaRepository<CreditCard, Long> {
      * @return an {@link Optional} containing the matching {@link CreditCard} if found,
      *         or {@link Optional#empty()} if no card with this number exists
      */
-    Optional<CreditCard> findByNumber(String number);
+    Optional<CreditCard> findByCardNumber(String cardNumber);
 
     /**
      * Deletes a credit card by its full card number.
@@ -73,7 +73,7 @@ public interface CreditCardRepository extends JpaRepository<CreditCard, Long> {
      *
      * @param number the full card number of the card to delete
      */
-    void deleteByCardNumber(String number);
+    void deleteByCardNumber(String cardNumber);
 
     /**
      * Optional: more secure alternative — search by masked number or token (recommended in production).

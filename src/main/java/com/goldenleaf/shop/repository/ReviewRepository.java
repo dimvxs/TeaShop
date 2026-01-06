@@ -51,7 +51,7 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
      * @param customer the customer who wrote the reviews (must not be null)
      * @return a list of reviews by this customer (may be empty)
      */
-    List<Review> findByCustomer(Customer customer);
+    List<Review> findByAuthor(Customer customer);
 
     /**
      * Finds all reviews written by a customer identified by their login.
@@ -63,7 +63,7 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
      * @param login the customer's login/username
      * @return a list of reviews written by the customer with this login
      */
-    List<Review> findByCustomerLogin(String login);
+    List<Review> findByAuthorLogin(String login);
 
     /**
      * Finds all reviews for a specific product.

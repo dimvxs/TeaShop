@@ -91,8 +91,8 @@ public class ShoppingCartService {
      *
      * @see ShoppingCartRepository#save(Object)
      */
-    public void addShoppingCart(ShoppingCart cart) {
-        shoppingCartRepository.save(cart);
+    public ShoppingCart addShoppingCart(ShoppingCart cart) {
+        return shoppingCartRepository.save(cart);
     }
 
     /**
@@ -152,10 +152,10 @@ public class ShoppingCartService {
      * @see ShoppingCartRepository#save(Object)
      * @see ShoppingCartRepository#existsById(Object)
      */
-    public void editShoppingCart(ShoppingCart cart) {
+    public ShoppingCart editShoppingCart(ShoppingCart cart) {
         if (cart.getId() == null || !shoppingCartRepository.existsById(cart.getId())) {
             throw new RuntimeException("Shopping cart not found");
         }
-        shoppingCartRepository.save(cart);
+       return shoppingCartRepository.save(cart);
     }
 }

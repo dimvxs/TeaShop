@@ -1,9 +1,18 @@
 package com.goldenleaf.shop.config;
 
+import org.springframework.security.config.Customizer;
+
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * Application-wide security configuration.
@@ -30,6 +39,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  * @since 1.0
  */
 @Configuration
+@EnableWebSecurity
 public class SecurityConfig {
 
     /**
@@ -54,4 +64,40 @@ public class SecurityConfig {
         // return new BCryptPasswordEncoder(12); // stronger
         return new BCryptPasswordEncoder();
     }
+    
+    
+    
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+            .csrf(csrf -> csrf.disable())
+            .cors(Customizer.withDefaults())
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll() // разрешаем preflight
+                .requestMatchers("/api/customers/register", "/api/customers/login").permitAll()
+                .anyRequest().authenticated()
+            )
+            .httpBasic(httpBasic -> httpBasic.disable()); // отключаем basic auth для публичных API
+        return http.build();
+    }
+
+
+    
+    
+    @Bean
+    public WebMvcConfigurer corsConfigurer() { // allow CORS for frontend dev server
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**")
+                        .allowedOrigins("http://localhost:5173")
+                        .allowedMethods("*")
+                        .allowCredentials(true);
+            }
+        };
+    }
+    
+    
+    
+
 }

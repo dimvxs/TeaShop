@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * Data Transfer Object for creating, updating or returning customer information.
  * <p>
@@ -35,6 +37,9 @@ public class CustomerDTO extends UserDTO {
     @NotBlank(message = "Email is required")
     @Size(max = 100, message = "Email too long")
     private String email;
+    
+    @Size(min = 6, message = "Password must be at least 6 characters")
+    private String password;  // не @NotBlank — при update может быть пустым
 
     @Min(value = 0, message = "Bonus points cannot be negative")
     private int bonusPoints = 0;
@@ -59,6 +64,15 @@ public class CustomerDTO extends UserDTO {
         this.bonusPoints = bonusPoints;
         this.shoppingCartId = shoppingCartId;
         this.paymentIds = paymentIds != null ? List.copyOf(paymentIds) : Collections.emptyList();
+    }
+    
+    
+    public CustomerDTO(Long id, String login, String email, String mobile, String password)
+    {
+    	 super(id, login);
+    	 this.mobile = mobile;
+		 this.email = email;
+		 this.password = password;
     }
 
     public String getMobile() {
@@ -92,6 +106,17 @@ public class CustomerDTO extends UserDTO {
     public void setShoppingCartId(Long shoppingCartId) {
         this.shoppingCartId = shoppingCartId;
     }
+    
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
+    
+
+    public String getPassword() {
+        return password;
+    }
+
 
     /**
      * Returns an unmodifiable list of payment method IDs.
