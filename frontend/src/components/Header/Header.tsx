@@ -4,6 +4,9 @@ import { useState } from "react";
 import { FiMenu, FiX } from "react-icons/fi"; // иконки от react-icons
 import { useNavigate } from "react-router-dom";
 import BodySection from "../BodySection/BodySection";
+
+import MobileMenu from "../MobileMenu/MobileMenu";
+
 const Header = () => {
   const [search, setSearch] = useState("");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -26,85 +29,51 @@ const Header = () => {
     <>
       <header className="header-site">
         <BodySection noBorder>
-        <div className="header-container">
-          {/* Логотип */}
+          <div className="header-container">
+            {/* Логотип */}
 
-          <a href="/public" className="logo">
-            <img src={logo} alt="Golfen Leaf" />
-          </a>
-
-          {/* Кнопка гамбургера — только на мобильных */}
-          <button
-            className="menu-toggle"
-            onClick={toggleMenu}
-            aria-label="Открыть меню"
-          >
-            {isMenuOpen ? <FiX size={28} /> : <FiMenu size={28} />}
-          </button>
-
-          {/* Поисковая форма */}
-          <form className="search-form" onSubmit={handleSearch}>
-            <input
-              type="text"
-              placeholder="Найти на Golfen Leaf"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-            <button type="submit">Поиск</button>
-          </form>
-
-          {/* Навигация — скрывается на мобильных */}
-          <nav className="nav-links">
-            <a href="#login" onClick={goToLogin}>
-              Вход
+            <a href="/public" className="logo">
+              <img src={logo} alt="Golfen Leaf" />
             </a>
-            <a href="#cart">Корзина</a>
-            <a href="#contact">Адреса</a>
-          </nav>
-        </div>
+
+            {/* Кнопка гамбургера — только на мобильных */}
+            <button
+              className="menu-toggle"
+              onClick={toggleMenu}
+              aria-label="Открыть меню"
+            >
+              {isMenuOpen ? <FiX size={28} /> : <FiMenu size={28} />}
+            </button>
+
+            {/* Поисковая форма */}
+            <form className="search-form" onSubmit={handleSearch}>
+              <input
+                type="text"
+                placeholder="Найти на Golfen Leaf"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+              <button type="submit">Поиск</button>
+            </form>
+
+            {/* Навигация — скрывается на мобильных */}
+            <nav className="nav-links">
+              <a href="#login" onClick={goToLogin}>
+                Вход
+              </a>
+              <a href="#cart">Корзина</a>
+              <a href="#contact">Адреса</a>
+            </nav>
+          </div>
         </BodySection>
       </header>
 
       {/* Боковое мобильное меню */}
-      <div
-        className={`mobile-menu-overlay ${isMenuOpen ? "open" : ""}`}
-        onClick={toggleMenu}
+      <MobileMenu
+        isOpen={isMenuOpen}
+        onClose={toggleMenu}
+        goToLogin={goToLogin}
       />
-      <aside className={`mobile-menu ${isMenuOpen ? "open" : ""}`}>
-        <div className="mobile-menu-header">
-          <a href="/public" className="logo mobile-logo">
-            <img src={logo} alt="Golfen Leaf" />
-          </a>
-          <button onClick={toggleMenu} className="close-menu">
-            <FiX size={32} />
-          </button>
-        </div>
-
-        <nav className="mobile-nav">
-          <a href="#login" onClick={goToLogin}>
-            Вход
-          </a>
-          <a href="#cart" onClick={toggleMenu}>
-            Корзина
-          </a>
-          <a href="#contact" onClick={toggleMenu}>
-            Адреса
-          </a>
-          <a href="#catalog" onClick={toggleMenu}>
-            Каталог
-          </a>
-          <a href="#sale" onClick={toggleMenu}>
-            Акции
-          </a>
-          <a href="#delivery" onClick={toggleMenu}>
-            Доставка
-          </a>
-        </nav>
-
-        <div className="mobile-menu-footer">
-          <p>© 2025 Golfen Leaf</p>
-        </div>
-      </aside>
     </>
   );
 };

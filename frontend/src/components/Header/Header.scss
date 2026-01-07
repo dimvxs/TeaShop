@@ -121,8 +121,6 @@ $light-purple: rgba(164, 53, 240, 0.08);
     }
   }
 }
-
-// Гамбургер-кнопка (видна только на мобильных)
 .menu-toggle {
   display: block;
   background: none;
@@ -131,90 +129,4 @@ $light-purple: rgba(164, 53, 240, 0.08);
   cursor: pointer;
   padding: 0.5rem;
   z-index: 1001;
-}
-
-
-// Оверлей при открытом меню
-.mobile-menu-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.4);
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.15s ease;
-  z-index: 1499;
-
-  &.open {
-    opacity: 1;
-    visibility: visible;
-  }
-}
-
-// Боковое меню
-.mobile-menu {
-  position: fixed;
-  top: 0;
-  left: -100%;
-  width: 320px;
-  max-width: 85vw;
-  height: 100vh;
-  background: $white;
-  box-shadow: 8px 0 25px rgba(0, 0, 0, 0.15);
-  transition: left 0.15s cubic-bezier(0.25, 0.8, 0.25, 1);
-  z-index: 1500;
-  display: flex;
-  flex-direction: column;
-
-  &.open {
-    left: 0;
-  }
-
-  .mobile-menu-header {
-    padding: 1rem 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid #eee;
-
-    .mobile-logo img {
-      height: 44px;
-    }
-
-    .close-menu {
-      background: none;
-      border: none;
-      color: #666;
-      cursor: pointer;
-      padding: 0.5rem;
-    }
-  }
-
-  .mobile-nav {
-    flex: 1;
-    padding: 1.5rem 0;
-
-    a {
-      display: block;
-      padding: 1rem 2rem;
-      color: #333;
-      font-size: 1.1rem;
-      font-weight: 500;
-      text-decoration: none;
-      transition: all 0.25s ease;
-
-      &:hover {
-        background: $light-purple;
-        color: $wb-purple;
-        padding-left: 2.5rem;
-      }
-    }
-  }
-
-  .mobile-menu-footer {
-    padding: 1.5rem;
-    border-top: 1px solid #eee;
-    color: #888;
-    font-size: 0.9rem;
-    text-align: center;
-  }
 }
