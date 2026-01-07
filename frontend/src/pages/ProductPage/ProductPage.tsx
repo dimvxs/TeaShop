@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
+
 import "./ProductPage.scss";
 import QuantityControl from "../../components/QuantityControl/QuantityControl";
 import ProductImages from "../../components/ProductImages/ProductImages";
@@ -7,6 +9,7 @@ import Rating from "../../components/Rating/Rating";
 import ReviewSection from "../../components/ReviewSection/ReviewSection";
 
 function ProductPage() {
+  const [favorited, setFavorited] = useState(false);
   const product = {
     name: "Green Tea",
     rating: 4,
@@ -70,7 +73,22 @@ function ProductPage() {
 
               <div className="col-md-6 right-side">
                 <div className="product-header">
-                  <h2 className="product-name">{product.name}</h2>
+                  <h2 className="product-name">
+                    {product.name}
+                    {favorited ? (
+                      <FaHeart
+                        className="product-favorite-icon filled"
+                        size={28}
+                        onClick={() => setFavorited(false)}
+                      />
+                    ) : (
+                      <FaRegHeart
+                        className="product-favorite-icon"
+                        size={28}
+                        onClick={() => setFavorited(true)}
+                      />
+                    )}
+                  </h2>
                   <Rating value={product.rating} />
                 </div>
 
