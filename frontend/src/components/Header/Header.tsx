@@ -3,7 +3,7 @@ import "./Header.scss";
 import { useState } from "react";
 import { FiMenu, FiX } from "react-icons/fi"; // иконки от react-icons
 import { useNavigate } from "react-router-dom";
-
+import BodySection from "../BodySection/BodySection";
 const Header = () => {
   const [search, setSearch] = useState("");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -25,6 +25,7 @@ const Header = () => {
   return (
     <>
       <header className="header-site">
+        <BodySection noBorder>
         <div className="header-container">
           {/* Логотип */}
 
@@ -61,6 +62,7 @@ const Header = () => {
             <a href="#contact">Адреса</a>
           </nav>
         </div>
+        </BodySection>
       </header>
 
       {/* Боковое мобильное меню */}

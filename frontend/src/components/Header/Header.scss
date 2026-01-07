@@ -1,7 +1,5 @@
-// Header.scss — твои стили + мягкий фиолетовый Wildberries
-
 $white: #ffffff;
-$wb-purple: #a435f0;       // именно этот оттенок сейчас у WB (2025)
+$wb-purple: #a435f0;
 $wb-purple-hover: #9120e0;
 $light-purple: rgba(164, 53, 240, 0.08);
 
@@ -13,9 +11,6 @@ $light-purple: rgba(164, 53, 240, 0.08);
   z-index: 1000;
 
   .header-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0.75rem 1rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -125,10 +120,6 @@ $light-purple: rgba(164, 53, 240, 0.08);
       }
     }
   }
-
-
-
-
 }
 
 // Гамбургер-кнопка (видна только на мобильных)

@@ -1,11 +1,11 @@
 // src/components/Footer.jsx
 import './Footer.scss';
-
+import BodySection from '../BodySection/BodySection';
 const Footer = () => {
     return (
         <footer className="site-footer">
+        <BodySection noBorder>
             <div className="footer-container">
-
                 {/* Верхняя часть — колонки */}
                 <div className="footer-top">
 
@@ -74,6 +74,8 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
+        </BodySection>
+
         </footer>
     );
 };
