@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 
 import com.goldenleaf.shop.model.Customer;
 import com.goldenleaf.shop.model.Product;
+import com.goldenleaf.shop.model.ShoppingCart;
+import com.goldenleaf.shop.model.User;
 
 /**
  * Spring Data JPA repository for {@link Customer} entities.
@@ -51,6 +53,7 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
      *         or {@link Optional#empty()} if no customer has this mobile number
      */
     Optional<Customer> findByMobile(String mobile);
+    
 
     /**
      * Deletes a customer by their mobile phone number.
@@ -82,6 +85,8 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
 	 *         or {@link Optional#empty()} if no customer has this login
 	 */
     Optional<Customer> findByLogin(String login);
+
+
 
     /**
      * Optional: case-insensitive email lookup (commonly needed).

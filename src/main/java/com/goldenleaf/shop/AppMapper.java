@@ -24,6 +24,7 @@ import com.goldenleaf.shop.exception.NullPaymentException;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.springframework.context.annotation.Primary;
 
 /**
  * Mapper interface for converting between entity classes and their corresponding DTOs.
@@ -108,7 +109,9 @@ public interface AppMapper {
 
     // ------------------- ShoppingCart -------------------
     @Mapping(target = "customerId", ignore = true)
-    ShoppingCartDTO toDTO(ShoppingCart shoppingCart) throws EmptyProductException, IncorrectQuantityException, IncorrectPriceException;
+    ShoppingCartDTO toDTO(ShoppingCart shoppingCart) 
+        throws EmptyProductException, IncorrectQuantityException, IncorrectPriceException;
+
 
     @Mapping(target = "customer", ignore = true)
     ShoppingCart toEntity(ShoppingCartDTO dto) throws EmptyProductException, IncorrectQuantityException, IncorrectPriceException;;

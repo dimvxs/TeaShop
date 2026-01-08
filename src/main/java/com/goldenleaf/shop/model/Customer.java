@@ -187,6 +187,10 @@ public class Customer extends User {
     public String getEmail() {
         return email;
     }
+    
+    public Customer getCurrentCustomer() {
+    			return this;
+    }
 
     /**
      * Sets a new email address.
@@ -210,6 +214,8 @@ public class Customer extends User {
         return bonusPoints;
     }
 
+    
+  
     /**
      * Sets the exact amount of bonus points.
      * <p>Only positive values are accepted; otherwise the operation is ignored.</p>
@@ -306,4 +312,10 @@ public class Customer extends User {
         payments.remove(card);
         card.setCustomer(null);
     }
+
+	public String getName()
+
+    {
+		return this.email;
+		}
 }

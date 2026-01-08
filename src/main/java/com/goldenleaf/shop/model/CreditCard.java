@@ -115,6 +115,11 @@ public class CreditCard {
         return holderName;
     }
 
+    
+    public void setId(Long id) {
+		this.id = id;
+		
+	}
     /**
      * Returns the credit card number.
      * <p>

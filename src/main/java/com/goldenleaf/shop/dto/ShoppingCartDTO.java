@@ -5,6 +5,8 @@ import jakarta.validation.constraints.*;
 import java.util.Collections;
 import java.util.List;
 
+import com.goldenleaf.shop.model.ShoppingCart;
+
 /**
  * Data Transfer Object representing a customer's shopping cart.
  * <p>
@@ -53,6 +55,7 @@ public class ShoppingCartDTO {
         this.items = items != null ? List.copyOf(items) : Collections.emptyList();
         this.totalPrice = totalPrice;
     }
+    
 
     public Long getId() {
         return id;
@@ -103,4 +106,25 @@ public class ShoppingCartDTO {
                 ", totalPrice=" + String.format("%.2f", totalPrice) +
                 '}';
     }
+    
+    public ShoppingCartDTO toCartDTO(ShoppingCart cart) {
+        List<ShoppingItemDTO> items = cart.getItems().stream()
+            .map(i -> new ShoppingItemDTO(
+                i.getId(),
+                i.getProduct().getId(),
+                i.getProduct().getName(),
+                i.getQuantity(),          // int
+                i.getProduct().getPrice() // double
+            ))
+            .toList();
+
+        return new ShoppingCartDTO(
+            cart.getId(),
+            cart.getCustomer().getId(),
+            items,
+            cart.getTotalPrice()
+        );
+    }
+
+
 }

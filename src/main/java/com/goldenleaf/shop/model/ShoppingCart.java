@@ -103,6 +103,12 @@ public class ShoppingCart {
         this.totalPrice = totalPrice;
     }
 
+    
+    public ShoppingCart getCurrentUserCart() {
+        Customer customer = getCustomer();
+        return customer.getShoppingCart();
+    }
+    
     /**
      * @return the unique identifier of this cart
      */
@@ -110,6 +116,11 @@ public class ShoppingCart {
         return id;
     }
 
+    
+    public void setId(Long id) {
+		this.id = id;
+		
+	}
     /**
      * @return a list of items inside the cart
      *
@@ -259,4 +270,8 @@ public class ShoppingCart {
         }
         this.totalPrice = totalPrice;
     }
+
+	public Customer getCustomer() {
+		return this.customer;
+	}
 }

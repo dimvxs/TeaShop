@@ -140,6 +140,10 @@ public class Review {
         this.rating = rating;
         this.product = product;
     }
+    public void setId(Long id) {
+		this.id = id;
+		
+	}
 
     /**
      * @return the unique identifier of the review
@@ -147,6 +151,7 @@ public class Review {
     public Long getId() {
         return id;
     }
+    
 
     /**
      * @return the customer who authored the review

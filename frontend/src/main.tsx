@@ -8,12 +8,15 @@ import './index.scss';
 import App from './App.tsx';
 import { AuthProvider } from "./context/AuthContext.tsx";
 import { BrowserRouter } from 'react-router-dom';
+import {CartProvider} from "./context/CartContext.tsx";
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
         <AuthProvider>
             <BrowserRouter>
+                <CartProvider>
                 <App />
+                </CartProvider>
             </BrowserRouter>
         </AuthProvider>
     </StrictMode>,

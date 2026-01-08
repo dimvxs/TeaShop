@@ -13,6 +13,9 @@ $breakpoint-mobile-xs: 320px;
   .section-container {
     width: $max-width;
     padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 
     @media (max-width: $max-width) {
       width: $breakpoint-lg;

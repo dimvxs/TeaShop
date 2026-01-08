@@ -312,4 +312,9 @@ public class Product {
     public String getDescription() {
 		return description;
 	}
+
+	public void setId(Long id) {
+		this.id = id;
+		
+	}
 }

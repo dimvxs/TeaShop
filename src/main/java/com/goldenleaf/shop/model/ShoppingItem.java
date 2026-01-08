@@ -110,6 +110,11 @@ public class ShoppingItem {
     public Long getId() {
         return id;
     }
+    
+    public void setId(Long id) {
+		this.id = id;
+		
+	}
 
     /**
      * @return the product assigned to this item
