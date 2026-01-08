@@ -109,3 +109,25 @@ export const useAuth = () => {
     if (!ctx) throw new Error("useAuth must be used within AuthProvider");
     return ctx;
 };
+
+export const updateUser = async (user: User) => {
+    try {
+        const res = await fetch(
+            `http://localhost:8080/api/customers/${user.id}`,
+            {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                credentials: "include",
+                body: JSON.stringify(user),
+            }
+        );
+
+        if (!res.ok) {
+            const text = await res.text();
+            throw new Error(text || "Ошибка при обновлении пользователя");
+        }
+
+    } catch (e: any) {
+        console.log(e.message);
+    }
+}

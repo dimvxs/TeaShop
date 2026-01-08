@@ -85,17 +85,24 @@
 // }
 import { useState } from "react";
 import "./ProfilePage.css";
-import { useAuth } from "../../context/AuthContext";
+import { useAuth, updateUser } from "../../context/AuthContext";
 
 export default function ProfilePage() {
     const { user } = useAuth();
     const [open, setOpen] = useState<number | null>(1); // сразу открыт
+    const [isEdit, setIsEdit] = useState(false);
+    const userReq = {
+        id: 0,
+        login: "",
+        mobile: "",
+        email: ""
+    }
 
     if (!user) {
         return <div style={{ padding: 40 }}>Вы не авторизованы</div>;
     }
 
-    const items = [
+    const Sitems = [
         {
             id: 1,
             title: "Мой аккаунт",
@@ -106,6 +113,36 @@ export default function ProfilePage() {
             ],
         },
     ];
+
+    const [items, setItems] = useState!(Sitems);
+
+    const editItemValue = (text: string, title: string) => {
+        setItems(prev =>
+            prev.map(item =>
+                item.id === 1
+                ? {
+                    ...item,
+                    subtitle: item.subtitle?.map(sub =>
+                        sub.title === title
+                        ? { ...sub, desc: text }
+                        : sub
+                    ),
+                }
+                :item
+            )
+        )
+    }
+
+    const saveEdit = () => {
+        if (isEdit) {
+            userReq.id = user.id;
+            userReq.login = items[0].subtitle[0].desc;
+            userReq.mobile = items[0].subtitle[1].desc;
+            userReq.email = items[0].subtitle[2].desc;
+            updateUser(userReq);
+        }
+        setIsEdit(!isEdit);
+    }
 
     return (
         <div className="profile">
@@ -130,12 +167,18 @@ export default function ProfilePage() {
                                             {subt.title}
                                         </span>
                                         <br />
-                                        <span className="subtitle-lower-text">
-                                            {subt.desc}
-                                        </span>
+                                        {isEdit ? (
+                                            <input className="subtitle-input" value={subt.desc} onChange={e => editItemValue(e.target.value, subt.title)}/>
+                                        ) : (
+                                            <span className="subtitle-lower-text">{subt.desc}</span>
+                                        ) }
+                                        
                                     </div>
                                 ))}
                             </div>
+                            <button className="edit-btn">
+                                <span className="edit-text" onClick={() => saveEdit()}>{isEdit ? "Сохранить" : "Редактировать"}</span>
+                            </button>
                         </div>
                     )}
                 </div>
