@@ -98,24 +98,29 @@ export default function ProfilePage() {
         email: ""
     }
 
-    const Sitems = [
-        {
-            id: 1,
-            title: "Мой аккаунт",
-            subtitle: [
-                { title: "Логин", desc: user!.login },
-                { title: "Телефон", desc: user!.mobile },
-                { title: "Email", desc: user!.email },
-            ],
-        },
-    ];
+    
 
-    const [items, setItems] = useState(Sitems);
+    
 
     if (!user) {
         return <div style={{ padding: 40 }}>Вы не авторизованы</div>;
     }
     
+    const Sitems = [
+        {
+            id: 1,
+            title: "Мой аккаунт",
+            subtitle: [
+                { title: "Логин", desc: user.login },
+                { title: "Телефон", desc: user.mobile },
+                { title: "Email", desc: user.email },
+            ],
+        },
+    ];
+
+
+    const [items, setItems] = useState(Sitems);
+
 
     const editItemValue = (text: string, title: string) => {
         setItems(prev =>
@@ -187,29 +192,29 @@ export default function ProfilePage() {
 
             <ChangePassword />
 
-            {/*<div className = "auth-block">*/}
-            {/*    <button className="auth-button">*/}
-            {/*        <span className="auth-icon" />*/}
-            {/*        <div className = "auth-text-block">*/}
-            {/*            <span className="auth-text">Google</span>*/}
-            {/*            <span className="auth-text">Привя</span>*/}
-            {/*        </div>*/}
-            {/*    </button>*/}
-            {/*    <button className="auth-button">*/}
-            {/*        <span className="auth-icon" />*/}
-            {/*        <div className="auth-text-block">*/}
-            {/*            <span className="auth-text">Google</span>*/}
-            {/*            <span className="auth-text">Привя</span>*/}
-            {/*        </div>*/}
-            {/*    </button>*/}
-            {/*    <button className="auth-button">*/}
-            {/*        <span className="auth-icon" />*/}
-            {/*        <div className="auth-text-block">*/}
-            {/*            <span className="auth-text">Google</span>*/}
-            {/*            <span className="auth-text">Привя</span>*/}
-            {/*        </div>*/}
-            {/*    </button>*/}
-            {/*</div>*/}
+            <div className = "auth-block">
+                <button className="auth-button">
+                    <i className={`bi bi-google`} />
+                    <div className = "auth-text-block">
+                        <span className="auth-text">Google</span>
+                        <span className="auth-text">Привязать аккаунт</span>
+                    </div>
+                </button>
+                <button className="auth-button">
+                    <i className={`bi bi-instagram`} />
+                    <div className="auth-text-block">
+                        <span className="auth-text">Instagram</span>
+                        <span className="auth-text">Привязать аккаунт</span>
+                    </div>
+                </button>
+                <button className="auth-button">
+                    <i className={`bi bi-facebook`} />
+                    <div className="auth-text-block">
+                        <span className="auth-text">Facebook</span>
+                        <span className="auth-text">Привязать аккаунт</span>
+                    </div>
+                </button>
+            </div>
             
         </div>
     );
