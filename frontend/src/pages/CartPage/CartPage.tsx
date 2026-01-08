@@ -1,6 +1,7 @@
 import React from "react";
 import { useCart } from "../../context/CartContext.tsx";
 import { Link } from "react-router-dom";
+import { MdOutlineShoppingCart } from "react-icons/md";
 import CartItem from "../../components/CartItem/CartItem";
 import "./CartPage.scss";
 
@@ -18,10 +19,15 @@ const CartPage: React.FC = () => {
     if (items.length === 0) {
         return (
             <div className="container py-5 text-center">
-                <h2>Корзина пуста</h2>
-                <Link to="/" className="btn btn-primary mt-4">
-                    Перейти к покупкам
-                </Link>
+                <div className="go-back-wrapper card ">
+                    <MdOutlineShoppingCart className="empty-cart-icon" />
+                    <h2>Корзина пуста</h2>
+                    <p>Загляните на главную — мы собрали там товары, которые могут вам понравиться!</p>
+                    <Link to="/" className="btn go-back-btn">
+                        Перейти к покупкам
+                    </Link>
+                </div>
+
             </div>
         );
     }
@@ -39,7 +45,7 @@ const CartPage: React.FC = () => {
 
                 <div className="col-lg-4">
                     <div className="summary-card-wrapper">
-                        <div className="card p-4">
+                        <div className="cart-page-card card p-4">
                             <h4>Итог</h4>
                             <hr />
                             <div className="d-flex justify-content-between mb-3">

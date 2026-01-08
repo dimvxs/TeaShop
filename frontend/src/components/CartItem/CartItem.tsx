@@ -19,7 +19,7 @@ interface CartItemProps {
 const CartItem: React.FC<CartItemProps> = ({ item }) => {
     const { updateQuantity, removeFromCart } = useCart();
     return (
-        <div className="card mb-4">
+        <div className="card cart-item-card mb-4">
             <div className="row g-0">
                 <div className="col-md-3 p-3">
                     {item.product.imageUrls[0] ? (

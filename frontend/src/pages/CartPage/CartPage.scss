@@ -4,7 +4,15 @@
   position: sticky;
   top: 20px;
 
-  .card {
+  .cart-page-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    border: none;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    padding: 1rem;
+
     hr {
       border: none;
       height: 1px;
@@ -28,9 +36,7 @@
         transform: scale(1.05);
         box-shadow: 0 0 20px rgba(195, 111, 255, 0.8);
       }
-
     }
-
 
     .total-row {
       h5 {
@@ -39,8 +45,72 @@
         font-weight: 700;
         color: $color-accent-dark;
       }
+    }
+  }
+}
 
+.go-back-wrapper {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  border: none;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  padding: 1rem;
+  gap: 20px;
+  padding: 50px 20px;
+  align-items: center;
+
+  h2 {
+    color: $color-accent-dark;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  p {
+    font-weight: 500;
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 24px;
+  }
+
+  .go-back-btn {
+    width: fit-content;
+    height: 100%;
+    border-radius: 8px;
+    padding: 10px 20px !important;
+    color: white;
+    background-color: $wb-purple !important;
+    border: none !important;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(195, 111, 255, 0.8);
+    }
+  }
+
+  .empty-cart-icon {
+    font-size: 64px;
+    color: $wb-purple;
+    opacity: 0.8;
+    animation: float 2.5s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0% {
+      transform: translateY(0);
     }
 
+    50% {
+      transform: translateY(-6px);
+    }
+
+    100% {
+      transform: translateY(0);
+    }
   }
 }
