@@ -2,6 +2,7 @@ import logo from "../../assets/logo.png";
 import "./Header.scss";
 import { useState } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
+import { FiSearch } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext.tsx";
 
@@ -50,7 +51,9 @@ const Header = () => {
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
                         />
-                        <button type="submit">Поиск</button>
+                        <button type="submit" aria-label="Search">
+                            <FiSearch size={25} />
+                        </button>
                     </form>
 
                     <nav className="nav-links">
