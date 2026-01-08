@@ -6,7 +6,11 @@ import { FiSearch } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext.tsx";
 
-const Header = () => {
+interface HeaderProps {
+  sticky?: boolean;
+}
+
+const Header: React.FC<HeaderProps> = ({ sticky = true }) => {
     const [search, setSearch] = useState("");
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -30,7 +34,7 @@ const Header = () => {
 
     return (
         <>
-            <header className="header-site">
+             <header className={`header-site ${sticky ? "sticky" : "non-sticky"}`}>
                 <div className="header-container">
                     <a href="/" className="logo">
                         <img src={logo} alt="Golfen Leaf" />

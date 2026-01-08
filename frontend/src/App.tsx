@@ -42,9 +42,18 @@ function App() {
             <Route path="/admin" element={<AdminPanel />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
-            <Route path="/adminProduct" element={<ProductAdminForm/> } />
-            <Route path="/adminCategory" element={<CategoryAdminForm/> } />
-            <Route path="/cart" element={<CartPage/>} />
+            <Route path="/adminProduct" element={<ProductAdminForm />} />
+            <Route path="/adminCategory" element={<CategoryAdminForm />} />
+
+            <Route
+                path="/cart"
+                element={
+                    <DefaultLayout headerSticky={false}>
+                        <CartPage />
+                    </DefaultLayout>
+                }
+            />
+
         </Routes>
     )
 }

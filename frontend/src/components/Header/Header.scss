@@ -9,9 +9,17 @@ $light-purple: rgba(164, 53, 240, 0.08);
 .header-site {
   background-color: $white;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  position: sticky;
   top: 0;
   z-index: 1000;
+
+  &.sticky {
+    position: sticky;
+    top: 0;
+  }
+
+  &.non-sticky {
+    position: static;
+  }
 
   .header-container {
     max-width: 1400px;
@@ -156,6 +164,7 @@ $light-purple: rgba(164, 53, 240, 0.08);
     display: block;
   }
 }
+
 // Оверлей при открытом меню
 .mobile-menu-overlay {
   position: fixed;

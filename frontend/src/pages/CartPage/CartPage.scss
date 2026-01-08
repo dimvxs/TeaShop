@@ -1,0 +1,46 @@
+@import "../../styles/_variables";
+
+.summary-card-wrapper {
+  position: sticky;
+  top: 20px;
+
+  .card {
+    hr {
+      border: none;
+      height: 1px;
+      background-color: #c1c1c1;
+      margin: 1rem 0;
+    }
+
+    .order-btn {
+      height: 100%;
+      border-radius: 8px;
+      padding: 10px 20px !important;
+      color: white;
+      background-color: $wb-purple !important;
+      border: none !important;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+      &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(195, 111, 255, 0.8);
+      }
+
+    }
+
+
+    .total-row {
+      h5 {
+        margin: 0;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: $color-accent-dark;
+      }
+
+    }
+
+  }
+}

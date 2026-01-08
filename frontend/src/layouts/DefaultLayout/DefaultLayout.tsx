@@ -8,14 +8,18 @@ interface DefaultLayoutProps {
   children: ReactNode;
 }
 
-const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
+const DefaultLayout: React.FC<DefaultLayoutProps & { headerSticky?: boolean }> = ({
+  children,
+  headerSticky = true,
+}) => {
   return (
     <>
-      <Header />
+      <Header sticky={headerSticky} />
       <main>{children}</main>
       <Footer />
     </>
   );
 };
+
 
 export default DefaultLayout;

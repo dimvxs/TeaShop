@@ -1,0 +1,50 @@
+@import "../../styles/_variables";
+.card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  border: none;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  padding: 1rem;
+
+  .quantity-btn {
+    background-color: #f0f0f0; 
+    color: #333;
+    border: none;
+    border-radius: 8px;
+    width: 32px;
+    height: 32px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      background-color: #e0e0e0;
+      transform: scale(1.1);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    &:active {
+      transform: scale(1);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  .delete-btn {
+    height: 100%;
+    border-radius: 8px;
+    padding: 10px 20px !important;
+    color: white;
+    background-color: $wb-purple !important;
+    border: none !important;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+     &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(195, 111, 255, 0.8);
+      }
+   
+  }
+}
