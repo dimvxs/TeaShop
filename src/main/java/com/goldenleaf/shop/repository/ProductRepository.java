@@ -1,5 +1,6 @@
 package com.goldenleaf.shop.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -74,6 +75,10 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
      *         For multiple results, consider using {@code List<Product> findAllByBrand(String brand)}
      */
     Optional<Product> findByBrand(String brand);
+    
+
+    List<Product> findByNameContainingIgnoreCaseOrDescriptionContainingIgnoreCase(String name, String description);
+
 
     /**
      * Deletes a product by its name.

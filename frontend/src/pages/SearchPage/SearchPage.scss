@@ -1,0 +1,52 @@
+.search-page {
+  padding: 20px;
+
+  h2 {
+    margin-bottom: 20px;
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+  }
+
+  .product-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s;
+
+    &:hover {
+      transform: scale(1.03);
+    }
+
+    img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .product-info {
+      padding: 10px;
+      text-align: center;
+
+      h3 {
+        font-size: 16px;
+        margin-bottom: 5px;
+      }
+
+      p {
+        font-weight: bold;
+        color: #333;
+      }
+    }
+  }
+
+  .loading, .error, .no-results {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 18px;
+  }
+}

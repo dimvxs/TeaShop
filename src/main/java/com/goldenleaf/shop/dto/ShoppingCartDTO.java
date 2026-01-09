@@ -56,6 +56,8 @@ public class ShoppingCartDTO {
         this.totalPrice = totalPrice;
     }
     
+    
+    
 
     public Long getId() {
         return id;
@@ -107,24 +109,7 @@ public class ShoppingCartDTO {
                 '}';
     }
     
-    public ShoppingCartDTO toCartDTO(ShoppingCart cart) {
-        List<ShoppingItemDTO> items = cart.getItems().stream()
-            .map(i -> new ShoppingItemDTO(
-                i.getId(),
-                i.getProduct().getId(),
-                i.getProduct().getName(),
-                i.getQuantity(),          // int
-                i.getProduct().getPrice() // double
-            ))
-            .toList();
 
-        return new ShoppingCartDTO(
-            cart.getId(),
-            cart.getCustomer().getId(),
-            items,
-            cart.getTotalPrice()
-        );
-    }
 
 
 }

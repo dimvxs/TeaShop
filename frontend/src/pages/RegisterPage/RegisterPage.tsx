@@ -32,14 +32,13 @@ function RegisterPage() {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    // Если нужен токен админа (для теста):
-                    // 'Authorization': 'Bearer ' + adminToken,
+
                 },
                 body: JSON.stringify({
                     login: login,
                     email: email,
-                    mobile: phone || null,  // Предполагаем, что в CustomerDTO поле называется mobile
-                    password: password,  // ВНИМАНИЕ: если backend НЕ хэширует — очень плохо!
+                    mobile: phone || null,
+                    password: password,
                 }),
             })
 

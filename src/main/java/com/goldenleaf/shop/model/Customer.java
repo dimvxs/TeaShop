@@ -141,7 +141,9 @@ public class Customer extends User {
 		this.mobile = phone;
 		this.email = email;
 		this.bonusPoints = 0;
-        this.shoppingCart = null;
+		ShoppingCart cart = new ShoppingCart();
+	    cart.setCustomer(this); // <-- важно!
+	    this.shoppingCart = cart;
         this.payments = new ArrayList<>();
 	}
 

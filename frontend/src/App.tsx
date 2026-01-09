@@ -11,6 +11,7 @@ import ProfilePage from './pages/ProfilePage/ProfilePage'
 import ProductAdminForm from "./pages/AdminPanel/ProductAdminForm.tsx";
 import CategoryAdminForm from "./pages/AdminPanel/CategoryAdminForm.tsx";
 import CartPage from "./pages/CartPage/CartPage.tsx";
+import SearchPage from "./pages/SearchPage/SearchPage.tsx";
 
 function App() {
     return (
@@ -44,6 +45,15 @@ function App() {
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/adminProduct" element={<ProductAdminForm />} />
             <Route path="/adminCategory" element={<CategoryAdminForm />} />
+            <Route path="/search" element={<SearchPage />} />
+            <Route
+                path="/product/:id"
+                element={
+                    <DefaultLayout>
+                        <ProductPage />
+                    </DefaultLayout>
+                }
+            />
 
             <Route
                 path="/cart"

@@ -96,21 +96,50 @@ public class SecurityConfig {
             .csrf(csrf -> csrf.disable())                    // CSRF не нужен для API
             .cors(Customizer.withDefaults())                 // CORS уже настроен отдельно
 
+//            .authorizeHttpRequests(auth -> auth
+//                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+//                .requestMatchers("/api/customers/register", "/api/customers/login").permitAll()
+//                .requestMatchers("/api/products/**").permitAll()
+//                .requestMatchers("/api/cart/**").hasAnyRole("USER", "ADMIN")
+//                .requestMatchers(HttpMethod.POST, "/api/cart/add").permitAll() 
+//                .anyRequest().permitAll()                    // ← Вот главное изменение
+//            )
+            
+//            .authorizeHttpRequests(auth -> auth
+//            	    .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+//            	    .requestMatchers("/api/customers/register", "/api/customers/login").permitAll()
+//            	    .requestMatchers("/api/products/**").permitAll()
+//            	    .requestMatchers("/api/cart/add").permitAll() // аноним может добавить
+//            	    .requestMatchers("/api/cart", "/api/cart/**").authenticated() // но видеть/менять — только залогиненный
+//            	    .anyRequest().permitAll() // или permitAll(), если есть другие публичные эндпоинты
+//            	)
+            
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                .requestMatchers("/api/customers/register", "/api/customers/login").permitAll()
-                .requestMatchers("/api/products/**").permitAll()
-                .anyRequest().permitAll()                    // ← Вот главное изменение
-            )
+            	    .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+            	    .requestMatchers("/api/customers/register", "/api/customers/login").permitAll()
+            	    .requestMatchers("/api/products/**").permitAll()
+            	    
+            	    // Разрешаем добавление анонимам
+            	    .requestMatchers(HttpMethod.POST, "/api/cart/add").permitAll()
+            	    
+            	    // А чтение/изменение/удаление — только залогиненным
+            	    .requestMatchers("/api/cart", "/api/cart/**").authenticated()
+            	    
+            	    .anyRequest().permitAll() // или authenticated(), как тебе нужно
+            	)
 
             .formLogin(form -> form.disable())
             .httpBasic(basic -> basic.disable())
-            .logout(logout -> logout.disable())
+       //     .logout(logout -> logout.disable())
 
             .sessionManagement(session -> session
                 .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                 .maximumSessions(1)
             );
+
+//            .sessionManagement(session -> session
+//            	    .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+//            	);
 
         return http.build();
     }
@@ -131,7 +160,11 @@ public class SecurityConfig {
             @Override
             public void addResourceHandlers(ResourceHandlerRegistry registry) {
                 registry.addResourceHandler("/uploads/**")
-                        .addResourceLocations("file:uploads/");
+                        .addResourceLocations("file:uploads/")
+                        .addResourceLocations("file:/Users/dima/Downloads/uploads/")
+                        .addResourceLocations("file:/Users/dima/Desktop/shop/uploads/")
+                        .addResourceLocations("file:/Users/dima/Downloads/");
+               
             }
         };
         
@@ -143,3 +176,6 @@ public class SecurityConfig {
     
 
 }
+
+
+

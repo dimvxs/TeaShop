@@ -27,8 +27,17 @@ import com.goldenleaf.shop.model.Customer;
 import com.goldenleaf.shop.service.CustomerService;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 
+import java.util.Collections;
+import java.util.List;
 @RestController
 @RequestMapping("/api/customers")
 @CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true")
@@ -64,14 +73,30 @@ public class CustomerController {
 	}
 	
 
+
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Customer> update(@PathVariable Long id, @RequestBody CustomerDTO dto) throws EmptyNameException, IncorrectMobileException, IncorrectEmailException, EmptyLoginException {
-	
-		return ResponseEntity.ok(customerService.update(id, dto));
+	public ResponseEntity<CustomerResponseDTO> update(
+	        @PathVariable("id") Long id,
+	        @RequestBody CustomerDTO dto,
+	        HttpServletRequest request
+	) throws EmptyNameException, IncorrectMobileException, IncorrectEmailException, EmptyLoginException {
+		
+
+	    Customer updatedCustomer = customerService.update(id, dto);
+	 
+	    request.getSession().setAttribute("user", updatedCustomer);
+
+	    return ResponseEntity.ok(
+	        new CustomerResponseDTO(
+	            updatedCustomer.getId(),
+	            updatedCustomer.getLogin(),
+	            updatedCustomer.getEmail(),
+	            updatedCustomer.getMobile()
+	        )
+	    );
 	}
-	
-	
+
 	   
 	   
 	   @DeleteMapping("/{id}")
@@ -81,19 +106,62 @@ public class CustomerController {
 	   }
 	   
 	   
+//	   @PostMapping("/login")
+//	   public ResponseEntity<CustomerResponseDTO> login(@RequestBody CustomerDTO dto,  HttpServletRequest request) throws EmptyLoginException {
+//		   Customer customer = customerService.login(dto.getLogin(), dto.getPassword());
+//		    // здесь создаём сессию и кладём пользователя
+//		   request.getSession(true).setAttribute("user", customer);
+//	
+//		   CustomerResponseDTO response = new CustomerResponseDTO(
+//		       customer.getId(),
+//		       customer.getLogin(),
+//		       customer.getEmail(),
+//		       customer.getMobile()
+//		   );
+//		   return ResponseEntity.ok(response);
+//
+//	   }
+	   
 	   @PostMapping("/login")
-	   public ResponseEntity<CustomerResponseDTO> login(@RequestBody CustomerDTO dto,  HttpServletRequest request) throws EmptyLoginException {
-		   Customer customer = customerService.login(dto.getLogin(), dto.getPassword());
-		    // здесь создаём сессию и кладём пользователя
-		   request.getSession(true).setAttribute("user", customer);
-		   CustomerResponseDTO response = new CustomerResponseDTO(
-		       customer.getId(),
-		       customer.getLogin(),
-		       customer.getEmail(),
-		       customer.getMobile()
-		   );
-		   return ResponseEntity.ok(response);
+	   public ResponseEntity<CustomerResponseDTO> login(
+	           @RequestBody CustomerDTO dto, 
+	           HttpServletRequest request) throws EmptyLoginException {
 
+	       Customer customer = customerService.login(dto.getLogin(), dto.getPassword());
+
+	       // 1. Твоя старая логика — кладём в сессию (оставляем, если где-то используется)
+	       HttpSession session = request.getSession(true);
+	       session.setAttribute("user", customer);
+
+	       // 2. НОВАЯ ОБЯЗАТЕЛЬНАЯ ЧАСТЬ: устанавливаем Spring Security аутентификацию
+	       List<GrantedAuthority> authorities = Collections.singletonList(
+	           new SimpleGrantedAuthority("ROLE_USER") // или "ROLE_ADMIN", если нужно
+	       );
+
+	       Authentication authentication = new UsernamePasswordAuthenticationToken(
+	           customer,      // principal — сам объект Customer
+	           null,          // credentials (пароль не нужен после логина)
+	           authorities    // роли
+	       );
+
+	       SecurityContextHolder.getContext().setAuthentication(authentication);
+
+	       // 3. (Опционально, но рекомендуется) Сохраняем SecurityContext в сессию
+	       // Это нужно, чтобы аутентификация сохранялась между запросами
+	       session.setAttribute(
+	           HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY,
+	           SecurityContextHolder.getContext()
+	       );
+
+	       // 4. Возвращаем DTO
+	       CustomerResponseDTO response = new CustomerResponseDTO(
+	           customer.getId(),
+	           customer.getLogin(),
+	           customer.getEmail(),
+	           customer.getMobile()
+	       );
+
+	       return ResponseEntity.ok(response);
 	   }
 	   
 	   @GetMapping("/me")

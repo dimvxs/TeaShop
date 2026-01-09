@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -40,12 +40,7 @@ public class ProductController {
 	}
 	
 	
-//	@GetMapping("/{id}")
-//	public ResponseEntity<Product> get(@PathVariable("id") Long id){
-//	
-//		return ResponseEntity.ok(productService.getProductById(id));
-//	}
-//	
+
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<ProductDTO> get(@PathVariable("id") Long id)
@@ -55,14 +50,15 @@ public class ProductController {
 			);
 
 	}
+	
+	@GetMapping("/search")
+	public ResponseEntity<List<ProductDTO>> searchProducts(@RequestParam("query") String query) {
+	    List<Product> products = productService.searchProducts(query);
+	    return ResponseEntity.ok(productMapper.toDtoList(products));
+	}
 
 	
-//	@GetMapping
-//	public ResponseEntity<List<Product>> getAll() {
-//	
-//		return ResponseEntity.ok(productService.getAllProducts());
-//	}
-	
+
 	@GetMapping
 	public ResponseEntity<List<ProductDTO>> getAll() {
 	    return ResponseEntity.ok(
@@ -72,17 +68,7 @@ public class ProductController {
 
 	
 
-	// Создание с файлами
-//    @PostMapping(consumes = "multipart/form-data")
-//    @PreAuthorize("hasRole('ADMIN')")
-//    public ResponseEntity<Product> create(
-//            @RequestPart("product") @Valid ProductCreateDTO dto,
-//            @RequestPart(value = "images", required = false) List<MultipartFile> images
-//    ) throws IOException, EmptyNameException {
-//        Product product = productService.createProductWithImages(dto, images);
-//        return ResponseEntity.ok(product);
-//    }
-//	
+
 	
 	
 	@PostMapping(consumes = "multipart/form-data")
@@ -99,20 +85,7 @@ public class ProductController {
 	
 
 
-	
-	// Обновление с файлами
-//	@PutMapping(value = "/{id}", consumes = "multipart/form-data")
-//    @PreAuthorize("hasRole('ADMIN')")
-//    public ResponseEntity<Product> update(
-//    		@PathVariable("id") Long id,
-//            @RequestPart("product") @Valid ProductUpdateDTO dto,
-//            @RequestPart(value = "images", required = false) List<MultipartFile> images
-//    ) throws IOException, EmptyNameException {
-//        Product product = productService.updateProductWithImages(id, dto, images);
-//        return ResponseEntity.ok(product);
-//    }
 
-	
 	
 	@PutMapping(value = "/{id}", consumes = "multipart/form-data")
 	@PreAuthorize("hasRole('ADMIN')")

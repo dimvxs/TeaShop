@@ -4,6 +4,7 @@ import com.goldenleaf.shop.exception.EmptyProductException;
 import com.goldenleaf.shop.exception.IncorrectQuantityException;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -45,9 +46,13 @@ public class ShoppingItem {
      *
      * @see Product
      */
-    @ManyToOne
-    @JoinColumn(name = "product_id", nullable = false)
+//    @ManyToOne
+//    @JoinColumn(name = "product_id", nullable = false, fetch = FetchType.EAGER)
+//    private Product product;
+    @ManyToOne(optional = false, fetch = FetchType.EAGER) // EAGER, чтобы Product загружался сразу
+    @JoinColumn(name = "product_id")
     private Product product;
+
 
     /**
      * <p>

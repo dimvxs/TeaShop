@@ -81,8 +81,12 @@ public class ProductService {
         }
         return productRepository.save(product);
     }
+    
+    public List<Product> searchProducts(String query) {
+        return productRepository.findByNameContainingIgnoreCaseOrDescriptionContainingIgnoreCase(query, query);
+    }
 
-    // ==================== Новые методы для работы с изображениями ====================
+
 
     private List<String> saveImages(List<MultipartFile> files) throws IOException {
         List<String> urls = new ArrayList<>();
@@ -168,4 +172,6 @@ public class ProductService {
 
         return productRepository.save(product);
     }
+    
+    
 }

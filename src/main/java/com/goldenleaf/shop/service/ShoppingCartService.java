@@ -1,12 +1,9 @@
 package com.goldenleaf.shop.service;
-
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-
 import com.goldenleaf.shop.AppMapper;
 import com.goldenleaf.shop.dto.ShoppingCartDTO;
 import com.goldenleaf.shop.dto.ShoppingItemDTO;
@@ -18,13 +15,10 @@ import com.goldenleaf.shop.model.Customer;
 import com.goldenleaf.shop.model.Product;
 import com.goldenleaf.shop.model.ShoppingCart;
 import com.goldenleaf.shop.model.ShoppingItem;
-import com.goldenleaf.shop.model.User;
 import com.goldenleaf.shop.repository.CustomerRepository;
 import com.goldenleaf.shop.repository.ProductRepository;
 import com.goldenleaf.shop.repository.ShoppingCartRepository;
 import com.goldenleaf.shop.repository.ShoppingItemRepository;
-import com.goldenleaf.shop.repository.UserRepository;
-
 import jakarta.transaction.Transactional;
 
 /**
@@ -48,6 +42,7 @@ public class ShoppingCartService {
     private final ShoppingCartRepository shoppingCartRepository;
     private final ShoppingItemRepository itemRepository;
     private final ProductRepository productRepository;
+    private final CustomerRepository customerRepository;
     private final AppMapper appMapper;
 
 
@@ -59,16 +54,19 @@ public class ShoppingCartService {
      *
      * @see ShoppingCartRepository
      */
-    public ShoppingCartService(ShoppingCartRepository repo, ShoppingItemRepository itemRepository, ProductRepository productRepository, AppMapper appMapper) {
+    public ShoppingCartService(ShoppingCartRepository repo, ShoppingItemRepository itemRepository, ProductRepository productRepository, AppMapper appMapper, CustomerRepository customerRepository) {
         if (repo == null) {
             throw new IllegalArgumentException("ShoppingCartRepository cannot be null");
         }
         this.shoppingCartRepository = repo;
         this.itemRepository = itemRepository;
         this.productRepository = productRepository;
+        this.customerRepository = customerRepository;
         this.appMapper = appMapper;
   
     }
+    
+    
 
     /**
      * Retrieves all shopping carts from the database.
@@ -109,17 +107,10 @@ public class ShoppingCartService {
                 .orElseThrow(() -> new RuntimeException("Shopping cart not found by customer: " + customer));
     }
     
- // Получить корзину текущего пользователя
-    public ShoppingCart getCurrentUserCart() {
-        Customer customer = getCurrentCustomer();
-        return customer.getShoppingCart();
-    }
-    
-    public ShoppingCartDTO getCurrentUserCartDTO() 
-            throws EmptyProductException, IncorrectQuantityException, IncorrectPriceException {
-        ShoppingCart cart = getCurrentUserCart(); 
-        return appMapper.toDTO(cart); // используем MapStruct
-    }
+
+
+
+
 
     public ShoppingCartDTO getShoppingCartByIdDTO(Long id) 
             throws EmptyProductException, IncorrectQuantityException, IncorrectPriceException {
@@ -129,91 +120,160 @@ public class ShoppingCartService {
     }
 
     
-//    @Transactional
-//    public ShoppingCart updateCartItem(Long itemId, int quantity) throws IncorrectQuantityException {
-//        ShoppingItem item = itemRepository.findById(itemId)
-//                .orElseThrow(() -> new IllegalArgumentException("Элемент корзины не найден"));
-//
-//        if (quantity <= 0) {
-//            itemRepository.delete(item);
-//        } else {
-//            item.setQuantity(quantity);
-//            itemRepository.save(item);
-//        }
-//
-//        // Возвращаем актуальное состояние корзины пользователя
-//        return shoppingCartRepository.findById(item.getCart().getId())
-//                .orElseThrow(() -> new IllegalArgumentException("Корзина не найдена"));
-//    }
-//    
-    public ShoppingCartDTO updateCartItem(Long itemId, int quantity) 
-            throws IncorrectQuantityException, EmptyProductException, IncorrectPriceException {
-        ShoppingCart cart = updateItemQuantity(itemId, quantity); // <--- вызываем правильный метод
-        return appMapper.toDTO(cart); 
+    public ShoppingCartDTO getCartByCustomerIdDTO(Long customerId) 
+            throws EmptyProductException, IncorrectQuantityException, IncorrectPriceException {
+
+        if (customerId == null) {
+            // Если нет пользователя — пустая корзина
+            return new ShoppingCartDTO();
+        }
+
+        // Предполагаем, что у тебя есть CustomerRepository
+        Customer customer = customerRepository.findById(customerId)
+                .orElseThrow(() -> new RuntimeException("Customer not found with id: " + customerId));
+
+        ShoppingCart cart = customer.getShoppingCart();
+        if (cart == null) {
+            // Если корзины нет — возвращаем пустую
+            return new ShoppingCartDTO();
+        }
+
+        // Используем MapStruct или ручное преобразование в DTO
+        return appMapper.toDTO(cart);
     }
 
+    
+
+    public ShoppingCartDTO updateCartItem(Long itemId, int quantity) 
+            throws IncorrectQuantityException, EmptyProductException, IncorrectPriceException {
+        ShoppingCart cart = updateItemQuantity(itemId, quantity); 
+        return appMapper.toDTO(cart); 
+    }
+    
+
+    public ShoppingCart updateItemQuantity(Long itemId, int quantity) throws IncorrectQuantityException {
+        if (itemId == null) {
+            throw new IllegalArgumentException("Item id must not be null");
+        }
+
+        ShoppingItem item = itemRepository.findById(itemId)
+            .orElseThrow(() -> new RuntimeException("Item not found"));
+
+        ShoppingCart cart = item.getCart();
+        Customer currentCustomer = getCurrentCustomer();
+
+        // Если корзина ещё не привязана к пользователю — привязываем её
+        if (cart.getCustomer() == null) {
+            cart.setCustomer(currentCustomer);
+            shoppingCartRepository.save(cart); // сохраняем связь
+            System.out.println("Cart was unassigned. Assigned to current customer: " + currentCustomer);
+        }
+
+        // Проверка прав: если корзина принадлежит другому пользователю
+        if (!cart.getCustomer().equals(currentCustomer)) {
+            throw new RuntimeException("Access denied");
+        }
+        System.out.println("currentCustomer = " + currentCustomer);
+        System.out.println("cartCustomer = " + cart.getCustomer());
+
+
+        // Обновление количества
+        if (quantity == 0) {
+            itemRepository.delete(item);
+        } else {
+            // увеличиваем текущее количество на переданное
+        	item.setQuantity(quantity);
+            itemRepository.save(item);
+        }
+
+
+        return cart;
+    }
+
+
+
+    
+    
+    
     @Transactional
-    public ShoppingCartDTO addProductToCart(Long productId, int quantity) throws EmptyProductException, IncorrectQuantityException {
-        ShoppingCart cart = getCurrentUserCart();
+    public ShoppingCartDTO addProductToCart(Long productId, int quantity)
+            throws EmptyProductException, IncorrectQuantityException {
 
+        Customer customer = getCurrentCustomer();
+        if (customer == null) {
+            throw new RuntimeException("Требуется авторизация для добавления товара в корзину");
+        }
+
+        // Получаем корзину пользователя или создаем новую
+        ShoppingCart cart = customer.getShoppingCart();
+        if (cart == null) {
+            cart = new ShoppingCart();
+            cart.setCustomer(customer);
+            customer.setShoppingCart(cart);
+            shoppingCartRepository.save(cart); // сохраняем, чтобы появился cart_id
+        }
+
+        // Находим продукт
         Product product = productRepository.findById(productId)
-                .orElseThrow(() -> new RuntimeException("Product not found"));
+                .orElseThrow(() -> new EmptyProductException("Продукт не найден"));
 
-        // ищем, есть ли уже этот товар в корзине
+        // Ищем существующий товар в корзине
         ShoppingItem existingItem = cart.getItems().stream()
-                .filter(i -> i.getProduct().getId().equals(productId))
+                .filter(item -> item.getProduct().getId().equals(productId))
                 .findFirst()
                 .orElse(null);
 
         if (existingItem != null) {
+            // Если есть, увеличиваем количество
             existingItem.setQuantity(existingItem.getQuantity() + quantity);
         } else {
-            ShoppingItem newItem = new ShoppingItem();
-            newItem.setProduct(product);
-            newItem.setQuantity(quantity);
+            // Если нет, создаем новый
+            ShoppingItem newItem = new ShoppingItem(product, quantity);
             newItem.setCart(cart);
             cart.getItems().add(newItem);
         }
 
+        // Пересчитываем totalPrice безопасно
+        try {
+            cart.setTotalPrice(cart.calculateTotalPrice());
+        } catch (IncorrectPriceException e) {
+            throw new RuntimeException("Ошибка при подсчете общей цены корзины", e);
+        }
+
+        // Сохраняем корзину
         shoppingCartRepository.save(cart);
 
-        // Создаём DTO вручную
+        
         List<ShoppingItemDTO> itemsDTO = cart.getItems().stream()
-                .map(i -> new ShoppingItemDTO(
-                        i.getId(),
-                        i.getProduct().getId(),
-                        i.getProduct().getName(),
-                        i.getQuantity(),
-                        i.getProduct().getPrice()
-                ))
-                .toList();
+        	    .map(item -> {
+        	        Long pid = item.getProduct() != null ? item.getProduct().getId() : null;
+        	        String pname = item.getProduct() != null ? item.getProduct().getName() : "Ошибка загрузки товара";
+        	        double price = item.getProduct() != null ? item.getProduct().getPrice() : 0;
+        	        String img = item.getProduct() != null && !item.getProduct().getImageUrls().isEmpty()
+        	                     ? item.getProduct().getImageUrls().get(0)
+        	                     : "/images/default-product.jpg";
+System.out.println("Image URL for product ID  and name" + pid + ": " + img + "nama" + pname); 
+        	        return new ShoppingItemDTO(
+        	                item.getId(),
+        	                pid,
+        	                pname,
+        	                item.getQuantity(),
+        	                price,
+        	                img   
+        	        );
+        	    })
+        	    .toList();
 
+
+        // Считаем totalPrice для DTO
         double totalPrice = itemsDTO.stream()
                 .mapToDouble(i -> i.getQuantity() * i.getPricePerUnit())
                 .sum();
 
-        return new ShoppingCartDTO(cart.getId(), cart.getCustomer().getId(), itemsDTO, totalPrice);
+        return new ShoppingCartDTO(cart.getId(), customer.getId(), itemsDTO, totalPrice);
     }
-
-
-    public ShoppingCart updateItemQuantity(Long itemId, int quantity) throws IncorrectQuantityException {
-        ShoppingItem item = itemRepository.findById(itemId)
-            .orElseThrow(() -> new RuntimeException("Item not found"));
-
-        // Проверка, что товар принадлежит текущему пользователю
-        if (!item.getCart().getCustomer().equals(getCurrentCustomer())) {
-            throw new RuntimeException("Access denied");
-        }
-
-        if (quantity <= 0) {
-            itemRepository.delete(item);
-        } else {
-            item.setQuantity(quantity);
-            itemRepository.save(item);
-        }
-
-        return item.getCart();
-    }
+    
+ 
 
     public ShoppingCart removeItemFromCurrentUserCart(Long itemId) {
         ShoppingItem item = itemRepository.findById(itemId)
@@ -239,22 +299,51 @@ public class ShoppingCartService {
         }
     }
 
+    
     private Customer getCurrentCustomer() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
-        if (authentication == null || !authentication.isAuthenticated() || 
+        
+        if (authentication == null || !authentication.isAuthenticated() ||
             "anonymousUser".equals(authentication.getPrincipal())) {
-            throw new RuntimeException("User not authenticated");
+            return null; 
         }
-
+        
         Object principal = authentication.getPrincipal();
-
         if (principal instanceof Customer customer) {
             return customer;
         }
-
-        throw new RuntimeException("Authenticated user is not a Customer");
+        
+        return null;
     }
+    
+    
+    
+    
+    @Transactional
+    public ShoppingCartDTO getCurrentUserCartDTOSafe() 
+            throws EmptyProductException, IncorrectQuantityException, IncorrectPriceException {
+
+        Customer customer = getCurrentCustomer();
+        if (customer == null) {
+            return new ShoppingCartDTO();
+        }
+
+        ShoppingCart cart = customer.getShoppingCart();
+        if (cart == null) {
+            cart = new ShoppingCart();
+            cart.setCustomer(customer);
+            cart = shoppingCartRepository.save(cart);
+        }
+
+        // Принудительно инициализируем список товаров
+        cart.getItems().size();
+
+        return appMapper.toDTO(cart);
+    }
+
+
+
+    
     /**
      * Adds a new {@link ShoppingCart} to the database.
      *
@@ -265,6 +354,8 @@ public class ShoppingCartService {
     public ShoppingCart addShoppingCart(ShoppingCart cart) {
         return shoppingCartRepository.save(cart);
     }
+    
+
 
     /**
      * Removes an existing {@link ShoppingCart} from the database.
